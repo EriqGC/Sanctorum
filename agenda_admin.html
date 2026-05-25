@@ -1,0 +1,121 @@
+<!doctype html>
+<html class="light" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Agenda Escolar - Guardian Admin</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+      body {
+        font-family: "Quicksand", sans-serif;
+        background: #f6fafe;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="text-slate-800">
+    <aside
+      class="h-screen w-64 fixed left-0 top-0 bg-white shadow-[0_20px_50px_rgba(23,28,31,0.06)] z-50 flex flex-col py-8 px-4"
+    >
+      <div class="flex justify-center mb-10 px-2">
+        <img alt="NGO Logo" class="w-32 h-auto object-contain" src="Logo.png" />
+      </div>
+      <nav class="flex-grow space-y-2">
+        <a
+          class="flex items-center gap-3 p-3 rounded-xl transition-all text-slate-500 hover:bg-slate-100"
+          href="dashboard_admin.html"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="font-medium">Resumen</span>
+        </a>
+        <a
+          class="flex items-center gap-3 p-3 rounded-xl transition-all text-slate-500 hover:bg-slate-100"
+          href="gestion_expedientes_admin.html"
+        >
+          <span class="material-symbols-outlined">folder_shared</span>
+          <span class="font-medium">Expedientes</span>
+        </a>
+        <a
+          class="flex items-center gap-3 p-3 rounded-xl transition-all text-slate-500 hover:bg-slate-100"
+          href="gestion_voluntariado_admin.html"
+        >
+          <span class="material-symbols-outlined">group</span>
+          <span class="font-medium">Voluntariado</span>
+        </a>
+        <a
+          class="flex items-center gap-3 p-3 rounded-xl transition-all text-slate-500 hover:bg-slate-100"
+          href="inventario_admin.html"
+        >
+          <span class="material-symbols-outlined">inventory_2</span>
+          <span class="font-medium">Inventario</span>
+        </a>
+        <a
+          class="flex items-center gap-3 p-3 rounded-xl transition-all text-orange-600 font-bold border-r-4 border-orange-500 bg-slate-50"
+          href="agenda_admin.html"
+        >
+          <span class="material-symbols-outlined">school</span>
+          <span class="font-medium">Agenda Escolar</span>
+        </a>
+        <a
+          class="flex items-center gap-3 p-3 mt-4 rounded-xl transition-all text-slate-500 border border-slate-200 hover:text-orange-600"
+          href="inicio.html"
+        >
+          <span class="material-symbols-outlined">home</span>
+          <span class="font-medium">Volver al Inicio</span>
+        </a>
+      </nav>
+    </aside>
+
+    <header
+      class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/70 backdrop-blur-xl flex justify-between items-center px-8 z-40 shadow-sm"
+    >
+      <h2 class="text-xl font-bold">Agenda Escolar y Actividades</h2>
+    </header>
+
+    <main class="ml-64 pt-24 pb-12 px-8 min-h-screen">
+      <div
+        class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 max-w-4xl"
+      >
+        <h3 class="text-lg font-bold mb-6 text-slate-800">
+          Próximas Visitas Institucionales
+        </h3>
+
+        <div class="space-y-4">
+          <div
+            class="p-6 border border-slate-100 rounded-xl flex items-center justify-between hover:bg-slate-50 transition-colors"
+          >
+            <div class="flex items-center gap-4">
+              <div class="p-3 bg-blue-100 text-blue-600 rounded-xl">
+                <span class="material-symbols-outlined">event</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-800">Primaria Benito Juárez</h4>
+                <p class="text-sm text-slate-500">
+                  Taller de Convivencia Pacífica
+                </p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-bold text-orange-600">12 de Octubre</p>
+              <p class="text-sm text-slate-500">09:00 AM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

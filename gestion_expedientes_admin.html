@@ -1,0 +1,223 @@
+<!-- Gestión de Expedientes - Admin Portal -->
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestión de Expedientes - Guardian Admin</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Quicksand & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-tint": "#8a5100",
+                "on-error-container": "#93000a",
+                "surface-container": "#eaeef2",
+                "on-primary-container": "#5c3400",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary-fixed": "#001e2f",
+                "on-background": "#171c1f",
+                "on-tertiary-container": "#004261",
+                "surface-container-low": "#f0f4f8",
+                "surface-container-high": "#e4e9ed",
+                "on-secondary-fixed-variant": "#8e004b",
+                "on-tertiary": "#ffffff",
+                "inverse-on-surface": "#edf1f5",
+                "secondary-fixed": "#ffd9e2",
+                "secondary-fixed-dim": "#ffb0c9",
+                "on-secondary": "#ffffff",
+                "on-primary": "#ffffff",
+                "on-primary-fixed": "#2c1600",
+                "tertiary-container": "#02b3ff",
+                "primary": "#8a5100",
+                "on-secondary-fixed": "#3e001e",
+                "on-error": "#ffffff",
+                "primary-container": "#f39200",
+                "outline-variant": "#dac2ae",
+                "tertiary": "#006491",
+                "on-tertiary-fixed-variant": "#004b6f",
+                "surface": "#f6fafe",
+                "error": "#ba1a1a",
+                "background": "#f6fafe",
+                "secondary": "#b50062",
+                "error-container": "#ffdad6",
+                "surface-variant": "#dfe3e7",
+                "primary-fixed-dim": "#ffb86e",
+                "on-secondary-container": "#fffbff",
+                "on-surface-variant": "#544434",
+                "on-surface": "#171c1f",
+                "secondary-container": "#e2007c",
+                "tertiary-fixed-dim": "#8aceff",
+                "inverse-primary": "#ffb86e",
+                "tertiary-fixed": "#c9e6ff",
+                "surface-bright": "#f6fafe",
+                "surface-container-highest": "#dfe3e7",
+                "primary-fixed": "#ffdcbd",
+                "inverse-surface": "#2c3134",
+                "outline": "#877362",
+                "surface-dim": "#d6dade",
+                "on-primary-fixed-variant": "#693c00"
+            },
+            "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Quicksand", "sans-serif"],
+                "body": ["Quicksand", "sans-serif"],
+                "label": ["Quicksand", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift {
+            background-image: radial-gradient(at 0% 0%, rgba(243, 146, 0, 0.03) 0, transparent 50%), 
+                              radial-gradient(at 50% 0%, rgba(226, 0, 124, 0.02) 0, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-['Quicksand'] antialiased text-on-surface overflow-x-hidden">
+<!-- SideNavBar (Authority: JSON & Conflict Resolution) -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-white dark:bg-slate-900 shadow-[0_20px_50px_rgba(23,28,31,0.06)] z-50 flex flex-col py-8 px-4 font-['Quicksand'] antialiased">
+<div class="flex justify-center mb-10 px-2">
+<img alt="NGO Logo" class="w-32 h-auto object-contain" src="Logo.png"/>
+</div>
+<nav class="flex-grow space-y-2">
+<a class="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 group" href="dashboard_admin.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Resumen</span>
+</a>
+<!-- Active State: Expedientes (Maps to Files in JSON) -->
+<a class="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 text-orange-600 dark:text-orange-400 font-bold border-r-4 border-orange-500 hover:bg-slate-100 group" href="gestion_expedientes_admin.html">
+<span class="material-symbols-outlined" data-icon="folder_shared">folder_shared</span>
+<span class="font-medium">Expedientes</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 group" href="gestion_voluntariado_admin.html">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-medium">Voluntariado</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 group" href="inventario_admin.html">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-medium">Inventario</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 group" href="agenda_admin.html">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span class="font-medium">Agenda Escolar</span>
+</a>
+<a class="flex items-center gap-3 p-3 mt-4 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 group border border-slate-200 dark:border-slate-800" href="inicio.html">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-medium">Volver al Inicio</span>
+</a>
+</nav>
+<div class="mt-auto px-2">
+<div class="p-4 bg-surface-container-low rounded-2xl">
+<p class="text-xs text-slate-500 mb-2">System Health</p>
+<div class="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+<div class="bg-primary w-3/4 h-full"></div>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl flex justify-between items-center px-8 z-40 shadow-sm font-['Quicksand'] tracking-tight">
+<div class="flex items-center flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-secondary/20 transition-all text-sm" placeholder="Buscar expedientes..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-slate-500 hover:text-pink-500 dark:hover:text-pink-300 transition-all opacity-90 hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-secondary rounded-full"></span>
+</button>
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="text-right">
+<p class="text-sm font-semibold text-slate-800 dark:text-slate-100">Administrador</p>
+<p class="text-[10px] text-slate-500">Super User</p>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-surface shadow-sm">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a professional administrator with a friendly expression in a brightly lit modern office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-wIoyuOleTuvzm8aPPoI95XDenjJj3t9sYRo53nivYzYXTw5YlL0aQm2TzWJcSqq0hviL91tnkGYeLS4Lfpvcb4-MaTdHdZA0vlAjQYYeDfaAzNvT3mqH2ha06msxCic_gPZ1y-SigEeuTba527khWXAA_GwdSDkrxjn45bILOilqA6KZiuMYXWKExDR8b8avEsqC4-p1eev8r3t_M5R7w1eLPUvdKB0Kxrzj-GlyjJEYjSxdbpTq8lP5wjY92gEWedoGbvzu4oQ"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-24 pb-12 px-8 min-h-screen tonal-shift relative">
+<!-- Content Header -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="text-4xl font-bold text-on-surface tracking-tight mb-2">Gestión de Expedientes</h2>
+<p class="text-slate-500 max-w-xl">Administra y da seguimiento a los registros detallados de los beneficiarios del programa de salud mental.</p>
+</div>
+<button class="flex items-center gap-2 bg-gradient-to-r from-secondary to-secondary-container text-on-secondary px-8 py-3.5 rounded-full font-bold shadow-lg hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-lg">add</span>
+                + Nuevo Expediente
+            </button>
+</div>
+<!-- Filter Bar -->
+<div class="flex flex-wrap gap-4 mb-8 bg-surface-container-lowest p-4 rounded-2xl shadow-[0_10px_30px_rgba(23,28,31,0.03)] items-center">
+<span class="text-sm font-bold text-slate-400 px-2 uppercase tracking-widest text-[10px]">Filtrar por:</span>
+<div class="relative min-w-[200px]">
+<select class="w-full appearance-none bg-surface-container-low border-none rounded-full px-5 py-2.5 text-sm font-medium focus:ring-2 focus:ring-secondary/20 cursor-pointer">
+<option>Especialista Asignado</option>
+<option>Dra. Elena Rivas</option>
+<option>Psic. Marcos Tello</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+<div class="relative min-w-[200px]">
+<select class="w-full appearance-none bg-surface-container-low border-none rounded-full px-5 py-2.5 text-sm font-medium focus:ring-2 focus:ring-secondary/20 cursor-pointer">
+<option>Estatus Escolar</option>
+<option>Regular</option>
+<option>En Observación</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+<div class="relative min-w-[200px]">
+<select class="w-full appearance-none bg-surface-container-low border-none rounded-full px-5 py-2.5 text-sm font-medium focus:ring-2 focus:ring-secondary/20 cursor-pointer">
+<option>Fecha de Ingreso</option>
+<option>Último mes</option>
+<option>Este año</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">calendar_today</span>
+</div>
+<button class="ml-auto p-2.5 bg-surface-container hover:bg-slate-200 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-600">refresh</span>
+</button>
+</div>
+<!-- Data Table (The "Bento-style" Table) -->
+<div class="bg-surface-container-lowest rounded-lg shadow-[0_20px_50px_rgba(23,28,31,0.06)] overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low/50">
+<tr>
+<th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">ID</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Nombre del Beneficiario</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Tutor Responsable</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Escuela de Procedencia</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/15">
+<!-- Fila de ejemplo / Contenido dinámico -->
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</body>
+</html>

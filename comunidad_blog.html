@@ -1,0 +1,529 @@
+<!-- Comunidad (Blog) con Logo Oficial -->
+<!doctype html>
+
+<html class="scroll-smooth" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Comunidad | Sumando Voluntades Sanctórum</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              surface: "#f6fafe",
+              "on-surface-variant": "#544434",
+              "on-secondary-fixed-variant": "#8e004b",
+              "on-background": "#171c1f",
+              "inverse-primary": "#ffb86e",
+              "secondary-fixed": "#ffd9e2",
+              tertiary: "#006491",
+              "inverse-surface": "#2c3134",
+              "tertiary-container": "#02b3ff",
+              outline: "#877362",
+              "primary-fixed-dim": "#ffb86e",
+              error: "#ba1a1a",
+              "surface-tint": "#8a5100",
+              "surface-container-low": "#f0f4f8",
+              "on-secondary-container": "#fffbff",
+              "surface-bright": "#f6fafe",
+              "primary-fixed": "#ffdcbd",
+              primary: "#8a5100",
+              "error-container": "#ffdad6",
+              "surface-container-lowest": "#ffffff",
+              "secondary-container": "#e2007c",
+              "outline-variant": "#dac2ae",
+              "on-tertiary-container": "#004261",
+              background: "#f6fafe",
+              "on-error-container": "#93000a",
+              "inverse-on-surface": "#edf1f5",
+              "surface-dim": "#d6dade",
+              "on-tertiary-fixed-variant": "#004b6f",
+              "surface-container-highest": "#dfe3e7",
+              "on-primary": "#ffffff",
+              "on-primary-fixed-variant": "#693c00",
+              secondary: "#b50062",
+              "surface-container-high": "#e4e9ed",
+              "primary-container": "#f39200",
+              "on-secondary-fixed": "#3e001e",
+              "surface-container": "#eaeef2",
+              "on-tertiary-fixed": "#001e2f",
+              "on-surface": "#171c1f",
+              "tertiary-fixed": "#c9e6ff",
+              "on-primary-fixed": "#2c1600",
+              "on-tertiary": "#ffffff",
+              "tertiary-fixed-dim": "#8aceff",
+              "secondary-fixed-dim": "#ffb0c9",
+              "surface-variant": "#dfe3e7",
+              "on-secondary": "#ffffff",
+              "on-primary-container": "#5c3400",
+              "on-error": "#ffffff",
+            },
+            borderRadius: {
+              DEFAULT: "1rem",
+              lg: "2rem",
+              xl: "3rem",
+              full: "9999px",
+            },
+            fontFamily: {
+              headline: ["Quicksand", "sans-serif"],
+              body: ["Quicksand", "sans-serif"],
+              label: ["Quicksand", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Quicksand", sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-effect {
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-surface text-on-surface selection:bg-secondary-container selection:text-white"
+  >
+    <!-- TopNavBar -->
+    <header
+      class="fixed top-0 w-full z-50 rounded-b-xl bg-white/70 backdrop-blur-md shadow-[0_20px_50px_rgba(23,28,31,0.06)]"
+    >
+      <div
+        class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4"
+      >
+        <div class="flex items-center gap-3">
+          <img
+            alt="Logo Sumando Voluntades Sanctórum"
+            class="h-12 w-auto object-contain"
+            src="Logo.png"
+          />
+        </div>
+        <nav class="hidden md:flex gap-8 items-center">
+          <a
+            class="text-slate-600 hover:text-pink-600 transition-colors duration-300"
+            href="inicio.html"
+            >Inicio</a
+          >
+          <a
+            class="text-orange-700 font-bold border-b-2 border-orange-500 hover:text-pink-600 transition-colors duration-300 py-1"
+            href="comunidad_blog.html"
+            >Comunidad</a
+          >
+          <a
+            class="text-slate-600 hover:text-pink-600 transition-colors duration-300"
+            href="solicitud_apoyo_oficial.html"
+            >Solicitud de Apoyo</a
+          >
+          <a
+            class="text-slate-600 hover:text-pink-600 transition-colors duration-300"
+            href="como_ayudar.html"
+            >Cómo Ayudar</a
+          >
+        </nav>
+        <div class="flex items-center gap-4">
+          <button
+            class="material-symbols-outlined text-slate-600 hover:text-orange-600 transition-all"
+          >
+            help
+          </button>
+          <a
+            href="login.html"
+            title="Panel de Administración"
+            class="material-symbols-outlined text-slate-600 hover:text-orange-600 transition-all"
+          >
+            admin_panel_settings
+          </a>
+          <button
+            class="hidden lg:block px-6 py-2 rounded-full border border-secondary text-secondary font-semibold hover:bg-secondary-container hover:text-white transition-all"
+          >
+            Voluntariado
+          </button>
+          <button
+            class="bg-gradient-to-r from-primary to-primary-container text-white px-8 py-2 rounded-full font-bold shadow-lg hover:scale-105 active:scale-95 transition-all"
+          >
+            Donar
+          </button>
+        </div>
+      </div>
+    </header>
+    <main class="pt-32">
+      <!-- Hero Section -->
+      <section class="max-w-7xl mx-auto px-8 mb-20">
+        <div
+          class="relative overflow-hidden rounded-xl bg-primary-container/10 p-12 md:p-20 text-center"
+        >
+          <div
+            class="absolute -top-24 -right-24 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"
+          ></div>
+          <div
+            class="absolute -bottom-24 -left-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl"
+          ></div>
+          <h1
+            class="text-4xl md:text-6xl font-bold text-primary mb-6 leading-tight"
+          >
+            Comunidad: Sembrando Cultura de Paz
+          </h1>
+          <p
+            class="max-w-2xl mx-auto text-lg text-on-surface/80 leading-relaxed"
+          >
+            Un espacio dedicado a compartir historias de esperanza, recursos
+            prácticos para la salud mental y herramientas para fortalecer el
+            bienestar familiar en nuestra comunidad.
+          </p>
+        </div>
+      </section>
+      <!-- Featured Post -->
+      <section class="max-w-7xl mx-auto px-8 mb-24">
+        <div
+          class="grid md:grid-cols-2 gap-0 bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(23,28,31,0.06)] group cursor-pointer transition-transform duration-500 hover:scale-[1.01]"
+        >
+          <div class="relative h-[400px] md:h-full overflow-hidden">
+            <img
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              data-alt="A diverse multi-generational family sitting together in a warm living room, laughing and engaging in positive conversation with soft natural lighting"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKTfcgq5ylrTDoBmKGMN5IFJ3TsGB-6irBnP_IYZey_MplnFD-akKWe4_PSE6Nf1rISxwHiZThkMhJ2lNZADev4K4wFNw8urmt_qS57o-4hwrPmO_hB14ba6SSj2uU-HO6hqfJ0qgggZIGlyPjp4Q37nm5SVKTov4ay3_mgh9VBHOPkg1NTmxfw1Xb2DLwWqzYXKJQw6YpISPpOOdhLEa4AMRQJuqBDvfmeNgaNYXzlDUze_b6kvvmSYam6eeg0GkYGbz_sOCq5nA"
+            />
+            <div class="absolute top-6 left-6">
+              <span
+                class="px-4 py-1.5 bg-secondary text-white rounded-full text-sm font-semibold tracking-wide"
+                >Destacado</span
+              >
+            </div>
+          </div>
+          <div class="p-8 md:p-16 flex flex-col justify-center bg-white">
+            <span
+              class="text-secondary font-bold text-sm tracking-widest uppercase mb-4"
+              >Cultura de Paz</span
+            >
+            <h2
+              class="text-3xl md:text-4xl font-bold text-on-surface mb-6 leading-tight"
+            >
+              Cómo fomentar la comunicación no violenta en casa
+            </h2>
+            <p class="text-on-surface/70 text-lg leading-relaxed mb-8">
+              Aprende técnicas sencillas para transformar los conflictos en
+              oportunidades de conexión y entendimiento mutuo entre los miembros
+              de tu familia.
+            </p>
+            <div class="flex items-center gap-4">
+              <button
+                class="px-8 py-3 bg-secondary text-white rounded-full font-bold shadow-lg hover:shadow-secondary/20 transition-all flex items-center gap-2"
+              >
+                Leer artículo completo
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Categories Filter -->
+      <section class="max-w-7xl mx-auto px-8 mb-12">
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <button
+            class="px-6 py-2.5 bg-primary text-white rounded-full font-semibold shadow-md transition-all"
+          >
+            Todos
+          </button>
+          <button
+            class="px-6 py-2.5 bg-surface-container-low text-on-surface hover:bg-secondary/10 hover:text-secondary rounded-full font-semibold transition-all"
+          >
+            Salud Mental
+          </button>
+          <button
+            class="px-6 py-2.5 bg-surface-container-low text-on-surface hover:bg-secondary/10 hover:text-secondary rounded-full font-semibold transition-all"
+          >
+            Cultura de Paz
+          </button>
+          <button
+            class="px-6 py-2.5 bg-surface-container-low text-on-surface hover:bg-secondary/10 hover:text-secondary rounded-full font-semibold transition-all"
+          >
+            Actividades de Campo
+          </button>
+          <button
+            class="px-6 py-2.5 bg-surface-container-low text-on-surface hover:bg-secondary/10 hover:text-secondary rounded-full font-semibold transition-all"
+          >
+            Historias de Éxito
+          </button>
+        </div>
+      </section>
+      <!-- Blog Grid -->
+      <section class="max-w-7xl mx-auto px-8 mb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <!-- Card 1 -->
+          <div
+            class="bg-surface-container-lowest rounded-lg overflow-hidden shadow-[0_20px_50px_rgba(23,28,31,0.06)] hover:translate-y-[-8px] transition-all duration-300"
+          >
+            <div class="relative h-64">
+              <img
+                class="w-full h-full object-cover"
+                data-alt="A calm serene person practicing mindfulness outdoors in a lush green park with soft morning sunlight filtering through trees"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnegNE53o1QknLomEAXCAsibRyUfTvd3FpTDfA1Hld5pwnVI8FOjbtTt43xNzCPid61zlkHOJ5b3cxwOdnT73S4iz1lHArs65RwRszWFj4TaQXjFDwS9Q2gAr3_hBZeUpaKYJjwLdWPFwL9w0mwEa56LoXVjJUPPe-GgEraF1pK4E2fmVngR1vIE_0jJHy3c76-U9FJxwVjG6lT8L1BbvvRIyg_BUxrUESXDY-xgJOgpAN8IyjYKQCKDP-DW8zIJfgdlzkaX6fTSg"
+              />
+              <div class="absolute bottom-4 left-4">
+                <span
+                  class="px-3 py-1 bg-white/90 backdrop-blur text-primary text-xs font-bold rounded-full"
+                  >Salud Mental</span
+                >
+              </div>
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-bold mb-3 leading-snug">
+                5 Minutos de calma: Guía básica de mindfulness
+              </h3>
+              <p class="text-on-surface/60 text-sm leading-relaxed mb-6">
+                Pequeños pasos para encontrar equilibrio emocional en medio del
+                ajetreo diario de la ciudad.
+              </p>
+              <button
+                class="text-secondary font-bold text-sm flex items-center gap-2 group"
+              >
+                Leer más
+                <span
+                  class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="bg-surface-container-lowest rounded-lg overflow-hidden shadow-[0_20px_50px_rgba(23,28,31,0.06)] hover:translate-y-[-8px] transition-all duration-300"
+          >
+            <div class="relative h-64">
+              <img
+                class="w-full h-full object-cover"
+                data-alt="Volunteers and local residents working together to paint a colorful community mural on a sunlit wall in a neighborhood"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjaWGovPY7vF-bl98jJfTcrWp6YskrDUpMImfo-OtysroJyJTiWopeoLeCtSIiOHBI81rTTIZIYvY_Qu9PNxlBzMeuSfQLrT6BXqxkEp6GMdbUQ3A2TyWSUQe7oxrbHgyh9-QkTA1AHpjfP1NLM5wTOGY-VJQegNSLvW4GuGdB6I_V4th8Rg7N4wsiTlW5-9QvJS3vfykeCM7U6Zw-kPQmwj_Vy0GUZRmWcJWLbQZz16eURORPYVvbbb9xgmSCcESt_u16S8ro1Ao"
+              />
+              <div class="absolute bottom-4 left-4">
+                <span
+                  class="px-3 py-1 bg-white/90 backdrop-blur text-primary text-xs font-bold rounded-full"
+                  >Actividades de Campo</span
+                >
+              </div>
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-bold mb-3 leading-snug">
+                Resumen: Nuestra última jornada en Sanctórum
+              </h3>
+              <p class="text-on-surface/60 text-sm leading-relaxed mb-6">
+                Revive los momentos más emotivos de nuestro encuentro
+                comunitario para la recuperación de espacios.
+              </p>
+              <button
+                class="text-secondary font-bold text-sm flex items-center gap-2 group"
+              >
+                Leer más
+                <span
+                  class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div
+            class="bg-surface-container-lowest rounded-lg overflow-hidden shadow-[0_20px_50px_rgba(23,28,31,0.06)] hover:translate-y-[-8px] transition-all duration-300"
+          >
+            <div class="relative h-64">
+              <img
+                class="w-full h-full object-cover"
+                data-alt="A young smiling woman working confidently in her own small creative business studio surrounded by colorful materials and sunlight"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-bo957Et0c0_9-vAT2URiQL-LJ0SaiW8mUNey_dK_S5KEr3xGgpz9JGX_r2j5m8UX5vBil74SPhZCZz72H9JhubEV2dIe5MZobn8V4TIRwFzko8pg9OztkMI6jmUtIPnAS-eETJjBgdvhgdoOC2pngn3yv1n-MNaKkkW0f_j1CXLZn4GujtjRRu78EaY2QgvOHmjFh6vb04UJbYOaR0pZzu9Xh86iYHsJWfgwID3TyKHxnaTUkn1O4nmkMcUO9cWQHAQtcti4wEc"
+              />
+              <div class="absolute bottom-4 left-4">
+                <span
+                  class="px-3 py-1 bg-white/90 backdrop-blur text-primary text-xs font-bold rounded-full"
+                  >Historias de Éxito</span
+                >
+              </div>
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-bold mb-3 leading-snug">
+                El camino de María: Emprendimiento y sanación
+              </h3>
+              <p class="text-on-surface/60 text-sm leading-relaxed mb-6">
+                Cómo el apoyo comunitario ayudó a María a reconstruir su vida y
+                su confianza personal.
+              </p>
+              <button
+                class="text-secondary font-bold text-sm flex items-center gap-2 group"
+              >
+                Leer más
+                <span
+                  class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Newsletter Section -->
+      <section class="max-w-7xl mx-auto px-8 mb-32">
+        <div
+          class="bg-gradient-to-br from-secondary to-secondary-container rounded-xl p-12 md:p-16 text-white text-center relative overflow-hidden"
+        >
+          <div
+            class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"
+          ></div>
+          <div class="relative z-10">
+            <span class="material-symbols-outlined text-5xl mb-6">mail</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              Boletín de Esperanza
+            </h2>
+            <p class="max-w-xl mx-auto mb-10 opacity-90 text-lg">
+              Recibe mensualmente reflexiones, consejos de especialistas y
+              noticias sobre nuestras próximas actividades directamente en tu
+              correo.
+            </p>
+            <form class="flex flex-col md:flex-row gap-4 max-w-lg mx-auto">
+              <input
+                class="flex-grow px-8 py-4 rounded-full text-on-surface bg-white border-none focus:ring-2 focus:ring-primary outline-none transition-all"
+                placeholder="Tu correo electrónico"
+                required=""
+                type="email"
+              />
+              <button
+                class="px-10 py-4 bg-primary text-white rounded-full font-bold shadow-xl hover:scale-105 active:scale-95 transition-all"
+                type="submit"
+              >
+                Suscribirme
+              </button>
+            </form>
+            <p class="mt-6 text-xs opacity-75">
+              Respetamos tu privacidad. Puedes darte de baja en cualquier
+              momento.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="w-full rounded-t-xl mt-16 bg-slate-50 dark:bg-slate-950 font-['Quicksand'] leading-relaxed text-sm"
+    >
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto px-12 py-16"
+      >
+        <div class="flex flex-col gap-6">
+          <img
+            alt="Logo Sumando Voluntades Sanctórum"
+            class="h-16 w-auto object-contain mb-2"
+            src="Logo.png"
+          />
+          <p class="text-slate-500 dark:text-slate-400">
+            La salud mental es responsabilidad en sociedad. Construyendo puentes
+            de bienestar para todos.
+          </p>
+          <div class="flex gap-4">
+            <a
+              class="text-slate-500 hover:text-orange-600 transition-all material-symbols-outlined"
+              href="#"
+              >facebook</a
+            >
+            <a
+              class="text-slate-500 hover:text-orange-600 transition-all material-symbols-outlined"
+              href="#"
+              >photo_camera</a
+            >
+            <a
+              class="text-slate-500 hover:text-orange-600 transition-all material-symbols-outlined"
+              href="#"
+              >play_circle</a
+            >
+          </div>
+        </div>
+        <div>
+          <h4 class="text-pink-700 dark:text-pink-400 font-bold mb-6">
+            Enlaces Rápidos
+          </h4>
+          <ul class="space-y-3">
+            <li>
+              <a
+                class="text-slate-500 hover:underline hover:text-orange-600 transition-all"
+                href="inicio.html"
+                >Inicio</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-slate-500 hover:underline hover:text-orange-600 transition-all"
+                href="#"
+                >Newsletter</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-slate-500 hover:underline hover:text-orange-600 transition-all"
+                href="#"
+                >Facebook</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-slate-500 hover:underline hover:text-orange-600 transition-all"
+                href="#"
+                >Instagram</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-slate-500 hover:underline hover:text-orange-600 transition-all"
+                href="#"
+                >YouTube</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-pink-700 dark:text-pink-400 font-bold mb-6">
+            Boletín de Esperanza
+          </h4>
+          <form class="flex flex-col gap-4">
+            <input
+              class="bg-surface-container-low border-none rounded-full px-6 py-3 focus:ring-2 focus:ring-pink-500 outline-none"
+              placeholder="Tu correo electrónico"
+              type="email"
+            />
+            <button
+              class="bg-pink-700 text-white rounded-full py-3 font-bold hover:bg-pink-800 transition-all"
+            >
+              Suscribirme
+            </button>
+          </form>
+        </div>
+      </div>
+      <div
+        class="max-w-7xl mx-auto px-12 py-8 border-t border-slate-200/50 text-center text-slate-500"
+      >
+        © 2024 Sumando Voluntades Sanctórum. La salud mental es responsabilidad
+        en sociedad.
+      </div>
+    </footer>
+  </body>
+</html>

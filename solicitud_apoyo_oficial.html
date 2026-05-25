@@ -1,0 +1,669 @@
+<!-- Solicitud de Apoyo - Oficial -->
+<!doctype html>
+<html class="light" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed": "#001e2f",
+              "on-error-container": "#93000a",
+              "tertiary-fixed-dim": "#8aceff",
+              "surface-container": "#eaeef2",
+              "primary-fixed-dim": "#ffb86e",
+              "surface-container-highest": "#dfe3e7",
+              outline: "#877362",
+              background: "#f6fafe",
+              "inverse-surface": "#2c3134",
+              error: "#ba1a1a",
+              surface: "#f6fafe",
+              "secondary-fixed": "#ffd9e2",
+              "on-surface-variant": "#544434",
+              "on-primary-fixed-variant": "#693c00",
+              "on-secondary-container": "#fffbff",
+              "on-secondary": "#ffffff",
+              "on-primary-container": "#5c3400",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "primary-container": "#f39200",
+              "tertiary-container": "#02b3ff",
+              "surface-bright": "#f6fafe",
+              "on-tertiary-fixed-variant": "#004b6f",
+              "on-tertiary": "#ffffff",
+              "on-surface": "#171c1f",
+              "on-background": "#171c1f",
+              "surface-dim": "#d6dade",
+              primary: "#8a5100",
+              "surface-container-low": "#f0f4f8",
+              "tertiary-fixed": "#c9e6ff",
+              "secondary-container": "#e2007c",
+              "secondary-fixed-dim": "#ffb0c9",
+              "primary-fixed": "#ffdcbd",
+              "on-secondary-fixed": "#3e001e",
+              "on-error": "#ffffff",
+              "inverse-primary": "#ffb86e",
+              "on-tertiary-container": "#004261",
+              "on-primary-fixed": "#2c1600",
+              "error-container": "#ffdad6",
+              "surface-variant": "#dfe3e7",
+              "outline-variant": "#dac2ae",
+              "inverse-on-surface": "#edf1f5",
+              "on-secondary-fixed-variant": "#8e004b",
+              "surface-container-high": "#e4e9ed",
+              secondary: "#b50062",
+              "surface-tint": "#8a5100",
+              tertiary: "#006491",
+            },
+            borderRadius: {
+              DEFAULT: "1rem",
+              lg: "2rem",
+              xl: "3rem",
+              full: "9999px",
+            },
+            fontFamily: {
+              headline: ["Quicksand", "sans-serif"],
+              body: ["Quicksand", "sans-serif"],
+              label: ["Quicksand", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Quicksand", sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(24px);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-surface text-on-surface selection:bg-secondary-fixed selection:text-on-secondary-fixed"
+  >
+    <!-- TopNavBar -->
+    <header
+      class="fixed top-0 w-full z-50 rounded-b-xl bg-white/70 backdrop-blur-md shadow-[0_20px_50px_rgba(23,28,31,0.06)]"
+    >
+      <div
+        class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4"
+      >
+        <div class="flex items-center gap-3">
+          <img
+            alt="Logo Sumando Voluntades Sanctórum"
+            class="h-12 w-auto object-contain"
+            src="Logo.png"
+          />
+        </div>
+        <nav class="hidden md:flex gap-8 items-center">
+          <a
+            class="text-slate-600 hover:text-pink-600 transition-colors duration-300"
+            href="inicio.html"
+            >Inicio</a
+          >
+          <a
+            class="text-slate-600 hover:text-pink-600 transition-colors duration-300"
+            href="comunidad_sv.html"
+            >Comunidad</a
+          >
+          <a
+            class="text-orange-700 font-bold border-b-2 border-orange-500 hover:text-pink-600 transition-colors duration-300 py-1"
+            href="solicitud_apoyo_oficial.html"
+            >Solicitud de Apoyo</a
+          >
+          <a
+            class="text-slate-600 hover:text-pink-600 transition-colors duration-300"
+            href="como_ayudar.html"
+            >Cómo Ayudar</a
+          >
+        </nav>
+        <div class="flex items-center gap-4">
+          <button
+            class="material-symbols-outlined text-slate-600 hover:text-orange-600 transition-all"
+          >
+            help
+          </button>
+          <a
+            href="login.html"
+            title="Panel de Administración"
+            class="material-symbols-outlined text-slate-600 hover:text-orange-600 transition-all"
+          >
+            admin_panel_settings
+          </a>
+          <button
+            class="hidden lg:block px-6 py-2 rounded-full border border-secondary text-secondary font-semibold hover:bg-secondary-container hover:text-white transition-all"
+          >
+            Voluntariado
+          </button>
+          <button
+            class="bg-gradient-to-r from-primary to-primary-container text-white px-8 py-2 rounded-full font-bold shadow-lg hover:scale-105 active:scale-95 transition-all"
+          >
+            Donar
+          </button>
+        </div>
+      </div>
+    </header>
+    <main class="pt-24">
+      <!-- Hero Section -->
+      <section class="relative px-8 py-20 overflow-hidden">
+        <div
+          class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12"
+        >
+          <div class="flex-1 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 bg-secondary-fixed text-on-secondary-fixed px-4 py-1 rounded-full text-sm font-bold"
+            >
+              <span
+                class="material-symbols-outlined text-sm"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >favorite</span
+              >
+              <span class="" style="">Canales de Atención</span>
+            </div>
+            <h1
+              class="text-5xl md:text-7xl font-bold text-primary tracking-tight leading-tight"
+              style=""
+            >
+              Estamos aquí para acompañarte
+            </h1>
+            <p
+              class="text-xl text-slate-600 leading-relaxed max-w-2xl"
+              style=""
+            >
+              En Sumando Voluntades creemos en el poder de la escucha y la
+              orientación. Si atraviesas un momento difícil, nuestros
+              especialistas están listos para escucharte.
+            </p>
+          </div>
+          <div class="flex-1 relative">
+            <div
+              class="w-full aspect-square rounded-lg overflow-hidden shadow-2xl relative z-10"
+            >
+              <img
+                class="w-full h-full object-cover"
+                data-alt="A kind counselor listening attentively to a person in a brightly lit, comfortable office with soft plants and warm afternoon light."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP4oSi2du1gMxDtJaxv6EJ-KpbBIlx3Hk7qQ81OM9dHyhs4H_jwGvczss5FQAJJ05gl_PVVYBO_gugVXHZsFMoufSs6dZRIaS-I222aSYPO72zaAB7L8f82ERWUOigblJu527b6jCgs5WVyyTbGXBcFX1Ey-H8PBSjCdrTaiyL7bmBe5dXZWCw3lMYC_pdiiwwBwkW-5loGw5NRpzVWhd0Pps9w4PwqzVpx7fCkOyhQU4c-NQl40qCfgdK17waA895Oe_euXEQ5_s"
+                style=""
+              />
+            </div>
+            <!-- Decorative Elements -->
+            <div
+              class="absolute -top-10 -right-10 w-64 h-64 bg-secondary-container/20 rounded-full blur-3xl -z-10"
+            ></div>
+            <div
+              class="absolute -bottom-10 -left-10 w-48 h-48 bg-primary-container/20 rounded-full blur-3xl -z-10"
+            ></div>
+          </div>
+        </div>
+      </section>
+      <!-- Canalization Forms -->
+      <section class="px-8 py-24 bg-surface-container-low">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-16 space-y-4">
+            <h2 class="text-4xl font-bold text-on-surface" style="">
+              Solicitud de Apoyo Especializado
+            </h2>
+            <p class="text-slate-500 max-w-2xl mx-auto" style="">
+              Selecciona el tipo de asistencia que requieres. Tu información
+              será tratada con absoluta reserva y empatía.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Psychological Assistance -->
+            <div
+              class="bg-surface-container-lowest p-8 md:p-12 rounded-lg shadow-[0_20px_50px_rgba(23,28,31,0.06)] flex flex-col h-full border-t-8 border-primary-container"
+            >
+              <div class="flex items-center gap-4 mb-8">
+                <div
+                  class="w-16 h-16 bg-primary-container/10 rounded-full flex items-center justify-center text-primary-container"
+                >
+                  <span class="material-symbols-outlined text-4xl" style=""
+                    >psychology</span
+                  >
+                </div>
+                <h3 class="text-2xl font-bold text-on-surface" style="">
+                  Asistencia Psicológica
+                </h3>
+              </div>
+              <form class="space-y-6 flex-grow">
+                <div class="space-y-2">
+                  <label
+                    class="text-sm font-semibold text-slate-600 px-4"
+                    style=""
+                    >Nombre Completo</label
+                  >
+                  <input
+                    class="w-full bg-surface-container-low border-none rounded-full px-6 py-4 focus:ring-2 focus:ring-primary-container transition-all"
+                    placeholder="Ej. Ana García"
+                    type="text"
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label
+                    class="text-sm font-semibold text-slate-600 px-4"
+                    style=""
+                    >Contacto (WhatsApp o Email)</label
+                  >
+                  <input
+                    class="w-full bg-surface-container-low border-none rounded-full px-6 py-4 focus:ring-2 focus:ring-primary-container transition-all"
+                    placeholder="Tu medio preferido de contacto"
+                    type="text"
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label
+                    class="text-sm font-semibold text-slate-600 px-4"
+                    style=""
+                    >Motivo de la consulta</label
+                  >
+                  <textarea
+                    class="w-full bg-surface-container-low border-none rounded-lg px-6 py-4 focus:ring-2 focus:ring-primary-container transition-all"
+                    placeholder="Cuéntanos brevemente cómo podemos ayudarte..."
+                    rows="4"
+                  ></textarea>
+                </div>
+                <button
+                  class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary py-4 rounded-full font-bold text-lg hover:shadow-lg transition-all active:scale-95"
+                  type="submit"
+                  style=""
+                >
+                  Solicitar Orientación Psicológica
+                </button>
+              </form>
+            </div>
+            <!-- Legal Assistance -->
+            <div
+              class="bg-surface-container-lowest p-8 md:p-12 rounded-lg shadow-[0_20px_50px_rgba(23,28,31,0.06)] flex flex-col h-full border-t-8 border-secondary-container"
+            >
+              <div class="flex items-center gap-4 mb-8">
+                <div
+                  class="w-16 h-16 bg-secondary-container/10 rounded-full flex items-center justify-center text-secondary-container"
+                >
+                  <span class="material-symbols-outlined text-4xl" style=""
+                    >gavel</span
+                  >
+                </div>
+                <h3 class="text-2xl font-bold text-on-surface" style="">
+                  Asistencia Jurídica
+                </h3>
+              </div>
+              <form class="space-y-6 flex-grow">
+                <div class="space-y-2">
+                  <label
+                    class="text-sm font-semibold text-slate-600 px-4"
+                    style=""
+                    >Nombre Completo</label
+                  >
+                  <input
+                    class="w-full bg-surface-container-low border-none rounded-full px-6 py-4 focus:ring-2 focus:ring-secondary-container transition-all"
+                    placeholder="Ej. Juan Pérez"
+                    type="text"
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label
+                    class="text-sm font-semibold text-slate-600 px-4"
+                    style=""
+                    >Contacto (WhatsApp o Email)</label
+                  >
+                  <input
+                    class="w-full bg-surface-container-low border-none rounded-full px-6 py-4 focus:ring-2 focus:ring-secondary-container transition-all"
+                    placeholder="Tu medio preferido de contacto"
+                    type="text"
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label
+                    class="text-sm font-semibold text-slate-600 px-4"
+                    style=""
+                    >Motivo de la consulta</label
+                  >
+                  <textarea
+                    class="w-full bg-surface-container-low border-none rounded-lg px-6 py-4 focus:ring-2 focus:ring-secondary-container transition-all"
+                    placeholder="Describe tu situación legal o duda..."
+                    rows="4"
+                  ></textarea>
+                </div>
+                <button
+                  class="w-full bg-gradient-to-r from-secondary to-secondary-container text-on-secondary py-4 rounded-full font-bold text-lg hover:shadow-lg transition-all active:scale-95"
+                  type="submit"
+                  style=""
+                >
+                  Solicitar Orientación Jurídica
+                </button>
+              </form>
+            </div>
+          </div>
+          <!-- Trust Elements -->
+          <div class="mt-12 flex flex-wrap justify-center gap-8">
+            <div class="flex items-center gap-2 text-slate-500">
+              <span class="material-symbols-outlined text-secondary" style=""
+                >verified_user</span
+              >
+              <span class="font-medium" style="">100% Confidencial</span>
+            </div>
+            <div class="flex items-center gap-2 text-slate-500">
+              <span class="material-symbols-outlined text-secondary" style=""
+                >support_agent</span
+              >
+              <span class="font-medium" style=""
+                >Soporte Profesional Certificado</span
+              >
+            </div>
+            <div class="flex items-center gap-2 text-slate-500">
+              <span class="material-symbols-outlined text-secondary" style=""
+                >lock</span
+              >
+              <span class="font-medium" style=""
+                >Protección de Datos Garantizada</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Agenda Section -->
+      <section class="px-8 py-24 bg-white">
+        <div class="max-w-7xl mx-auto">
+          <div
+            class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
+          >
+            <div class="space-y-4">
+              <h2 class="text-4xl font-bold text-primary" style="">
+                Calendario de Comunidad
+              </h2>
+              <p class="text-slate-500 max-w-xl" style="">
+                Únete a nuestros talleres y pláticas. El conocimiento es el
+                primer paso hacia el bienestar compartido.
+              </p>
+            </div>
+            <button
+              class="bg-surface-container-low text-primary font-bold px-8 py-3 rounded-full hover:bg-surface-container transition-colors"
+              style=""
+            >
+              Ver Calendario Completo
+            </button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Event 1 -->
+            <div
+              class="group relative bg-surface p-8 rounded-lg transition-all hover:scale-[1.02] hover:shadow-xl"
+            >
+              <div class="mb-6 flex justify-between items-start">
+                <div class="text-center">
+                  <span
+                    class="block text-3xl font-extrabold text-secondary leading-none"
+                    style=""
+                    >12</span
+                  >
+                  <span
+                    class="text-xs font-bold uppercase tracking-widest text-slate-400"
+                    style=""
+                    >Oct</span
+                  >
+                </div>
+                <span
+                  class="bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold px-3 py-1 rounded-full uppercase"
+                  style=""
+                  >Comunidad</span
+                >
+              </div>
+              <h4
+                class="text-xl font-bold mb-4 group-hover:text-secondary transition-colors"
+                style=""
+              >
+                Taller: Comunicación no violenta
+              </h4>
+              <div class="space-y-2 text-slate-500 text-sm mb-6">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sm" style=""
+                    >schedule</span
+                  >
+                  <span class="" style="">18:00 hrs - 20:00 hrs</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sm" style=""
+                    >location_on</span
+                  >
+                  <span class="" style="">Auditorio Central</span>
+                </div>
+              </div>
+              <button
+                class="w-full border-2 border-secondary-fixed text-secondary font-bold py-2 rounded-full hover:bg-secondary hover:text-white transition-all"
+                style=""
+              >
+                Inscribirse
+              </button>
+            </div>
+            <!-- Event 2 -->
+            <div
+              class="group relative bg-surface p-8 rounded-lg transition-all hover:scale-[1.02] hover:shadow-xl"
+            >
+              <div class="mb-6 flex justify-between items-start">
+                <div class="text-center">
+                  <span
+                    class="block text-3xl font-extrabold text-primary leading-none"
+                    style=""
+                    >15</span
+                  >
+                  <span
+                    class="text-xs font-bold uppercase tracking-widest text-slate-400"
+                    style=""
+                    >Oct</span
+                  >
+                </div>
+                <span
+                  class="bg-primary-fixed text-on-primary-fixed text-[10px] font-bold px-3 py-1 rounded-full uppercase"
+                  style=""
+                  >Escuela</span
+                >
+              </div>
+              <h4
+                class="text-xl font-bold mb-4 group-hover:text-primary transition-colors"
+                style=""
+              >
+                Plática: Gestión Emocional
+              </h4>
+              <div class="space-y-2 text-slate-500 text-sm mb-6">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sm" style=""
+                    >schedule</span
+                  >
+                  <span class="" style="">10:30 hrs - 12:00 hrs</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sm" style=""
+                    >video_camera_front</span
+                  >
+                  <span class="" style="">Modalidad Online</span>
+                </div>
+              </div>
+              <button
+                class="w-full border-2 border-primary-fixed text-primary font-bold py-2 rounded-full hover:bg-primary-container hover:text-on-primary transition-all"
+                style=""
+              >
+                Recibir Enlace
+              </button>
+            </div>
+            <!-- Event 3 -->
+            <div
+              class="group relative bg-surface p-8 rounded-lg transition-all hover:scale-[1.02] hover:shadow-xl"
+            >
+              <div class="mb-6 flex justify-between items-start">
+                <div class="text-center">
+                  <span
+                    class="block text-3xl font-extrabold text-secondary leading-none"
+                    style=""
+                    >22</span
+                  >
+                  <span
+                    class="text-xs font-bold uppercase tracking-widest text-slate-400"
+                    style=""
+                    >Oct</span
+                  >
+                </div>
+                <span
+                  class="bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold px-3 py-1 rounded-full uppercase"
+                  style=""
+                  >Salud</span
+                >
+              </div>
+              <h4
+                class="text-xl font-bold mb-4 group-hover:text-secondary transition-colors"
+                style=""
+              >
+                Manejo de Estrés y Ansiedad
+              </h4>
+              <div class="space-y-2 text-slate-500 text-sm mb-6">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sm" style=""
+                    >schedule</span
+                  >
+                  <span class="" style="">17:00 hrs - 19:00 hrs</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sm" style=""
+                    >location_on</span
+                  >
+                  <span class="" style="">Sala de Juntas B</span>
+                </div>
+              </div>
+              <button
+                class="w-full border-2 border-secondary-fixed text-secondary font-bold py-2 rounded-full hover:bg-secondary hover:text-white transition-all"
+                style=""
+              >
+                Inscribirse
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="w-full rounded-t-xl mt-16 bg-slate-50 dark:bg-slate-950 font-['Quicksand'] leading-relaxed text-sm"
+    >
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto px-12 py-16"
+      >
+        <div class="flex flex-col gap-6">
+          <img
+            alt="Logo Sumando Voluntades Sanctórum"
+            class="h-16 w-auto object-contain mb-2"
+            src="Logo.png"
+          />
+          <p class="text-slate-500 dark:text-slate-400">
+            La salud mental es responsabilidad en sociedad. Construyendo puentes
+            de bienestar para todos.
+          </p>
+          <div class="flex gap-4">
+            <a
+              class="text-slate-500 hover:text-orange-600 transition-all material-symbols-outlined"
+              href="#"
+              >facebook</a
+            >
+            <a
+              class="text-slate-500 hover:text-orange-600 transition-all material-symbols-outlined"
+              href="#"
+              >photo_camera</a
+            >
+            <a
+              class="text-slate-500 hover:text-orange-600 transition-all material-symbols-outlined"
+              href="#"
+              >play_circle</a
+            >
+          </div>
+        </div>
+        <div>
+          <h4 class="text-pink-700 dark:text-pink-400 font-bold mb-6">
+            Enlaces Rápidos
+          </h4>
+          <ul class="space-y-3">
+            <li>
+              <a
+                class="text-slate-500 hover:underline hover:text-orange-600 transition-all"
+                href="inicio.html"
+                >Inicio</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-slate-500 hover:underline hover:text-orange-600 transition-all"
+                href="#"
+                >Newsletter</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-slate-500 hover:underline hover:text-orange-600 transition-all"
+                href="#"
+                >Facebook</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-slate-500 hover:underline hover:text-orange-600 transition-all"
+                href="#"
+                >Instagram</a
+              >
+            </li>
+            <li>
+              <a
+                class="text-slate-500 hover:underline hover:text-orange-600 transition-all"
+                href="#"
+                >YouTube</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-pink-700 dark:text-pink-400 font-bold mb-6">
+            Boletín de Esperanza
+          </h4>
+          <form class="flex flex-col gap-4">
+            <input
+              class="bg-surface-container-low border-none rounded-full px-6 py-3 focus:ring-2 focus:ring-pink-500 outline-none"
+              placeholder="Tu correo electrónico"
+              type="email"
+            />
+            <button
+              class="bg-pink-700 text-white rounded-full py-3 font-bold hover:bg-pink-800 transition-all"
+            >
+              Suscribirme
+            </button>
+          </form>
+        </div>
+      </div>
+      <div
+        class="max-w-7xl mx-auto px-12 py-8 border-t border-slate-200/50 text-center text-slate-500"
+      >
+        © 2024 Sumando Voluntades Sanctórum. La salud mental es responsabilidad
+        en sociedad.
+      </div>
+    </footer>
+  </body>
+</html>

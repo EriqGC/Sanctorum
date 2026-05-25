@@ -1,0 +1,656 @@
+<!-- Gestión de Voluntariado - Admin Portal -->
+<!doctype html>
+
+<html class="light" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Gestión de Voluntariado - Gentle Guardian</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Quicksand", sans-serif;
+        background-color: #f6fafe;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      .font-plus {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      .glass-effect {
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#ffd9e2",
+              "secondary-container": "#e2007c",
+              "on-secondary-container": "#fffbff",
+              surface: "#f6fafe",
+              "surface-bright": "#f6fafe",
+              "surface-container": "#eaeef2",
+              "on-primary-fixed-variant": "#693c00",
+              "inverse-on-surface": "#edf1f5",
+              "tertiary-fixed-dim": "#8aceff",
+              "inverse-surface": "#2c3134",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed-variant": "#8e004b",
+              background: "#f6fafe",
+              "tertiary-container": "#02b3ff",
+              "outline-variant": "#dac2ae",
+              "on-secondary": "#ffffff",
+              error: "#ba1a1a",
+              "surface-container-highest": "#dfe3e7",
+              "on-background": "#171c1f",
+              "surface-dim": "#d6dade",
+              outline: "#877362",
+              "on-tertiary-container": "#004261",
+              "surface-tint": "#8a5100",
+              "on-primary-container": "#5c3400",
+              "inverse-primary": "#ffb86e",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed": "#3e001e",
+              "on-error-container": "#93000a",
+              "on-surface-variant": "#544434",
+              "on-tertiary-fixed": "#001e2f",
+              "on-error": "#ffffff",
+              "on-tertiary-fixed-variant": "#004b6f",
+              "surface-container-low": "#f0f4f8",
+              "on-surface": "#171c1f",
+              "surface-container-high": "#e4e9ed",
+              "on-primary": "#ffffff",
+              tertiary: "#006491",
+              "primary-container": "#f39200",
+              primary: "#8a5100",
+              "primary-fixed-dim": "#ffb86e",
+              "tertiary-fixed": "#c9e6ff",
+              "error-container": "#ffdad6",
+              "on-primary-fixed": "#2c1600",
+              "secondary-fixed-dim": "#ffb0c9",
+              "primary-fixed": "#ffdcbd",
+              "surface-variant": "#dfe3e7",
+              secondary: "#b50062",
+            },
+            borderRadius: {
+              DEFAULT: "1rem",
+              lg: "2rem",
+              xl: "3rem",
+              full: "9999px",
+            },
+            fontFamily: {
+              headline: ["Plus Jakarta Sans"],
+              body: ["Plus Jakarta Sans"],
+              label: ["Plus Jakarta Sans"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="text-on-surface">
+    <!-- SideNavBar (Fixed) -->
+    <aside
+      class="fixed left-0 top-0 flex flex-col py-8 bg-slate-50 dark:bg-slate-950 rounded-r-[2rem] h-screen w-72 shadow-xl shadow-slate-200/50 dark:shadow-none z-50 transition-transform ease-in-out"
+    >
+      <div class="flex justify-center mb-10 px-8">
+        <img src="Logo.png" alt="Logo" class="w-40 h-auto object-contain" />
+      </div>
+      <nav class="flex-1 px-4 space-y-2">
+        <a
+          class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300"
+          href="dashboard_admin.html"
+        >
+          <span class="material-symbols-outlined" data-icon="dashboard"
+            >dashboard</span
+          >
+          <span class="font-medium">Resumen</span>
+        </a>
+        <a
+          class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300"
+          href="gestion_expedientes_admin.html"
+        >
+          <span class="material-symbols-outlined" data-icon="folder_shared"
+            >folder_shared</span
+          >
+          <span class="font-medium">Expedientes</span>
+        </a>
+        <a
+          class="flex items-center gap-4 px-4 py-3 rounded-xl text-orange-700 dark:text-orange-300 font-semibold border-r-4 border-orange-500 bg-orange-50 dark:bg-orange-900/10"
+          href="gestion_voluntariado_admin.html"
+        >
+          <span
+            class="material-symbols-outlined"
+            data-icon="group"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >group</span
+          >
+          <span class="font-medium">Voluntariado</span>
+        </a>
+        <a
+          class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300"
+          href="inventario_admin.html"
+        >
+          <span class="material-symbols-outlined" data-icon="inventory_2"
+            >inventory_2</span
+          >
+          <span class="font-medium">Inventario</span>
+        </a>
+        <a
+          class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300"
+          href="agenda_admin.html"
+        >
+          <span class="material-symbols-outlined" data-icon="school"
+            >school</span
+          >
+          <span class="font-medium">Agenda Escolar</span>
+        </a>
+      </nav>
+      <div class="px-6 mt-auto">
+        <a
+          class="flex items-center justify-center gap-2 w-full py-3 mb-4 text-slate-500 hover:text-orange-600 hover:bg-orange-50 rounded-full font-bold transition-all border border-slate-200"
+          href="inicio.html"
+        >
+          <span class="material-symbols-outlined">home</span>
+          Volver al Inicio
+        </a>
+        <button
+          class="w-full py-4 bg-gradient-to-r from-secondary to-secondary-container text-white rounded-full font-bold shadow-lg shadow-pink-200 transition-transform active:scale-95"
+        >
+          Support Session
+        </button>
+      </div>
+    </aside>
+    <!-- Main Content Wrapper -->
+    <main class="ml-72 min-h-screen flex flex-col">
+      <!-- TopNavBar -->
+      <header
+        class="sticky top-0 z-40 flex justify-between items-center px-8 h-16 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md rounded-full mt-4 mx-4 shadow-[0_20px_50px_rgba(23,28,31,0.06)] font-plus font-medium"
+      >
+        <div class="flex items-center flex-1">
+          <div class="relative w-full max-w-md">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+              data-icon="search"
+              >search</span
+            >
+            <input
+              class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-secondary/20 transition-all text-sm"
+              placeholder="Buscar voluntarios..."
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="flex items-center gap-4 ml-8">
+          <button
+            class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-colors relative"
+          >
+            <span class="material-symbols-outlined" data-icon="notifications"
+              >notifications</span
+            >
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-pink-500 rounded-full"
+            ></span>
+          </button>
+          <button
+            class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-colors"
+          >
+            <span class="material-symbols-outlined" data-icon="settings"
+              >settings</span
+            >
+          </button>
+          <div class="h-8 w-px bg-slate-200 mx-2"></div>
+          <div class="flex items-center gap-3">
+            <span class="text-sm font-bold text-slate-700">Admin Panel</span>
+            <img
+              alt="Administrator Profile"
+              class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+              data-alt="close up professional portrait of a smiling woman in business casual attire against a soft neutral background"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7ySOLIQ00cYPt-AlQYDbtkluyXGDRWE-9SNoZrUlaKtFRuk24G836imhKM0rpCiTR8EMa7qGoYbJH2K79YlwBsJ-fcDGnvCiinU0wQW3bdL_jlAe8V6-CM2ijmfGq156vOex8F82iFrsp-VCqzQrKx-_d3w0jdVn4mSljcW9Hq7XSBFL2aHBzFGPuY4c-ozA6NEETQu6Qv0v3Cr0_4t2LbXrW-N1svW4-aSkLgZZjZunhnZocS-l0jnRE2Wfhq-m96hMb1L-NLIk"
+            />
+          </div>
+        </div>
+      </header>
+      <!-- Content Area -->
+      <div class="p-8 flex-1">
+        <!-- Title Section -->
+        <div class="flex justify-between items-end mb-10">
+          <div>
+            <h2
+              class="text-4xl font-bold text-primary font-plus tracking-tight mb-2"
+            >
+              Gestión de Voluntariado
+            </h2>
+            <p class="text-on-surface-variant max-w-xl">
+              Organiza, supervisa y conecta a nuestra red de voluntarios con las
+              necesidades de la comunidad.
+            </p>
+          </div>
+          <button
+            class="flex items-center gap-2 px-10 py-4 bg-gradient-to-r from-secondary to-secondary-container text-white rounded-full font-bold shadow-xl shadow-pink-100 transition-all hover:scale-105 active:scale-95"
+          >
+            <span class="material-symbols-outlined" data-icon="add">add</span>
+            + Nuevo Registro
+          </button>
+        </div>
+        <!-- Kanban Board -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Column: Nuevas Solicitudes -->
+          <div class="flex flex-col gap-6">
+            <div class="flex items-center justify-between px-2">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 bg-secondary rounded-full"></span>
+                <h3
+                  class="font-bold text-slate-700 font-plus uppercase tracking-wider text-sm"
+                >
+                  Nuevas Solicitudes
+                </h3>
+                <span
+                  class="ml-2 px-2 py-0.5 bg-secondary-fixed text-secondary text-xs font-bold rounded-full"
+                  >3</span
+                >
+              </div>
+              <button class="text-slate-400 hover:text-slate-600">
+                <span class="material-symbols-outlined" data-icon="more_horiz"
+                  >more_horiz</span
+                >
+              </button>
+            </div>
+            <div class="space-y-6">
+              <!-- Card 1 -->
+              <div
+                class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_20px_50px_rgba(23,28,31,0.06)] group hover:scale-[1.02] transition-all duration-300"
+              >
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    class="w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-xl overflow-hidden"
+                  >
+                    <img
+                      alt="Volunteer Avatar"
+                      class="w-full h-full object-cover"
+                      data-alt="Headshot of a friendly young man with glasses smiling, warm natural lighting"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd2pie_sLsOf6TO6F25hhbYMbeyminKL_DGfGvyK0_OMwg2d-c4fPrqL869JMtN5nxGUX1FrqDNnXTMsDZAzHbHwfeXBCRKI7_IDdRDPsM3e0UGEX-mtCX4ewvZYXF7W1EKp3zvKl515lTHoNklnLCK0bfRxZhCbhIvbJDuiaGZapCNXROsTSwb7tlcXjMTc91LkBMrxiIkPy5RPfUKVFRi2rjfnyo_5ujCB25H6jJqzlLRnmFn6wMDMQpU8hdDLUP7hOGYBsZ_c8"
+                    />
+                  </div>
+                  <div class="flex gap-1">
+                    <button
+                      class="p-2 text-slate-400 hover:text-green-500 hover:bg-green-50 rounded-full transition-colors"
+                    >
+                      <span
+                        class="material-symbols-outlined text-lg"
+                        data-icon="chat"
+                        >chat</span
+                      >
+                    </button>
+                    <button
+                      class="p-2 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors"
+                    >
+                      <span
+                        class="material-symbols-outlined text-lg"
+                        data-icon="mail"
+                        >mail</span
+                      >
+                    </button>
+                  </div>
+                </div>
+                <h4 class="text-xl font-bold text-slate-800 mb-1">
+                  Mateo Rivera
+                </h4>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase rounded-full tracking-wide"
+                    >Psicología</span
+                  >
+                </div>
+                <button
+                  class="w-full py-3 bg-surface-container-low text-slate-600 font-bold rounded-full text-sm hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center gap-2"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    data-icon="assignment_ind"
+                    >assignment_ind</span
+                  >
+                  Asignar a Proyecto
+                </button>
+              </div>
+              <!-- Card 2 -->
+              <div
+                class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_20px_50px_rgba(23,28,31,0.06)] group hover:scale-[1.02] transition-all duration-300"
+              >
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    class="w-14 h-14 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 font-bold text-xl"
+                  >
+                    LV
+                  </div>
+                  <div class="flex gap-1">
+                    <button
+                      class="p-2 text-slate-400 hover:text-green-500 hover:bg-green-50 rounded-full transition-colors"
+                    >
+                      <span
+                        class="material-symbols-outlined text-lg"
+                        data-icon="chat"
+                        >chat</span
+                      >
+                    </button>
+                    <button
+                      class="p-2 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors"
+                    >
+                      <span
+                        class="material-symbols-outlined text-lg"
+                        data-icon="mail"
+                        >mail</span
+                      >
+                    </button>
+                  </div>
+                </div>
+                <h4 class="text-xl font-bold text-slate-800 mb-1">
+                  Lucía Valente
+                </h4>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="px-3 py-1 bg-purple-50 text-purple-600 text-[10px] font-bold uppercase rounded-full tracking-wide"
+                    >Muralismo</span
+                  >
+                </div>
+                <button
+                  class="w-full py-3 bg-surface-container-low text-slate-600 font-bold rounded-full text-sm hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center gap-2"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    data-icon="assignment_ind"
+                    >assignment_ind</span
+                  >
+                  Asignar a Proyecto
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Column: En Proceso de Entrevista -->
+          <div class="flex flex-col gap-6">
+            <div class="flex items-center justify-between px-2">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 bg-primary rounded-full"></span>
+                <h3
+                  class="font-bold text-slate-700 font-plus uppercase tracking-wider text-sm"
+                >
+                  En Proceso de Entrevista
+                </h3>
+                <span
+                  class="ml-2 px-2 py-0.5 bg-primary-fixed text-primary text-xs font-bold rounded-full"
+                  >2</span
+                >
+              </div>
+              <button class="text-slate-400 hover:text-slate-600">
+                <span class="material-symbols-outlined" data-icon="more_horiz"
+                  >more_horiz</span
+                >
+              </button>
+            </div>
+            <div class="space-y-6">
+              <!-- Card 3 -->
+              <div
+                class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_20px_50px_rgba(23,28,31,0.06)] group hover:scale-[1.02] transition-all duration-300 border-l-4 border-primary"
+              >
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    class="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden"
+                  >
+                    <img
+                      alt="Volunteer Avatar"
+                      class="w-full h-full object-cover"
+                      data-alt="Portrait of a professional woman with a warm expression, soft studio lighting"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuCFbAO5eAYQKIWJg6ITer-ZQCOlba08GxPE7B3JH-q4FFPmfdcfUKb90OTf9QtChul9aDvLc2S-5I5AYLX-htffztViM7_DMYL-gh7Kjcw2VkdQvEOnZKFFYUHEFqvjs0WbPp6w-pqMCQ5CA0avWbMvIvFF3mDfHgIA53q08tjjW_Yvo7TN-Ln0x_2LZ_1sy4op23KYoO0dnU_lzpn_nc8EXF3jvB49yvagRkKSXBIOWWWKz1-eePp9BHT2abAIQ67QamYWvYvZM"
+                    />
+                  </div>
+                  <div class="flex gap-1">
+                    <button
+                      class="p-2 text-slate-400 hover:text-green-500 hover:bg-green-50 rounded-full transition-colors"
+                    >
+                      <span
+                        class="material-symbols-outlined text-lg"
+                        data-icon="chat"
+                        >chat</span
+                      >
+                    </button>
+                    <button
+                      class="p-2 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors"
+                    >
+                      <span
+                        class="material-symbols-outlined text-lg"
+                        data-icon="mail"
+                        >mail</span
+                      >
+                    </button>
+                  </div>
+                </div>
+                <h4 class="text-xl font-bold text-slate-800 mb-1">
+                  Clara Domínguez
+                </h4>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="px-3 py-1 bg-amber-50 text-amber-600 text-[10px] font-bold uppercase rounded-full tracking-wide"
+                    >Jurídico</span
+                  >
+                </div>
+                <div
+                  class="mb-4 flex items-center gap-2 text-xs text-slate-500 bg-slate-50 p-2 rounded-lg"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    data-icon="calendar_today"
+                    >calendar_today</span
+                  >
+                  <span>Entrevista: Mañana, 10:30 AM</span>
+                </div>
+                <button
+                  class="w-full py-3 bg-surface-container-low text-slate-600 font-bold rounded-full text-sm hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center gap-2"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    data-icon="assignment_ind"
+                    >assignment_ind</span
+                  >
+                  Asignar a Proyecto
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Column: Voluntarios Activos -->
+          <div class="flex flex-col gap-6">
+            <div class="flex items-center justify-between px-2">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                <h3
+                  class="font-bold text-slate-700 font-plus uppercase tracking-wider text-sm"
+                >
+                  Voluntarios Activos
+                </h3>
+                <span
+                  class="ml-2 px-2 py-0.5 bg-green-100 text-green-700 text-xs font-bold rounded-full"
+                  >12</span
+                >
+              </div>
+              <button class="text-slate-400 hover:text-slate-600">
+                <span class="material-symbols-outlined" data-icon="more_horiz"
+                  >more_horiz</span
+                >
+              </button>
+            </div>
+            <div class="space-y-6">
+              <!-- Card 4 -->
+              <div
+                class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_20px_50px_rgba(23,28,31,0.06)] group hover:scale-[1.02] transition-all duration-300"
+              >
+                <div class="flex justify-between items-start mb-4">
+                  <div
+                    class="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden"
+                  >
+                    <img
+                      alt="Volunteer Avatar"
+                      class="w-full h-full object-cover"
+                      data-alt="Close up of a mature man smiling kindly, outdoor evening light"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuA63FeHtyy5pQtfMhJyVZqYIZQ-_wsk5VmGOxi_On3tmruP4T1WkSo95atQDlF9galNuKeBRDijFJ4GS254qehrkNW5u2ptQz5auNlrItS7DRAu38t8ZM8PeFAvVhWNqOp5cHgWRCKezx9WLxw5UeaMH8hBW0XG3mBky8HjO6hoxfC2P8cS0Yk9RBLmBt1Yh4sHaUm6U-eEvvnFvsgAmFhsAKWfVzKjWj7aijLmKahbb5wD1LrLSeXF2OVjhXFqXiil-hOUyKty9FI"
+                    />
+                  </div>
+                  <div class="flex gap-1">
+                    <button
+                      class="p-2 text-slate-400 hover:text-green-500 hover:bg-green-50 rounded-full transition-colors"
+                    >
+                      <span
+                        class="material-symbols-outlined text-lg"
+                        data-icon="chat"
+                        >chat</span
+                      >
+                    </button>
+                    <button
+                      class="p-2 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors"
+                    >
+                      <span
+                        class="material-symbols-outlined text-lg"
+                        data-icon="mail"
+                        >mail</span
+                      >
+                    </button>
+                  </div>
+                </div>
+                <h4 class="text-xl font-bold text-slate-800 mb-1">
+                  Roberto Gómez
+                </h4>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase rounded-full tracking-wide"
+                    >Psicología</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-purple-50 text-purple-600 text-[10px] font-bold uppercase rounded-full tracking-wide"
+                    >Tallerista</span
+                  >
+                </div>
+                <div
+                  class="mb-4 flex items-center gap-2 text-xs text-slate-500"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm text-green-500"
+                    data-icon="check_circle"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >check_circle</span
+                  >
+                  <span>Proyecto: Taller de Autoestima</span>
+                </div>
+                <button
+                  class="w-full py-3 bg-surface-container-low text-slate-600 font-bold rounded-full text-sm hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center gap-2"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    data-icon="swap_horiz"
+                    >swap_horiz</span
+                  >
+                  Cambiar Proyecto
+                </button>
+              </div>
+              <!-- Card 5 (Asymmetric / Featured Look) -->
+              <div
+                class="bg-gradient-to-br from-white to-orange-50/30 p-6 rounded-lg shadow-[0_20px_50px_rgba(23,28,31,0.06)] group hover:scale-[1.02] transition-all duration-300 relative overflow-hidden"
+              >
+                <div
+                  class="absolute -right-4 -top-4 w-24 h-24 bg-orange-100/20 rounded-full blur-2xl"
+                ></div>
+                <div
+                  class="flex justify-between items-start mb-4 relative z-10"
+                >
+                  <div
+                    class="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden border-2 border-white shadow-md"
+                  >
+                    <img
+                      alt="Volunteer Avatar"
+                      class="w-full h-full object-cover"
+                      data-alt="Portrait of a young woman with a creative style, soft morning light in a garden"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGCfkw0FU1ubD_Kta_8-sRQV0AUE-NKg-Y54OoWnlWi4P4Gd5cbZaSbtibAbPBcEgkqjGIZFll_8dD70hdsqeid9aC4CUmYsoYf5KmjI1mwz7UgO0IoR-vYq62u4vm0kI1q9JmOy3LVvQGVp3mjGw-NbZHpq9VyvlL9_aIRUROYaDd0nEjBKnhyaH9gt_TqPr9ZXrubVto8caiRzE6DlZvRL2ghX4qaVE__9rFUOh29SBgMfSv4F6xThdYp_Vpvz5H0Z6NIUluHwI"
+                    />
+                  </div>
+                  <div class="flex gap-1">
+                    <button
+                      class="p-2 text-slate-400 hover:text-green-500 hover:bg-white rounded-full transition-colors"
+                    >
+                      <span
+                        class="material-symbols-outlined text-lg"
+                        data-icon="chat"
+                        >chat</span
+                      >
+                    </button>
+                    <button
+                      class="p-2 text-slate-400 hover:text-blue-500 hover:bg-white rounded-full transition-colors"
+                    >
+                      <span
+                        class="material-symbols-outlined text-lg"
+                        data-icon="mail"
+                        >mail</span
+                      >
+                    </button>
+                  </div>
+                </div>
+                <h4 class="text-xl font-bold text-slate-800 mb-1">
+                  Sofía Méndez
+                </h4>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="px-3 py-1 bg-purple-50 text-purple-600 text-[10px] font-bold uppercase rounded-full tracking-wide"
+                    >Muralismo</span
+                  >
+                </div>
+                <div
+                  class="mb-4 flex items-center gap-2 text-xs text-slate-500"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm text-green-500"
+                    data-icon="check_circle"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >check_circle</span
+                  >
+                  <span>Proyecto: Mural Comunitario</span>
+                </div>
+                <button
+                  class="w-full py-3 bg-white text-slate-600 font-bold rounded-full text-sm hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center gap-2 shadow-sm"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    data-icon="swap_horiz"
+                    >swap_horiz</span
+                  >
+                  Cambiar Proyecto
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer / Credits -->
+      <footer class="p-8 text-center text-slate-400 text-sm font-medium">
+        © 2024 Gentle Guardian • Sistema de Administración de Impacto Social
+      </footer>
+    </main>
+  </body>
+</html>
