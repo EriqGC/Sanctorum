@@ -666,31 +666,33 @@
       </div>
     </footer>
 
-    <div id="modalSolicitud" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div id="modalSolicitud" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300">
       <div class="bg-white p-8 rounded-3xl max-w-md w-full mx-4 text-center shadow-2xl">
-        <div id="solicitudIcono" class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full text-white font-bold text-3xl"></div>
-        <h3 id="solicitudTitulo" class="text-2xl font-bold mb-2 text-slate-800"></h3>
-        <p id="solicitudMensaje" class="text-sm text-slate-500 mb-6"></p>
-        <button onclick="cerrarModalSolicitud()" class="w-full py-3 bg-gradient-to-r from-primary to-primary-container text-white rounded-full font-bold shadow-lg transition-all hover:scale-[1.01]">
-          Aceptar
+        <div id="modalIcono" class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full text-white font-bold text-3xl"></div>
+        <h3 id="modalTitulo" class="text-2xl font-bold mb-2 text-slate-800"></h3>
+        <p id="modalMensaje" class="text-slate-500 mb-6"></p>
+        <button onclick="cerrarModal()" class="w-full py-3 bg-gradient-to-r from-[#8a5100] to-[#f39200] text-white rounded-full font-bold shadow-lg hover:scale-[1.02] transition-all">
+          Entendido
         </button>
       </div>
     </div>
     
     <script>
+      // IMPORTANTE: Cambia esta URL por la tuya de Render
       const API_URL = "https://sanctorum-backend.onrender.com";
     
-      // Capturar el envío del formulario público
+      // Al enviar el formulario...
       document.querySelector('form').addEventListener('submit', async (e) => {
-          e.preventDefault();
+          e.preventDefault(); // Evita que la página se recargue
     
-          // Recolectar dinámicamente los campos mapeados a tu base de datos
+          // Recolectamos los datos de los inputs (asegúrate de que los IDs coincidan o tomará el orden de los inputs)
+          const inputs = document.querySelectorAll('input, select, textarea');
           const data = {
-              nombre_contacto: document.getElementById('nombre_contacto')?.value || document.querySelectorAll('input')[0].value,
-              telefono: document.getElementById('telefono')?.value || '',
-              correo: document.getElementById('correo')?.value || document.querySelector('input[type="email"]').value,
-              tipo_solicitud: document.getElementById('tipo_solicitud')?.value || 'Ayuda Psicológica',
-              mensaje: document.getElementById('mensaje')?.value || document.querySelector('textarea').value
+              nombre_contacto: inputs[0].value, // Primer input (Nombre)
+              correo: inputs[1].value,          // Segundo input (Correo)
+              telefono: inputs[2].value,        // Tercer input (Teléfono)
+              tipo_solicitud: inputs[3].value,  // El select (Ayuda psicológica, etc)
+              mensaje: inputs[4].value          // El textarea (Mensaje)
           };
     
           try {
@@ -703,27 +705,27 @@
               const result = await response.json();
     
               if (response.ok && result.success) {
-                  mostrarModalSolicitud('¡Envío Exitoso!', 'Tu solicitud ha sido registrada en el sistema. Un coordinador de Sanctorum te contactará a la brevedad.', '#4CAF50', 'check');
-                  document.querySelector('form').reset(); // Limpia los campos del formulario
+                  mostrarModal('¡Solicitud Enviada!', 'Tu mensaje ha sido registrado en el sistema. Un coordinador de Sanctorum te contactará pronto.', '#4CAF50', '✓');
+                  document.querySelector('form').reset(); // Limpia los campos
               } else {
-                  mostrarModalSolicitud('No se pudo enviar', 'Hubo un problema al procesar la solicitud en el servidor.', '#F44336', 'close');
+                  mostrarModal('Error', 'No pudimos guardar tu solicitud. Revisa tus datos.', '#F44336', '✕');
               }
           } catch (error) {
-              console.error(error);
-              mostrarModalSolicitud('Fallo de Red', 'Error al intentar conectar con la base de datos central.', '#FF9800', 'warning');
+              mostrarModal('Error de Conexión', 'No pudimos conectar con el servidor. Intenta más tarde.', '#FF9800', '⚠');
           }
       });
     
-      function mostrarModalSolicitud(titulo, mensaje, colorFondo, icono) {
-          document.getElementById('solicitulTitulo').innerText = titulo;
-          document.getElementById('solicitudMensaje').innerText = mensaje;
-          const iconoDiv = document.getElementById('solicitudIcono');
+      // Funciones para controlar el modal (Ventana emergente)
+      function mostrarModal(titulo, mensaje, colorFondo, icono) {
+          document.getElementById('modalTitulo').innerText = titulo;
+          document.getElementById('modalMensaje').innerText = mensaje;
+          const iconoDiv = document.getElementById('modalIcono');
           iconoDiv.style.backgroundColor = colorFondo;
-          iconoDiv.innerText = icono === 'check' ? '✓' : icono === 'close' ? '✕' : '⚠';
+          iconoDiv.innerText = icono;
           document.getElementById('modalSolicitud').classList.remove('hidden');
       }
     
-      function cerrarModalSolicitud() {
+      function cerrarModal() {
           document.getElementById('modalSolicitud').classList.add('hidden');
       }
     </script>
