@@ -147,5 +147,79 @@
         </a>
       </div>
     </div>
+
+    <div id="modalFeedback" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+      <div class="bg-white p-6 rounded-3xl max-w-sm w-full mx-4 text-center shadow-2xl animate-scaleIn">
+        <div id="modalIcono" class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full text-white font-bold text-2xl"></div>
+        <h3 id="modalTitulo" class="text-xl font-bold mb-2 text-slate-800"></h3>
+        <p id="modalMensaje" class="text-sm text-slate-500 mb-6"></p>
+        <button onclick="cerrarModal()" class="px-6 py-2 bg-slate-800 text-white font-bold rounded-full text-sm hover:bg-slate-700 transition-all">
+          Entendido
+        </button>
+      </div>
+    </div>
+    
+    <script>
+      // URL de tu backend en Render (Cambia esto por tu link real de Render cuando esté en línea)
+      const API_URL = "https://sanctorum-backend.onrender.com"; 
+    
+      // Capturar el evento de envío del formulario
+      document.querySelector('form').addEventListener('submit', async (e) => {
+          e.preventDefault(); // Evita que la página se recargue
+    
+          // Buscar los inputs de tu formulario
+          const correoInput = document.querySelector('input[type="email"]') || document.querySelectorAll('input')[0];
+          const passwordInput = document.querySelector('input[type="password"]');
+    
+          const data = {
+              correo: correoInput.value,
+              contraseña: passwordInput.value
+          };
+    
+          try {
+              // Petición HTTP POST al servidor en la nube
+              const response = await fetch(`${API_URL}/api/auth/login`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(data)
+              });
+    
+              const result = await response.json();
+    
+              if (response.ok && result.success) {
+                  // Guardar sesión segura mediante JSON Web Token (JWT)
+                  localStorage.setItem('token_sanctorum', result.token);
+                  localStorage.setItem('usuario_nombre', result.usuario.nombre);
+                  
+                  mostrarModal('¡Éxito!', 'Bienvenido al panel de control de Sanctorum.', '#4CAF50', 'check');
+                  
+                  // Redireccionar al dashboard después de 1.5 segundos
+                  setTimeout(() => {
+                      window.location.href = "dashboard_admin.html";
+                  }, 1500);
+              } else {
+                  mostrarModal('Error de Acceso', result.message || 'Las credenciales ingresadas son incorrectas.', '#F44336', 'close');
+              }
+          } catch (error) {
+              console.error(error);
+              mostrarModal('Error de Conexión', 'No se pudo establecer comunicación con el servidor lógico.', '#FF9800', 'warning');
+          }
+      });
+    
+      // Funciones de control de la ventana emergente
+      function mostrarModal(titulo, mensaje, colorFondo, icono) {
+          document.getElementById('modalTitulo').innerText = titulo;
+          document.getElementById('modalMensaje').innerText = mensaje;
+          const iconoDiv = document.getElementById('modalIcono');
+          iconoDiv.style.backgroundColor = colorFondo;
+          iconoDiv.innerText = icono === 'check' ? '✓' : icono === 'close' ? '✕' : '⚠';
+          document.getElementById('modalFeedback').classList.remove('hidden');
+      }
+    
+      function cerrarModal() {
+          document.getElementById('modalFeedback').classList.add('hidden');
+      }
+    </script>
+    
   </body>
 </html>

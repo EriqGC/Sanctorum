@@ -665,5 +665,67 @@
         en sociedad.
       </div>
     </footer>
+
+    <div id="modalSolicitud" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+      <div class="bg-white p-8 rounded-3xl max-w-md w-full mx-4 text-center shadow-2xl">
+        <div id="solicitudIcono" class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full text-white font-bold text-3xl"></div>
+        <h3 id="solicitudTitulo" class="text-2xl font-bold mb-2 text-slate-800"></h3>
+        <p id="solicitudMensaje" class="text-sm text-slate-500 mb-6"></p>
+        <button onclick="cerrarModalSolicitud()" class="w-full py-3 bg-gradient-to-r from-primary to-primary-container text-white rounded-full font-bold shadow-lg transition-all hover:scale-[1.01]">
+          Aceptar
+        </button>
+      </div>
+    </div>
+    
+    <script>
+      const API_URL = "https://sanctorum-backend.onrender.com";
+    
+      // Capturar el envío del formulario público
+      document.querySelector('form').addEventListener('submit', async (e) => {
+          e.preventDefault();
+    
+          // Recolectar dinámicamente los campos mapeados a tu base de datos
+          const data = {
+              nombre_contacto: document.getElementById('nombre_contacto')?.value || document.querySelectorAll('input')[0].value,
+              telefono: document.getElementById('telefono')?.value || '',
+              correo: document.getElementById('correo')?.value || document.querySelector('input[type="email"]').value,
+              tipo_solicitud: document.getElementById('tipo_solicitud')?.value || 'Ayuda Psicológica',
+              mensaje: document.getElementById('mensaje')?.value || document.querySelector('textarea').value
+          };
+    
+          try {
+              const response = await fetch(`${API_URL}/api/solicitudes`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(data)
+              });
+    
+              const result = await response.json();
+    
+              if (response.ok && result.success) {
+                  mostrarModalSolicitud('¡Envío Exitoso!', 'Tu solicitud ha sido registrada en el sistema. Un coordinador de Sanctorum te contactará a la brevedad.', '#4CAF50', 'check');
+                  document.querySelector('form').reset(); // Limpia los campos del formulario
+              } else {
+                  mostrarModalSolicitud('No se pudo enviar', 'Hubo un problema al procesar la solicitud en el servidor.', '#F44336', 'close');
+              }
+          } catch (error) {
+              console.error(error);
+              mostrarModalSolicitud('Fallo de Red', 'Error al intentar conectar con la base de datos central.', '#FF9800', 'warning');
+          }
+      });
+    
+      function mostrarModalSolicitud(titulo, mensaje, colorFondo, icono) {
+          document.getElementById('solicitulTitulo').innerText = titulo;
+          document.getElementById('solicitudMensaje').innerText = mensaje;
+          const iconoDiv = document.getElementById('solicitudIcono');
+          iconoDiv.style.backgroundColor = colorFondo;
+          iconoDiv.innerText = icono === 'check' ? '✓' : icono === 'close' ? '✕' : '⚠';
+          document.getElementById('modalSolicitud').classList.remove('hidden');
+      }
+    
+      function cerrarModalSolicitud() {
+          document.getElementById('modalSolicitud').classList.add('hidden');
+      }
+    </script>
   </body>
 </html>
