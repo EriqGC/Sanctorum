@@ -362,6 +362,24 @@
     </div>
   </div>
 
+  <div id="modalEntrevista" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
+    <div class="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300" id="modalEntrevistaContent">
+      <div class="bg-[#f0f4f8] px-8 py-6 flex justify-between items-center">
+        <div><h3 class="text-xl font-bold font-plus text-slate-800">Agendar Entrevista</h3><p id="entrevista_nombre" class="text-slate-500 text-sm">Cargando...</p></div>
+        <button onclick="cerrarModal('modalEntrevista', 'modalEntrevistaContent')" class="text-slate-400 hover:text-red-500"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <form id="formEntrevista" class="p-8 space-y-5">
+        <input type="hidden" id="ent_id_usuario"> <input type="hidden" id="ent_correo">
+        <div class="grid grid-cols-2 gap-4">
+          <div><label class="block text-sm font-bold text-slate-700 mb-2">Fecha</label><input type="date" id="ent_fecha" required class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl"></div>
+          <div><label class="block text-sm font-bold text-slate-700 mb-2">Hora</label><input type="time" id="ent_hora" required class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl"></div>
+        </div>
+        <div><label class="block text-sm font-bold text-slate-700 mb-2">Enlace de videollamada</label><input type="text" id="ent_link" required class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl" placeholder="Ej. meet.google.com/abc..."></div>
+        <div class="pt-4 flex gap-4"><button type="button" onclick="cerrarModal('modalEntrevista', 'modalEntrevistaContent')" class="flex-1 py-3 bg-slate-100 text-slate-600 font-bold rounded-full hover:bg-slate-200">Cancelar</button><button type="submit" class="flex-1 py-3 bg-gradient-to-r from-[#8a5100] to-[#f39200] text-white font-bold rounded-full">Enviar Invitación</button></div>
+      </form>
+    </div>
+  </div>
+
   <!-- MODAL: ASIGNAR PROYECTO (PARA USUARIOS YA ACTIVOS) -->
   <div id="modalAsignarActivo" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-all">
     <div class="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden transform scale-95 transition-all" id="modalAsignarActivoContent">
@@ -404,21 +422,28 @@
         <input type="hidden" id="mod_id">
         <div>
           <label class="block text-sm font-bold text-slate-700 mb-1">Nuevo Rol</label>
-          <select id="mod_rol" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none">
-            <option value="4">Voluntario / Donador</option>
+          <select id="mod_rol" onchange="toggleDonadorFields('mod')" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none">
+            <option value="4">Voluntario</option>
+            <option value="5">Donador</option>
             <option value="2">Especialista</option>
             <option value="3">Coordinador</option>
           </select>
         </div>
         <div>
-          <label class="block text-sm font-bold text-slate-700 mb-1">Nueva Especialidad</label>
-          <select id="mod_esp" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none">
-            <option value="General">General</option>
-            <option value="Psicología">Psicología</option>
-            <option value="Muralismo">Muralismo</option>
-            <option value="Donador">Donador</option>
+          <label class="block text-sm font-bold text-slate-700 mb-1">Nueva Clasificación</label>
+          <select id="mod_especialidad" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none">
+            <option value="General">General</option><option value="Psicología">Psicología</option><option value="Muralismo">Muralismo</option>
           </select>
         </div>
+
+        <div id="mod_donador_fields" class="grid grid-cols-2 gap-4 hidden bg-slate-100 p-4 rounded-xl mt-2">
+            <div><label class="block text-sm font-bold text-slate-700 mb-1">Material</label><input type="text" id="mod_material" class="w-full px-4 py-2 bg-white border-none rounded-xl outline-none"></div>
+            <div class="flex gap-2">
+                <div class="w-1/2"><label class="block text-sm font-bold text-slate-700 mb-1">Cant.</label><input type="number" id="mod_cantidad" class="w-full px-4 py-2 bg-white border-none rounded-xl outline-none"></div>
+                <div class="w-1/2"><label class="block text-sm font-bold text-slate-700 mb-1">Unidad</label><select id="mod_unidad" class="w-full px-4 py-2 bg-white border-none rounded-xl outline-none"><option value="Lt">Lt</option><option value="Kg">Kg</option><option value="Pz">Pz</option></select></div>
+            </div>
+        </div>
+
         <button type="submit" class="w-full py-3 bg-slate-800 text-white font-bold rounded-full shadow-lg mt-4">Actualizar Perfil</button>
       </form>
     </div>
@@ -434,33 +459,44 @@
       <form id="formProyecto" class="p-8 space-y-4">
         <input type="hidden" id="proy_id_usuario">
         <div class="grid grid-cols-2 gap-4">
-          <div><label class="block text-sm font-bold text-slate-700 mb-1">Confirmar Rol</label><select id="proy_id_rol" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none"><option value="4" selected>Voluntario / Donador</option><option value="2">Especialista (Clínico)</option><option value="3">Coordinador</option></select></div>
-          <div><label class="block text-sm font-bold text-slate-700 mb-1">Confirmar Especialidad</label><select id="proy_especialidad" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none"><option value="General">General</option><option value="Psicología">Psicología</option><option value="Muralismo">Muralismo</option><option value="Donador">Donador</option></select></div>
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-1">Confirmar Rol</label>
+            <!-- AQUÍ ESTABA EL ERROR DE TYPO: AHORA ES proy_rol -->
+            <select id="proy_rol" onchange="toggleDonadorFields('proy')" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none">
+              <option value="4" selected>Voluntario</option>
+              <option value="5">Donador</option>
+              <option value="2">Especialista (Clínico)</option>
+              <option value="3">Coordinador</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-1">Clasificación / Especialidad</label>
+            <select id="proy_especialidad" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none">
+              <option value="General">General</option><option value="Psicología">Psicología</option><option value="Muralismo">Muralismo</option>
+            </select>
+          </div>
         </div>
-        <div><label class="block text-sm font-bold text-slate-700 mb-1 mt-2">Vincular a Evento/Proyecto</label><select id="proy_id_evento" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none"><option value="0" selected>Ninguno (Solo aprobar credenciales)</option></select></div>
+
+        <!-- CAMPOS OCULTOS DE DONADOR -->
+        <div id="proy_donador_fields" class="grid grid-cols-2 gap-4 hidden bg-emerald-50 p-4 rounded-xl border border-emerald-100 mt-2">
+            <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">Material a donar</label>
+                <input type="text" id="proy_material" class="w-full px-4 py-2 bg-white border-none rounded-xl outline-none" placeholder="Ej. Pintura">
+            </div>
+            <div class="flex gap-2">
+                <div class="w-1/2"><label class="block text-sm font-bold text-slate-700 mb-1">Cant.</label><input type="number" id="proy_cantidad" class="w-full px-4 py-2 bg-white border-none rounded-xl outline-none"></div>
+                <div class="w-1/2"><label class="block text-sm font-bold text-slate-700 mb-1">Unidad</label>
+                    <select id="proy_unidad" class="w-full px-4 py-2 bg-white border-none rounded-xl outline-none"><option value="Lt">Lt</option><option value="Kg">Kg</option><option value="Pz">Pz</option></select>
+                </div>
+            </div>
+        </div>
+
+        <div id="proy_proyecto_div"><label class="block text-sm font-bold text-slate-700 mb-1 mt-2">Vincular a Evento/Proyecto</label><select id="proy_id_evento" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none"><option value="0" selected>Ninguno (Solo aprobar credenciales)</option></select></div>
         <div class="pt-4 flex gap-4"><button type="button" onclick="cerrarModal('modalProyecto', 'modalProyectoContent')" class="flex-1 py-3 bg-slate-100 text-slate-600 font-bold rounded-full hover:bg-slate-200">Cancelar</button><button type="submit" class="flex-1 py-3 bg-green-600 text-white font-bold rounded-full shadow-lg">Aprobar Perfil</button></div>
       </form>
     </div>
   </div>
-
-  <div id="modalEntrevista" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
-    <div class="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300" id="modalEntrevistaContent">
-      <div class="bg-[#f0f4f8] px-8 py-6 flex justify-between items-center">
-        <div><h3 class="text-xl font-bold font-plus text-slate-800">Agendar Entrevista</h3><p id="entrevista_nombre" class="text-slate-500 text-sm">Cargando...</p></div>
-        <button onclick="cerrarModal('modalEntrevista', 'modalEntrevistaContent')" class="text-slate-400 hover:text-red-500"><span class="material-symbols-outlined">close</span></button>
-      </div>
-      <form id="formEntrevista" class="p-8 space-y-5">
-        <input type="hidden" id="ent_id_usuario"> <input type="hidden" id="ent_correo">
-        <div class="grid grid-cols-2 gap-4">
-          <div><label class="block text-sm font-bold text-slate-700 mb-2">Fecha</label><input type="date" id="ent_fecha" required class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl"></div>
-          <div><label class="block text-sm font-bold text-slate-700 mb-2">Hora</label><input type="time" id="ent_hora" required class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl"></div>
-        </div>
-        <div><label class="block text-sm font-bold text-slate-700 mb-2">Enlace de videollamada</label><input type="text" id="ent_link" required class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl" placeholder="Ej. meet.google.com/abc..."></div>
-        <div class="pt-4 flex gap-4"><button type="button" onclick="cerrarModal('modalEntrevista', 'modalEntrevistaContent')" class="flex-1 py-3 bg-slate-100 text-slate-600 font-bold rounded-full hover:bg-slate-200">Cancelar</button><button type="submit" class="flex-1 py-3 bg-gradient-to-r from-[#8a5100] to-[#f39200] text-white font-bold rounded-full">Enviar Invitación</button></div>
-      </form>
-    </div>
-  </div>
-
+  
   <div id="modalRegistro" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
     <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300" id="modalContent">
       <div class="bg-gradient-to-r from-[#8a5100] to-[#f39200] px-8 py-6 text-white flex justify-between items-center">
@@ -474,9 +510,36 @@
           <div><label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Teléfono</label><input type="tel" id="reg_telefono" class="w-full px-4 py-2 bg-[#f0f4f8] border-none rounded-full outline-none"></div>
         </div>
         <div class="grid grid-cols-2 gap-4">
-          <div><label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Rol</label><select id="reg_rol" required class="w-full px-4 py-2 bg-[#f0f4f8] border-none rounded-full outline-none"><option value="4" selected>Voluntario / Donador</option><option value="3">Coordinador</option></select></div>
-          <div><label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Especialidad</label><select id="reg_especialidad" class="w-full px-4 py-2 bg-[#f0f4f8] border-none rounded-full outline-none"><option value="General">General</option><option value="Psicología">Psicología</option><option value="Muralismo">Muralismo</option><option value="Donador">Donador (Insumos)</option></select></div>
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Rol</label>
+            <select id="reg_rol" onchange="toggleDonadorFields('reg')" class="w-full px-4 py-2 bg-[#f0f4f8] border-none rounded-full outline-none">
+              <option value="4" selected>Voluntario (Campo)</option>
+              <option value="5">Donador (Material)</option>
+              <option value="3">Coordinador</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Clasificación / Especialidad</label>
+            <select id="reg_especialidad" class="w-full px-4 py-2 bg-[#f0f4f8] border-none rounded-full outline-none">
+              <option value="General">General</option><option value="Psicología">Psicología</option><option value="Muralismo">Muralismo</option>
+            </select>
+          </div>
         </div>
+        
+        <!-- CAMPOS OCULTOS DE DONADOR -->
+        <div id="reg_donador_fields" class="grid grid-cols-2 gap-4 hidden bg-amber-50 p-4 rounded-xl border border-amber-100">
+            <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">Material a donar</label>
+                <input type="text" id="reg_material" class="w-full px-4 py-2 bg-white border-none rounded-full outline-none" placeholder="Ej. Pintura">
+            </div>
+            <div class="flex gap-2">
+                <div class="w-1/2"><label class="block text-sm font-bold text-slate-700 mb-1">Cant.</label><input type="number" id="reg_cantidad" class="w-full px-4 py-2 bg-white border-none rounded-full outline-none" placeholder="0"></div>
+                <div class="w-1/2"><label class="block text-sm font-bold text-slate-700 mb-1">Unidad</label>
+                    <select id="reg_unidad" class="w-full px-4 py-2 bg-white border-none rounded-full outline-none"><option value="Lt">Lt</option><option value="Kg">Kg</option><option value="Pz">Pz</option></select>
+                </div>
+            </div>
+        </div>
+
         <div class="pt-4 flex gap-4"><button type="button" onclick="cerrarModal('modalRegistro', 'modalContent')" class="flex-1 py-3 bg-slate-100 text-slate-600 font-bold rounded-full">Cancelar</button><button type="submit" class="flex-1 py-3 bg-[#b50062] text-white font-bold rounded-full shadow-lg">Guardar y Avisar</button></div>
       </form>
     </div>
@@ -484,319 +547,286 @@
 
   <!-- LÓGICA DE JAVASCRIPT -->
   <script>
-    // 1. Proteger la ruta y cargar nombre del usuario
+    // 1. Proteger ruta
     document.addEventListener('DOMContentLoaded', () => {
       const token = localStorage.getItem('token_sanctorum');
-      
-      // Si no hay token (no ha iniciado sesión), lo pateamos al login
-      if(!token) {
-          window.location.href = "login.html";
-          return;
-      }
-
+      if(!token) { window.location.href = "login.html"; return; }
       try {
-          // Si sí hay token, lo desencriptamos y sacamos su nombre
           const payload = JSON.parse(atob(token.split('.')[1]));
-          document.getElementById('nav_user_name').innerText = payload.nombre.split(' ')[0]; // Muestra "Enrique" en vez de nombre completo
-      } catch (e) { 
-          console.error("Error leyendo el token de seguridad"); 
-          window.location.href = "login.html";
-      }
-  });
+          document.getElementById('nav_user_name').innerText = payload.nombre.split(' ')[0];
+      } catch (e) { window.location.href = "login.html"; }
+    });
+    function cerrarSesion() { localStorage.removeItem('token_sanctorum'); window.location.href = "login.html"; }
 
-  // 2. Función del botón rojo del menú
-  function cerrarSesion() {
-      localStorage.removeItem('token_sanctorum');
-      window.location.href = "login.html";
-  }
     const API_URL = "http://localhost:3000";
     let voluntariosGlobales = [];
 
-    // --- VARIABLES DE ESTADO PARA LOS FILTROS INDIVIDUALES ---
-    let filtroCol1 = 'Todos';
-    let filtroCol2 = 'Todos';
-    let filtroCol3 = 'Todos';
+    // --- MANEJO DE MODALES ---
+    function abrirModal(modalId, contentId) { document.getElementById(modalId).classList.remove('hidden'); setTimeout(() => { document.getElementById(modalId).classList.remove('opacity-0'); document.getElementById(contentId).classList.remove('scale-95'); }, 10); }
+    function cerrarModal(modalId, contentId) { document.getElementById(modalId).classList.add('opacity-0'); document.getElementById(contentId).classList.add('scale-95'); setTimeout(() => { document.getElementById(modalId).classList.add('hidden'); const forms = document.getElementById(modalId).getElementsByTagName('form'); if(forms.length > 0) forms[0].reset(); }, 300); }
 
-    // --- MANEJO CENTRALIZADO DE MODALES ---
-    function abrirModal(modalId, contentId) {
-        document.getElementById(modalId).classList.remove('hidden');
-        setTimeout(() => { document.getElementById(modalId).classList.remove('opacity-0'); document.getElementById(contentId).classList.remove('scale-95'); }, 10);
-    }
-    function cerrarModal(modalId, contentId) {
-        document.getElementById(modalId).classList.add('opacity-0');
-        document.getElementById(contentId).classList.add('scale-95');
-        setTimeout(() => { document.getElementById(modalId).classList.add('hidden'); 
-        const forms = document.getElementById(modalId).getElementsByTagName('form');
-        if(forms.length > 0) forms[0].reset(); }, 300);
-    }
+    // --- LÓGICA DE INTERFAZ DINÁMICA (VOLUNTARIO VS DONADOR) ---
+    function toggleDonadorFields(prefix) {
+        const rol = document.getElementById(`${prefix}_rol`).value;
+        const esp = document.getElementById(`${prefix}_especialidad`);
+        const divDonador = document.getElementById(`${prefix}_donador_fields`);
+        const divProyecto = document.getElementById(`${prefix}_proyecto_div`);
 
-    // --- NUEVO MOTOR DE FILTROS ---
-    function aplicarFiltrosGlobales() {
-      cargarVoluntariosKanban(false);
-  }
-
-  function limpiarFiltros() {
-      document.getElementById('buscador_principal').value = '';
-      document.getElementById('filtro_rol').value = 'Todos';
-      document.getElementById('filtro_especialidad').value = 'Todas';
-      document.getElementById('filtro_fecha').value = 'Todas';
-      document.getElementById('filtro_proyecto').value = 'Todos';
-      aplicarFiltrosGlobales();
-  }
-
-  // --- CARGAR EL KANBAN Y APLICAR FILTROS ---
-  async function cargarVoluntariosKanban(forzarFetch = false) {
-    try {
-      if(voluntariosGlobales.length === 0 || forzarFetch) {
-          const response = await fetch(`${API_URL}/api/voluntarios`);
-          const result = await response.json();
-          if (response.ok && result.success) voluntariosGlobales = result.data;
-      }
-
-      const textoBusqueda = document.getElementById('buscador_principal').value.toLowerCase();
-      const fRol = document.getElementById('filtro_rol').value;
-      const fEsp = document.getElementById('filtro_especialidad').value;
-      const fFecha = document.getElementById('filtro_fecha').value;
-      const fProy = document.getElementById('filtro_proyecto').value;
-
-      const colNuevas = document.getElementById('columna_nuevas_solicitudes');
-      const colEntrevista = document.getElementById('columna_proceso_entrevista');
-      const colActivos = document.getElementById('columna_voluntarios_activos');
-      const colInactivos = document.getElementById('columna_inactivos');
-      
-      colNuevas.innerHTML = ''; colEntrevista.innerHTML = ''; colActivos.innerHTML = ''; colInactivos.innerHTML = '';
-      let cN = 0, cE = 0, cA = 0, cI = 0;
-
-      const datosFiltrados = voluntariosGlobales.filter(vol => {
-          // 1. Buscador de Texto
-          if (textoBusqueda && !vol.nombre_completo.toLowerCase().includes(textoBusqueda) && !vol.correo.toLowerCase().includes(textoBusqueda)) return false;
-          
-          // 2. Filtros Select
-          if (fRol !== 'Todos' && vol.id_rol != parseInt(fRol)) return false;
-          if (fEsp !== 'Todas' && vol.especialidad !== fEsp) return false;
-          if (fProy === 'Asignados' && vol.proyectos === '') return false;
-          if (fProy === 'SinAsignar' && vol.proyectos !== '') return false;
-
-          // 3. Filtro de Fechas
-          if (fFecha !== 'Todas' && vol.fecha_registro) {
-              const fechaReg = new Date(vol.fecha_registro);
-              const hoy = new Date();
-              if (fFecha === 'Mes') {
-                  const unMesAtras = new Date(); unMesAtras.setMonth(hoy.getMonth() - 1);
-                  if (fechaReg < unMesAtras) return false;
-              } else if (fFecha === 'Anio') {
-                  if (fechaReg.getFullYear() !== hoy.getFullYear()) return false;
-              }
-          }
-          return true;
-      });
-
-      datosFiltrados.forEach(vol => {
-        const status = vol.estatus || 'Nuevo';
-        let btnAccion = '';
-        
-        let btnContactoEliminar = `<button onclick="toggleContacto('contacto_${vol.id_usuario}')" class="p-2 text-slate-400 hover:text-[#b50062] rounded-full bg-slate-50 transition-colors"><span class="material-symbols-outlined text-lg">contact_mail</span></button>`;
-        
-        if(status === 'Nuevo' || status === 'Entrevista') {
-          btnContactoEliminar += `<button onclick="prepararEliminar(${vol.id_usuario}, '${vol.nombre_completo}')" class="p-2 text-slate-400 hover:text-red-500 rounded-full bg-slate-50 transition-colors ml-1" title="Eliminar Petición"><span class="material-symbols-outlined text-lg">delete</span></button>`;
-        }
-
-        if(status === 'Nuevo') {
-          cN++;
-          btnAccion = `<button onclick="abrirModalEntrevista(${vol.id_usuario}, '${vol.correo}', '${vol.nombre_completo}')" class="w-full py-3 bg-[#f0f4f8] text-slate-600 font-bold rounded-full text-sm hover:bg-[#f39200] hover:text-white transition-all flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">calendar_month</span> Agendar Entrevista</button>`;
-        } else if (status === 'Entrevista') {
-          cE++;
-          btnAccion = `
-              <div class="flex gap-2 w-full">
-                  <button onclick="abrirModalEntrevista(${vol.id_usuario}, '${vol.correo}', '${vol.nombre_completo}')" class="flex-1 py-2 bg-slate-100 text-slate-600 font-bold rounded-xl text-xs hover:bg-slate-200">Reagendar</button>
-                  <button onclick="abrirModalProyecto(${vol.id_usuario}, '${vol.nombre_completo}', ${vol.id_rol}, '${vol.especialidad}')" class="flex-1 py-2 bg-green-100 text-green-700 font-bold rounded-xl text-xs hover:bg-green-500 hover:text-white">Aprobar</button>
-              </div>`;
-        } else if (status === 'Inactivo') {
-          cI++;
-          btnAccion = `<button onclick="reactivarUsuario(${vol.id_usuario})" class="w-full py-2 bg-slate-200 text-slate-600 font-bold rounded-full text-xs hover:bg-green-500 hover:text-white transition-all flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">settings_backup_restore</span> Reactivar Perfil</button>`;
-        } else {
-          cA++;
-          let botonesActivo = ``;
-          if (vol.especialidad === 'Psicología' || vol.id_rol === 2) {
-              botonesActivo += `<button onclick="abrirModalExpediente()" class="w-full py-2 mb-2 bg-[#f0f4f8] text-slate-600 font-bold rounded-full text-xs hover:bg-blue-500 hover:text-white transition-all flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">folder_shared</span> Asignar Expediente</button>`;
-          }
-          botonesActivo += `<button onclick="abrirModalAsignarActivo(${vol.id_usuario})" class="w-full py-2 mb-3 bg-[#f0f4f8] text-slate-600 font-bold rounded-full text-xs hover:bg-[#f39200] hover:text-white transition-all flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">assignment_ind</span> Asignar a Proyecto</button>`;
-          
-          botonesActivo += `
-              <div class="flex gap-2 w-full border-t border-slate-100 pt-3">
-                  <button onclick="prepararModificar(${vol.id_usuario}, ${vol.id_rol}, '${vol.especialidad}')" class="flex-1 py-2 bg-slate-50 text-slate-500 font-bold rounded-xl text-[10px] hover:bg-slate-200">Modificar Rol</button>
-                  <button onclick="prepararInactivar(${vol.id_usuario}, '${vol.nombre_completo}')" class="flex-1 py-2 bg-red-50 text-red-600 font-bold rounded-xl text-[10px] hover:bg-red-100">Pasar a Inactivo</button>
-              </div>`;
-          btnAccion = botonesActivo;
-        }
-
-        let colorBadge = "bg-slate-100 text-slate-600";
-        if (vol.especialidad === 'Psicología') colorBadge = "bg-blue-100 text-blue-700";
-        if (vol.especialidad === 'Muralismo') colorBadge = "bg-purple-100 text-purple-700";
-        if (vol.especialidad === 'Donador') colorBadge = "bg-amber-100 text-amber-700";
-
-        const extraStyle = status === 'Inactivo' ? 'grayscale opacity-80' : '';
-        
-        // Etiqueta visual si tiene proyectos
-        let badgeProyectos = '';
-        if (vol.proyectos && vol.proyectos !== '') {
-            badgeProyectos = `<div class="mt-2 text-[10px] text-slate-500 font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">work</span> ${vol.proyectos}</div>`;
-        }
-
-        const card = `
-          <div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm mb-6 hover:scale-[1.02] transition-all relative border border-slate-100 ${extraStyle}">
-            <div class="flex justify-between items-start mb-4">
-              <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold text-xl">${vol.nombre_completo.charAt(0)}</div>
-              <div class="flex">${btnContactoEliminar}</div>
-            </div>
-            <h4 class="text-lg font-bold text-slate-800 mb-1">${vol.nombre_completo}</h4>
-            <div class="flex flex-wrap gap-2 mb-2"><span class="px-3 py-1 ${colorBadge} text-[10px] font-bold uppercase rounded-full tracking-wide">${vol.especialidad || 'General'}</span></div>
-            ${badgeProyectos}
+        if (rol === '5') { // Es Donador
+            esp.innerHTML = '<option value="Persona Individual">Persona Individual</option><option value="Compañía">Compañía</option><option value="Institución">Institución</option>';
+            if(divDonador) { divDonador.classList.remove('hidden'); divDonador.classList.add('grid'); }
+            if(divProyecto) divProyecto.classList.add('hidden');
+        } else { // Es Voluntario o Coordinador
+            if(rol === '2') { esp.innerHTML = '<option value="Psicología">Psicología</option>'; } 
+            else { esp.innerHTML = '<option value="General">General</option><option value="Muralismo">Muralismo</option>'; }
             
-            <div id="contacto_${vol.id_usuario}" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out mt-4">
-                <div class="bg-slate-50 p-3 rounded-lg mb-4 text-xs text-slate-600 space-y-2">
-                    <p class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">mail</span> ${vol.correo}</p>
-                    <p class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">phone</span> ${vol.telefono || 'No registrado'}</p>
-                </div>
-            </div>
-            <div class="mt-4">${btnAccion}</div>
-          </div>`;
+            if(divDonador) { divDonador.classList.add('hidden'); divDonador.classList.remove('grid'); }
+            if(divProyecto) divProyecto.classList.remove('hidden');
+        }
+    }
+
+    function aplicarFiltrosGlobales() { cargarVoluntariosKanban(false); }
+    function limpiarFiltros() {
+      document.getElementById('buscador_principal').value = ''; document.getElementById('filtro_rol').value = 'Todos'; document.getElementById('filtro_especialidad').value = 'Todas'; document.getElementById('filtro_fecha').value = 'Todas'; document.getElementById('filtro_proyecto').value = 'Todos'; aplicarFiltrosGlobales();
+    }
+
+    // --- CARGAR EL KANBAN ---
+    async function cargarVoluntariosKanban(forzarFetch = false) {
+      try {
+        if(voluntariosGlobales.length === 0 || forzarFetch) {
+            const response = await fetch(`${API_URL}/api/voluntarios`);
+            const result = await response.json();
+            if (response.ok && result.success) voluntariosGlobales = result.data;
+        }
+
+        const textoBusqueda = document.getElementById('buscador_principal').value.toLowerCase();
+        const fRol = document.getElementById('filtro_rol').value;
+        const fEsp = document.getElementById('filtro_especialidad').value;
+        const fFecha = document.getElementById('filtro_fecha').value;
+        const fProy = document.getElementById('filtro_proyecto').value;
+
+        const colNuevas = document.getElementById('columna_nuevas_solicitudes');
+        const colEntrevista = document.getElementById('columna_proceso_entrevista');
+        const colActivos = document.getElementById('columna_voluntarios_activos');
+        const colInactivos = document.getElementById('columna_inactivos');
         
-        if(status === 'Nuevo') colNuevas.insertAdjacentHTML('beforeend', card);
-        else if(status === 'Entrevista') colEntrevista.insertAdjacentHTML('beforeend', card);
-        else if(status === 'Inactivo') colInactivos.insertAdjacentHTML('beforeend', card);
-        else colActivos.insertAdjacentHTML('beforeend', card);
-      });
+        colNuevas.innerHTML = ''; colEntrevista.innerHTML = ''; colActivos.innerHTML = ''; colInactivos.innerHTML = '';
+        let cN = 0, cE = 0, cA = 0, cI = 0;
 
-      document.getElementById('contador_nuevos').innerText = cN;
-      document.getElementById('contador_entrevista').innerText = cE;
-      document.getElementById('contador_activos').innerText = cA;
-      document.getElementById('contador_inactivos').innerText = cI;
-    } catch (error) { console.error("Error:", error); }
-  }
+        const datosFiltrados = voluntariosGlobales.filter(vol => {
+            if (textoBusqueda && !vol.nombre_completo.toLowerCase().includes(textoBusqueda) && !vol.correo.toLowerCase().includes(textoBusqueda)) return false;
+            if (fRol !== 'Todos' && vol.id_rol != parseInt(fRol)) return false;
+            if (fEsp !== 'Todas' && vol.especialidad !== fEsp) return false;
+            if (fProy === 'Asignados' && vol.proyectos === '') return false;
+            if (fProy === 'SinAsignar' && vol.proyectos !== '') return false;
 
-  // LISTENER PARA EL BUSCADOR PRINCIPAL EN VIVO
-  const inputBuscador = document.getElementById('buscador_principal');
-  if(inputBuscador) {
-      inputBuscador.addEventListener('input', () => {
-          cargarVoluntariosKanban(false);
-      });
-  }
-    // --- MANEJO DE INTERFAZ VISUAL ---
-    function toggleContacto(id) {
-        const el = document.getElementById(id);
-        if (el.style.maxHeight && el.style.maxHeight !== '0px') el.style.maxHeight = '0px'; else el.style.maxHeight = el.scrollHeight + "px";
+            if (fFecha !== 'Todas' && vol.fecha_registro) {
+                const fechaReg = new Date(vol.fecha_registro); const hoy = new Date();
+                if (fFecha === 'Mes') { const unMesAtras = new Date(); unMesAtras.setMonth(hoy.getMonth() - 1); if (fechaReg < unMesAtras) return false; } 
+                else if (fFecha === 'Anio') { if (fechaReg.getFullYear() !== hoy.getFullYear()) return false; }
+            }
+            return true;
+        });
+
+        datosFiltrados.forEach(vol => {
+          const status = vol.estatus || 'Nuevo';
+          let btnAccion = '';
+          
+          let btnContactoEliminar = `<button onclick="toggleContacto('contacto_${vol.id_usuario}')" class="p-2 text-slate-400 hover:text-[#b50062] rounded-full bg-slate-50 transition-colors"><span class="material-symbols-outlined text-lg">contact_mail</span></button>`;
+          if(status === 'Nuevo' || status === 'Entrevista') {
+            btnContactoEliminar += `<button onclick="prepararEliminar(${vol.id_usuario}, '${vol.nombre_completo}')" class="p-2 text-slate-400 hover:text-red-500 rounded-full bg-slate-50 transition-colors ml-1"><span class="material-symbols-outlined text-lg">delete</span></button>`;
+          }
+
+          if(status === 'Nuevo') {
+            cN++;
+            btnAccion = `<button onclick="abrirModalEntrevista(${vol.id_usuario}, '${vol.correo}', '${vol.nombre_completo}')" class="w-full py-3 bg-[#f0f4f8] text-slate-600 font-bold rounded-full text-sm hover:bg-[#f39200] hover:text-white transition-all flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">calendar_month</span> Agendar Entrevista</button>`;
+          } else if (status === 'Entrevista') {
+            cE++;
+            btnAccion = `
+                <div class="flex gap-2 w-full">
+                    <button onclick="abrirModalEntrevista(${vol.id_usuario}, '${vol.correo}', '${vol.nombre_completo}')" class="flex-1 py-2 bg-slate-100 text-slate-600 font-bold rounded-xl text-xs hover:bg-slate-200">Reagendar</button>
+                    <button onclick="abrirModalProyecto(${vol.id_usuario}, '${vol.nombre_completo}', ${vol.id_rol}, '${vol.especialidad}', '${vol.material_donado || ''}', '${vol.cantidad_donada || ''}')" class="flex-1 py-2 bg-green-100 text-green-700 font-bold rounded-xl text-xs hover:bg-green-500 hover:text-white">Aprobar</button>
+                </div>`;
+          } else if (status === 'Inactivo') {
+            cI++;
+            btnAccion = `<button onclick="reactivarUsuario(${vol.id_usuario})" class="w-full py-2 bg-slate-200 text-slate-600 font-bold rounded-full text-xs hover:bg-green-500 hover:text-white transition-all flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">settings_backup_restore</span> Reactivar Perfil</button>`;
+          } else {
+            cA++;
+            let botonesActivo = ``;
+            if (vol.id_rol !== 5) { // Si es Voluntario puede tener expediente y proyecto físico
+                if (vol.especialidad === 'Psicología' || vol.id_rol === 2) {
+                    botonesActivo += `<button onclick="abrirModalExpediente()" class="w-full py-2 mb-2 bg-[#f0f4f8] text-slate-600 font-bold rounded-full text-xs hover:bg-blue-500 hover:text-white transition-all flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">folder_shared</span> Asignar Expediente</button>`;
+                }
+                botonesActivo += `<button onclick="abrirModalAsignarActivo(${vol.id_usuario})" class="w-full py-2 mb-3 bg-[#f0f4f8] text-slate-600 font-bold rounded-full text-xs hover:bg-[#f39200] hover:text-white transition-all flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">assignment_ind</span> Asignar a Proyecto</button>`;
+            }
+            botonesActivo += `
+                <div class="flex gap-2 w-full border-t border-slate-100 pt-3">
+                    <button onclick="prepararModificar(${vol.id_usuario}, ${vol.id_rol}, '${vol.especialidad}', '${vol.material_donado || ''}', '${vol.cantidad_donada || ''}')" class="flex-1 py-2 bg-slate-50 text-slate-500 font-bold rounded-xl text-[10px] hover:bg-slate-200">Modificar Perfil</button>
+                    <button onclick="prepararInactivar(${vol.id_usuario}, '${vol.nombre_completo}')" class="flex-1 py-2 bg-red-50 text-red-600 font-bold rounded-xl text-[10px] hover:bg-red-100">Pasar a Inactivo</button>
+                </div>`;
+            btnAccion = botonesActivo;
+          }
+
+          let colorBadge = "bg-slate-100 text-slate-600";
+          if (vol.id_rol === 5) colorBadge = "bg-amber-100 text-amber-700"; // Donador
+          else if (vol.especialidad === 'Psicología') colorBadge = "bg-blue-100 text-blue-700";
+          else if (vol.especialidad === 'Muralismo') colorBadge = "bg-purple-100 text-purple-700";
+
+          let extraBadge = '';
+          if (vol.id_rol === 5 && vol.material_donado) {
+              extraBadge = `<div class="mt-2 text-[10px] text-slate-500 font-bold flex items-center gap-1 bg-amber-50 px-2 py-1 rounded-md"><span class="material-symbols-outlined text-[12px] text-amber-500">inventory_2</span> Donación: ${vol.cantidad_donada} de ${vol.material_donado}</div>`;
+          } else if (vol.proyectos && vol.proyectos !== '') {
+              extraBadge = `<div class="mt-2 text-[10px] text-slate-500 font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">work</span> ${vol.proyectos}</div>`;
+          }
+
+          const card = `
+            <div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm mb-6 hover:scale-[1.02] transition-all relative border border-slate-100 ${status === 'Inactivo' ? 'grayscale opacity-80' : ''}">
+              <div class="flex justify-between items-start mb-4">
+                <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold text-xl">${vol.nombre_completo.charAt(0)}</div>
+                <div class="flex">${btnContactoEliminar}</div>
+              </div>
+              <h4 class="text-lg font-bold text-slate-800 mb-1">${vol.nombre_completo}</h4>
+              <div class="flex flex-wrap gap-2 mb-2"><span class="px-3 py-1 ${colorBadge} text-[10px] font-bold uppercase rounded-full tracking-wide">${vol.id_rol === 5 ? 'Donador - ' + vol.especialidad : vol.especialidad || 'General'}</span></div>
+              ${extraBadge}
+              
+              <div id="contacto_${vol.id_usuario}" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out mt-4">
+                  <div class="bg-slate-50 p-3 rounded-lg mb-4 text-xs text-slate-600 space-y-2">
+                      <p class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">mail</span> ${vol.correo}</p>
+                      <p class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">phone</span> ${vol.telefono || 'No registrado'}</p>
+                  </div>
+              </div>
+              <div class="mt-4">${btnAccion}</div>
+            </div>`;
+          
+          if(status === 'Nuevo') colNuevas.insertAdjacentHTML('beforeend', card);
+          else if(status === 'Entrevista') colEntrevista.insertAdjacentHTML('beforeend', card);
+          else if(status === 'Inactivo') colInactivos.insertAdjacentHTML('beforeend', card);
+          else colActivos.insertAdjacentHTML('beforeend', card);
+        });
+
+        document.getElementById('contador_nuevos').innerText = cN; document.getElementById('contador_entrevista').innerText = cE; document.getElementById('contador_activos').innerText = cA; document.getElementById('contador_inactivos').innerText = cI;
+      } catch (error) { console.error("Error:", error); }
     }
 
-    function toggleMenu(menuId) {
-        ['menu_col1', 'menu_col2', 'menu_col3'].forEach(id => { if(id !== menuId) document.getElementById(id).classList.add('hidden'); });
-        document.getElementById(menuId).classList.toggle('hidden');
+    const inputBuscador = document.getElementById('buscador_principal'); if(inputBuscador) { inputBuscador.addEventListener('input', () => { cargarVoluntariosKanban(false); }); }
+
+    function toggleContacto(id) { const el = document.getElementById(id); if (el.style.maxHeight && el.style.maxHeight !== '0px') el.style.maxHeight = '0px'; else el.style.maxHeight = el.scrollHeight + "px"; }
+
+    function prepararEliminar(id, nombre) { document.getElementById('elim_id').value = id; document.getElementById('elim_nombre').innerText = nombre; abrirModal('modalEliminar', 'modalEliminarContent'); }
+    async function ejecutarEliminar() { await fetch(`${API_URL}/api/usuarios/${document.getElementById('elim_id').value}`, { method: 'DELETE' }); cerrarModal('modalEliminar', 'modalEliminarContent'); cargarVoluntariosKanban(true); }
+
+    function prepararInactivar(id, nombre) { document.getElementById('inac_id').value = id; document.getElementById('inac_nombre').innerText = nombre; abrirModal('modalInactivar', 'modalInactivarContent'); }
+    async function ejecutarInactivar() { await fetch(`${API_URL}/api/usuarios/${document.getElementById('inac_id').value}/inactivo`, { method: 'PUT' }); cerrarModal('modalInactivar', 'modalInactivarContent'); cargarVoluntariosKanban(true); }
+
+    async function reactivarUsuario(id) { await fetch(`${API_URL}/api/usuarios/${id}/reactivar`, { method: 'PUT' }); cargarVoluntariosKanban(true); }
+
+    async function abrirModalExpediente() { const res = await fetch(`${API_URL}/api/beneficiarios`); const json = await res.json(); const sel = document.getElementById('exp_beneficiario'); sel.innerHTML = '<option value="" disabled selected>Selecciona Beneficiario...</option>'; json.data.forEach(b => sel.innerHTML += `<option value="${b.id_beneficiario}">${b.nombre_completo}</option>`); abrirModal('modalExpediente', 'modalExpedienteContent'); }
+    async function abrirModalAsignarActivo(id_usuario) { document.getElementById('asig_act_id').value = id_usuario; const res = await fetch(`${API_URL}/api/proyectos`); const json = await res.json(); const sel = document.getElementById('asig_act_evento'); sel.innerHTML = '<option value="" disabled selected>Selecciona Proyecto...</option>'; json.data.forEach(p => sel.innerHTML += `<option value="${p.id_evento}">${p.titulo_evento}</option>`); abrirModal('modalAsignarActivo', 'modalAsignarActivoContent'); }
+    
+    document.getElementById('formAsignarActivo').addEventListener('submit', async (e) => { e.preventDefault(); await fetch(`${API_URL}/api/usuarios/${document.getElementById('asig_act_id').value}/participacion`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({id_evento: document.getElementById('asig_act_evento').value}) }); alert("Voluntario vinculado"); cerrarModal('modalAsignarActivo', 'modalAsignarActivoContent'); });
+
+    // --- MANEJO DE ENVÍO DE FORMULARIOS ---
+    function extraerCantidad(prefix) {
+        if(document.getElementById(`${prefix}_rol`).value !== '5') return { mat: '', cant: '' };
+        return { 
+            mat: document.getElementById(`${prefix}_material`).value, 
+            cant: document.getElementById(`${prefix}_cantidad`).value + ' ' + document.getElementById(`${prefix}_unidad`).value 
+        };
     }
 
-    // AHORA EL FILTRO RECIBE LA COLUMNA ESPECÍFICA
-    function filtrarColumna(categoria, columnaNum) {
-        if(columnaNum === 1) filtroCol1 = categoria;
-        if(columnaNum === 2) filtroCol2 = categoria;
-        if(columnaNum === 3) filtroCol3 = categoria;
-        
-        cargarVoluntariosKanban(); // Refresca aplicando las nuevas reglas
-        ['menu_col1', 'menu_col2', 'menu_col3'].forEach(id => document.getElementById(id).classList.add('hidden'));
+    function abrirModalRegistro() { 
+        document.getElementById('reg_rol').value = '4'; toggleDonadorFields('reg'); // Default voluntario
+        abrirModal('modalRegistro', 'modalContent'); 
     }
-
-    // --- MODALES ELIMINAR / INACTIVAR ---
-    function prepararEliminar(id, nombre) {
-        document.getElementById('elim_id').value = id; document.getElementById('elim_nombre').innerText = nombre; abrirModal('modalEliminar', 'modalEliminarContent');
-    }
-    async function ejecutarEliminar() {
-        const id = document.getElementById('elim_id').value;
-        await fetch(`${API_URL}/api/usuarios/${id}`, { method: 'DELETE' });
-        cerrarModal('modalEliminar', 'modalEliminarContent'); cargarVoluntariosKanban(true);
-    }
-
-    function prepararInactivar(id, nombre) {
-        document.getElementById('inac_id').value = id; document.getElementById('inac_nombre').innerText = nombre; abrirModal('modalInactivar', 'modalInactivarContent');
-    }
-    async function ejecutarInactivar() {
-        const id = document.getElementById('inac_id').value;
-        await fetch(`${API_URL}/api/usuarios/${id}/inactivo`, { method: 'PUT' });
-        cerrarModal('modalInactivar', 'modalInactivarContent'); cargarVoluntariosKanban(true);
-    }
-
-    async function reactivarUsuario(id) {
-        await fetch(`${API_URL}/api/usuarios/${id}/reactivar`, { method: 'PUT' }); cargarVoluntariosKanban(true);
-    }
-
-    // --- MODALES DE ACTIVOS (EXPEDIENTE, PROYECTO, ROL) ---
-    async function abrirModalExpediente() {
-        const res = await fetch(`${API_URL}/api/beneficiarios`); const json = await res.json();
-        const sel = document.getElementById('exp_beneficiario'); sel.innerHTML = '<option value="" disabled selected>Selecciona Beneficiario...</option>';
-        json.data.forEach(b => sel.innerHTML += `<option value="${b.id_beneficiario}">${b.nombre_completo}</option>`);
-        abrirModal('modalExpediente', 'modalExpedienteContent');
-    }
-
-    async function abrirModalAsignarActivo(id_usuario) {
-        document.getElementById('asig_act_id').value = id_usuario;
-        const res = await fetch(`${API_URL}/api/proyectos`); const json = await res.json();
-        const sel = document.getElementById('asig_act_evento'); sel.innerHTML = '<option value="" disabled selected>Selecciona Proyecto...</option>';
-        json.data.forEach(p => sel.innerHTML += `<option value="${p.id_evento}">${p.titulo_evento}</option>`);
-        abrirModal('modalAsignarActivo', 'modalAsignarActivoContent');
-    }
-    document.getElementById('formAsignarActivo').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        await fetch(`${API_URL}/api/usuarios/${document.getElementById('asig_act_id').value}/participacion`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({id_evento: document.getElementById('asig_act_evento').value}) });
-        alert("Voluntario vinculado al nuevo proyecto"); cerrarModal('modalAsignarActivo', 'modalAsignarActivoContent');
-    });
-
-    function prepararModificar(id, rol, esp) {
-        document.getElementById('mod_id').value = id; document.getElementById('mod_rol').value = rol; document.getElementById('mod_esp').value = esp || 'General';
-        abrirModal('modalModificar', 'modalModificarContent');
-    }
-    document.getElementById('formModificar').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const data = { id_rol: document.getElementById('mod_rol').value, especialidad: document.getElementById('mod_esp').value };
-        await fetch(`${API_URL}/api/usuarios/${document.getElementById('mod_id').value}/modificar`, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
-        cerrarModal('modalModificar', 'modalModificarContent'); cargarVoluntariosKanban(true);
-    });
-
-    // --- FORMULARIOS BASE (Entrevista, Aprobar, Nuevo) ---
-    function abrirModalEntrevista(id, correo, nombre) {
-        document.getElementById('ent_id_usuario').value = id; document.getElementById('ent_correo').value = correo; document.getElementById('entrevista_nombre').innerText = nombre;
-        abrirModal('modalEntrevista', 'modalEntrevistaContent');
-    }
-    document.getElementById('formEntrevista').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = e.target.querySelector('button[type="submit"]'); btn.innerText = "Agendando..."; btn.disabled = true;
-        const data = { id_usuario: document.getElementById('ent_id_usuario').value, correo: document.getElementById('ent_correo').value, nombre: document.getElementById('entrevista_nombre').innerText, fecha: document.getElementById('ent_fecha').value, hora: document.getElementById('ent_hora').value, link: document.getElementById('ent_link').value };
-        await fetch(`${API_URL}/api/entrevistas`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
-        btn.innerText = "Enviar Invitación"; btn.disabled = false; cerrarModal('modalEntrevista', 'modalEntrevistaContent'); cargarVoluntariosKanban(true);
-    });
-
-    async function abrirModalProyecto(id_usuario, nombre, rolActual, espActual) {
-        document.getElementById('proy_id_usuario').value = id_usuario; document.getElementById('proyecto_nombre_voluntario').innerText = nombre;
-        document.getElementById('proy_id_rol').value = rolActual || 4; document.getElementById('proy_especialidad').value = espActual || 'General';
-        const res = await fetch(`${API_URL}/api/proyectos`); const json = await res.json();
-        const sel = document.getElementById('proy_id_evento'); sel.innerHTML = '<option value="0" selected>Ninguno (Solo aprobar credenciales)</option>';
-        json.data.forEach(p => sel.innerHTML += `<option value="${p.id_evento}">${p.titulo_evento}</option>`);
-        abrirModal('modalProyecto', 'modalProyectoContent');
-    }
-    document.getElementById('formProyecto').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = e.target.querySelector('button[type="submit"]'); btn.innerText = "Aprobando..."; btn.disabled = true;
-        const data = { id_proyecto: document.getElementById('proy_id_evento').value, id_rol: parseInt(document.getElementById('proy_id_rol').value), especialidad: document.getElementById('proy_especialidad').value };
-        await fetch(`${API_URL}/api/voluntarios/${document.getElementById('proy_id_usuario').value}/asignar`, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
-        btn.innerText = "Aprobar Perfil"; btn.disabled = false; cerrarModal('modalProyecto', 'modalProyectoContent'); cargarVoluntariosKanban(true);
-    });
-
-    function abrirModalRegistro() { abrirModal('modalRegistro', 'modalContent'); }
     document.getElementById('formRegistro').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = e.target.querySelector('button[type="submit"]'); btn.innerText = "Creando..."; btn.disabled = true;
-      const data = { nombre_completo: document.getElementById('reg_nombre').value, correo: document.getElementById('reg_correo').value, telefono: document.getElementById('reg_telefono').value, especialidad: document.getElementById('reg_especialidad').value, id_rol: parseInt(document.getElementById('reg_rol').value) };
+      e.preventDefault(); const btn = e.target.querySelector('button[type="submit"]'); btn.innerText = "Creando..."; btn.disabled = true;
+      const { mat, cant } = extraerCantidad('reg');
+      const data = { nombre_completo: document.getElementById('reg_nombre').value, correo: document.getElementById('reg_correo').value, telefono: document.getElementById('reg_telefono').value, especialidad: document.getElementById('reg_especialidad').value, id_rol: parseInt(document.getElementById('reg_rol').value), material: mat, cantidad: cant };
       await fetch(`${API_URL}/api/usuarios`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
       btn.innerText = "Guardar y Avisar"; btn.disabled = false; cerrarModal('modalRegistro', 'modalContent'); cargarVoluntariosKanban(true);
     });
 
-    // Iniciar
+    function abrirModalEntrevista(id, correo, nombre) { document.getElementById('ent_id_usuario').value = id; document.getElementById('ent_correo').value = correo; document.getElementById('entrevista_nombre').innerText = nombre; abrirModal('modalEntrevista', 'modalEntrevistaContent'); }
+    document.getElementById('formEntrevista').addEventListener('submit', async (e) => { e.preventDefault(); const btn = e.target.querySelector('button[type="submit"]'); btn.innerText = "Agendando..."; btn.disabled = true; const data = { id_usuario: document.getElementById('ent_id_usuario').value, correo: document.getElementById('ent_correo').value, nombre: document.getElementById('entrevista_nombre').innerText, fecha: document.getElementById('ent_fecha').value, hora: document.getElementById('ent_hora').value, link: document.getElementById('ent_link').value }; await fetch(`${API_URL}/api/entrevistas`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) }); btn.innerText = "Enviar Invitación"; btn.disabled = false; cerrarModal('modalEntrevista', 'modalEntrevistaContent'); cargarVoluntariosKanban(true); });
+
+    async function abrirModalProyecto(id_usuario, nombre, rolActual, espActual, matActual, cantActual) {
+      document.getElementById('proy_id_usuario').value = id_usuario; 
+      document.getElementById('proyecto_nombre_voluntario').innerText = nombre;
+      
+      // Aquí también corregimos el ID a proy_rol
+      document.getElementById('proy_rol').value = rolActual || 4; 
+      toggleDonadorFields('proy');
+      document.getElementById('proy_especialidad').value = espActual || 'General';
+      
+      if (rolActual == 5) {
+          document.getElementById('proy_material').value = matActual || '';
+          const partes = (cantActual || '').split(' '); 
+          document.getElementById('proy_cantidad').value = partes[0] || ''; 
+          document.getElementById('proy_unidad').value = partes[1] || 'Lt';
+      }
+
+      try {
+          const res = await fetch(`${API_URL}/api/proyectos`); 
+          const json = await res.json();
+          const sel = document.getElementById('proy_id_evento'); 
+          sel.innerHTML = '<option value="0" selected>Ninguno (Solo aprobar credenciales)</option>';
+          if (json.success && json.data) {
+              json.data.forEach(p => sel.innerHTML += `<option value="${p.id_evento}">${p.titulo_evento}</option>`);
+          }
+      } catch (e) {
+          console.error("No se pudieron cargar los proyectos:", e);
+      }
+      abrirModal('modalProyecto', 'modalProyectoContent');
+  }
+
+  // SUBMIT DEL MODAL BLINDADO CON TRY/CATCH (CORREGIDO)
+  document.getElementById('formProyecto').addEventListener('submit', async (e) => {
+      e.preventDefault(); 
+      const btn = e.target.querySelector('button[type="submit"]'); 
+      btn.innerText = "Aprobando..."; btn.disabled = true;
+      
+      try {
+          const { mat, cant } = extraerCantidad('proy');
+          const data = { 
+              id_proyecto: document.getElementById('proy_id_evento').value, 
+              // Aquí también leemos del ID correcto proy_rol
+              id_rol: parseInt(document.getElementById('proy_rol').value), 
+              especialidad: document.getElementById('proy_especialidad').value, 
+              material: mat, 
+              cantidad: cant 
+          };
+          
+          await fetch(`${API_URL}/api/voluntarios/${document.getElementById('proy_id_usuario').value}/asignar`, { 
+              method: 'PUT', 
+              headers: {'Content-Type':'application/json'}, 
+              body: JSON.stringify(data) 
+          });
+      } catch (e) {
+          alert("Error de conexión al aprobar el perfil.");
+      } finally {
+          btn.innerText = "Aprobar Perfil"; 
+          btn.disabled = false; 
+          cerrarModal('modalProyecto', 'modalProyectoContent'); 
+          cargarVoluntariosKanban(true);
+      }
+  });
+
+    function prepararModificar(id, rolActual, espActual, matActual, cantActual) {
+        document.getElementById('mod_id').value = id; document.getElementById('mod_rol').value = rolActual || 4; toggleDonadorFields('mod');
+        document.getElementById('mod_especialidad').value = espActual || 'General';
+        if (rolActual === 5) {
+            document.getElementById('mod_material').value = matActual;
+            const partes = cantActual.split(' '); document.getElementById('mod_cantidad').value = partes[0] || ''; document.getElementById('mod_unidad').value = partes[1] || 'Lt';
+        }
+        abrirModal('modalModificar', 'modalModificarContent');
+    }
+    document.getElementById('formModificar').addEventListener('submit', async (e) => {
+        e.preventDefault(); const { mat, cant } = extraerCantidad('mod');
+        const data = { id_rol: document.getElementById('mod_rol').value, especialidad: document.getElementById('mod_especialidad').value, material: mat, cantidad: cant };
+        await fetch(`${API_URL}/api/usuarios/${document.getElementById('mod_id').value}/modificar`, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
+        cerrarModal('modalModificar', 'modalModificarContent'); cargarVoluntariosKanban(true);
+    });
+
     document.addEventListener('DOMContentLoaded', () => cargarVoluntariosKanban(true));
   </script>
 </body>
