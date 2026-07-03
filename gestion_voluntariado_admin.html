@@ -2,655 +2,759 @@
 <!doctype html>
 
 <html class="light" lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Gestión de Voluntariado - Gentle Guardian</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Quicksand", sans-serif;
-        background-color: #f6fafe;
-      }
-      .material-symbols-outlined {
-        font-variation-settings:
-          "FILL" 0,
-          "wght" 400,
-          "GRAD" 0,
-          "opsz" 24;
-        vertical-align: middle;
-      }
-      .font-plus {
-        font-family: "Plus Jakarta Sans", sans-serif;
-      }
-      .glass-effect {
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-      }
-    </style>
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "secondary-fixed": "#ffd9e2",
-              "secondary-container": "#e2007c",
-              "on-secondary-container": "#fffbff",
-              surface: "#f6fafe",
-              "surface-bright": "#f6fafe",
-              "surface-container": "#eaeef2",
-              "on-primary-fixed-variant": "#693c00",
-              "inverse-on-surface": "#edf1f5",
-              "tertiary-fixed-dim": "#8aceff",
-              "inverse-surface": "#2c3134",
-              "surface-container-lowest": "#ffffff",
-              "on-secondary-fixed-variant": "#8e004b",
-              background: "#f6fafe",
-              "tertiary-container": "#02b3ff",
-              "outline-variant": "#dac2ae",
-              "on-secondary": "#ffffff",
-              error: "#ba1a1a",
-              "surface-container-highest": "#dfe3e7",
-              "on-background": "#171c1f",
-              "surface-dim": "#d6dade",
-              outline: "#877362",
-              "on-tertiary-container": "#004261",
-              "surface-tint": "#8a5100",
-              "on-primary-container": "#5c3400",
-              "inverse-primary": "#ffb86e",
-              "on-tertiary": "#ffffff",
-              "on-secondary-fixed": "#3e001e",
-              "on-error-container": "#93000a",
-              "on-surface-variant": "#544434",
-              "on-tertiary-fixed": "#001e2f",
-              "on-error": "#ffffff",
-              "on-tertiary-fixed-variant": "#004b6f",
-              "surface-container-low": "#f0f4f8",
-              "on-surface": "#171c1f",
-              "surface-container-high": "#e4e9ed",
-              "on-primary": "#ffffff",
-              tertiary: "#006491",
-              "primary-container": "#f39200",
-              primary: "#8a5100",
-              "primary-fixed-dim": "#ffb86e",
-              "tertiary-fixed": "#c9e6ff",
-              "error-container": "#ffdad6",
-              "on-primary-fixed": "#2c1600",
-              "secondary-fixed-dim": "#ffb0c9",
-              "primary-fixed": "#ffdcbd",
-              "surface-variant": "#dfe3e7",
-              secondary: "#b50062",
-            },
-            borderRadius: {
-              DEFAULT: "1rem",
-              lg: "2rem",
-              xl: "3rem",
-              full: "9999px",
-            },
-            fontFamily: {
-              headline: ["Plus Jakarta Sans"],
-              body: ["Plus Jakarta Sans"],
-              label: ["Plus Jakarta Sans"],
-            },
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Gestión de Voluntariado - Gentle Guardian</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Quicksand", sans-serif;
+      background-color: #f6fafe;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+      vertical-align: middle;
+    }
+
+    .font-plus {
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .glass-effect {
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+  </style>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed": "#ffd9e2",
+            "secondary-container": "#e2007c",
+            "on-secondary-container": "#fffbff",
+            surface: "#f6fafe",
+            "surface-bright": "#f6fafe",
+            "surface-container": "#eaeef2",
+            "on-primary-fixed-variant": "#693c00",
+            "inverse-on-surface": "#edf1f5",
+            "tertiary-fixed-dim": "#8aceff",
+            "inverse-surface": "#2c3134",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed-variant": "#8e004b",
+            background: "#f6fafe",
+            "tertiary-container": "#02b3ff",
+            "outline-variant": "#dac2ae",
+            "on-secondary": "#ffffff",
+            error: "#ba1a1a",
+            "surface-container-highest": "#dfe3e7",
+            "on-background": "#171c1f",
+            "surface-dim": "#d6dade",
+            outline: "#877362",
+            "on-tertiary-container": "#004261",
+            "surface-tint": "#8a5100",
+            "on-primary-container": "#5c3400",
+            "inverse-primary": "#ffb86e",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed": "#3e001e",
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#544434",
+            "on-tertiary-fixed": "#001e2f",
+            "on-error": "#ffffff",
+            "on-tertiary-fixed-variant": "#004b6f",
+            "surface-container-low": "#f0f4f8",
+            "on-surface": "#171c1f",
+            "surface-container-high": "#e4e9ed",
+            "on-primary": "#ffffff",
+            tertiary: "#006491",
+            "primary-container": "#f39200",
+            primary: "#8a5100",
+            "primary-fixed-dim": "#ffb86e",
+            "tertiary-fixed": "#c9e6ff",
+            "error-container": "#ffdad6",
+            "on-primary-fixed": "#2c1600",
+            "secondary-fixed-dim": "#ffb0c9",
+            "primary-fixed": "#ffdcbd",
+            "surface-variant": "#dfe3e7",
+            secondary: "#b50062",
+          },
+          borderRadius: {
+            DEFAULT: "1rem",
+            lg: "2rem",
+            xl: "3rem",
+            full: "9999px",
+          },
+          fontFamily: {
+            headline: ["Plus Jakarta Sans"],
+            body: ["Plus Jakarta Sans"],
+            label: ["Plus Jakarta Sans"],
           },
         },
-      };
-    </script>
-  </head>
-  <body class="text-on-surface">
-    <!-- SideNavBar (Fixed) -->
-    <aside
-      class="fixed left-0 top-0 flex flex-col py-8 bg-slate-50 dark:bg-slate-950 rounded-r-[2rem] h-screen w-72 shadow-xl shadow-slate-200/50 dark:shadow-none z-50 transition-transform ease-in-out"
-    >
-      <div class="flex justify-center mb-10 px-8">
-        <img src="Logo.png" alt="Logo" class="w-40 h-auto object-contain" />
+      },
+    };
+  </script>
+</head>
+
+<body class="text-on-surface">
+  <!-- SideNavBar (Fixed) -->
+  <aside
+    class="fixed left-0 top-0 flex flex-col py-8 bg-slate-50 dark:bg-slate-950 rounded-r-[2rem] h-screen w-72 shadow-xl shadow-slate-200/50 dark:shadow-none z-50 transition-transform ease-in-out">
+    <div class="flex justify-center mb-10 px-8">
+      <img src="Logo.png" alt="Logo" class="w-40 h-auto object-contain" />
+    </div>
+    <nav class="flex-1 px-4 space-y-2">
+      <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300"
+        href="dashboard_admin.html">
+        <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+        <span class="font-medium">Resumen</span>
+      </a>
+      <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300"
+        href="gestion_expedientes_admin.html">
+        <span class="material-symbols-outlined" data-icon="folder_shared">folder_shared</span>
+        <span class="font-medium">Expedientes</span>
+      </a>
+      <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-orange-700 dark:text-orange-300 font-semibold border-r-4 border-orange-500 bg-orange-50 dark:bg-orange-900/10"
+        href="gestion_voluntariado_admin.html">
+        <span class="material-symbols-outlined" data-icon="group"
+          style="font-variation-settings: &quot;FILL&quot; 1">group</span>
+        <span class="font-medium">Voluntariado</span>
+      </a>
+      <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300"
+        href="inventario_admin.html">
+        <span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+        <span class="font-medium">Inventario</span>
+      </a>
+      <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300"
+        href="agenda_admin.html">
+        <span class="material-symbols-outlined" data-icon="school">school</span>
+        <span class="font-medium">Agenda Escolar</span>
+      </a>
+    </nav>
+    <div class="px-6 mt-auto">
+      <a class="flex items-center justify-center gap-2 w-full py-3 mb-4 text-slate-500 hover:text-orange-600 hover:bg-orange-50 rounded-full font-bold transition-all border border-slate-200"
+        href="inicio.html">
+        <span class="material-symbols-outlined">home</span>
+        Volver al Inicio
+      </a>
+      <button
+        class="w-full py-4 bg-gradient-to-r from-secondary to-secondary-container text-white rounded-full font-bold shadow-lg shadow-pink-200 transition-transform active:scale-95">
+        Support Session
+      </button>
+    </div>
+  </aside>
+  <!-- Main Content Wrapper -->
+  <main class="ml-72 min-h-screen flex flex-col">
+    <!-- TopNavBar -->
+    <header
+      class="sticky top-0 z-40 flex justify-between items-center px-8 h-16 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md rounded-full mt-4 mx-4 shadow-[0_20px_50px_rgba(23,28,31,0.06)] font-plus font-medium">
+      <div class="flex items-center flex-1">
+        <div class="relative w-full max-w-md">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+            data-icon="search">search</span>
+          <input id="buscador_principal"
+            class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-secondary/20 transition-all text-sm"
+            placeholder="Buscar voluntarios..." type="text" />
+        </div>
       </div>
-      <nav class="flex-1 px-4 space-y-2">
-        <a
-          class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300"
-          href="dashboard_admin.html"
-        >
-          <span class="material-symbols-outlined" data-icon="dashboard"
-            >dashboard</span
-          >
-          <span class="font-medium">Resumen</span>
-        </a>
-        <a
-          class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300"
-          href="gestion_expedientes_admin.html"
-        >
-          <span class="material-symbols-outlined" data-icon="folder_shared"
-            >folder_shared</span
-          >
-          <span class="font-medium">Expedientes</span>
-        </a>
-        <a
-          class="flex items-center gap-4 px-4 py-3 rounded-xl text-orange-700 dark:text-orange-300 font-semibold border-r-4 border-orange-500 bg-orange-50 dark:bg-orange-900/10"
-          href="gestion_voluntariado_admin.html"
-        >
-          <span
-            class="material-symbols-outlined"
-            data-icon="group"
-            style="font-variation-settings: &quot;FILL&quot; 1"
-            >group</span
-          >
-          <span class="font-medium">Voluntariado</span>
-        </a>
-        <a
-          class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300"
-          href="inventario_admin.html"
-        >
-          <span class="material-symbols-outlined" data-icon="inventory_2"
-            >inventory_2</span
-          >
-          <span class="font-medium">Inventario</span>
-        </a>
-        <a
-          class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300"
-          href="agenda_admin.html"
-        >
-          <span class="material-symbols-outlined" data-icon="school"
-            >school</span
-          >
-          <span class="font-medium">Agenda Escolar</span>
-        </a>
-      </nav>
-      <div class="px-6 mt-auto">
-        <a
-          class="flex items-center justify-center gap-2 w-full py-3 mb-4 text-slate-500 hover:text-orange-600 hover:bg-orange-50 rounded-full font-bold transition-all border border-slate-200"
-          href="inicio.html"
-        >
-          <span class="material-symbols-outlined">home</span>
-          Volver al Inicio
-        </a>
+      <div class="flex items-center gap-4 ml-8">
         <button
-          class="w-full py-4 bg-gradient-to-r from-secondary to-secondary-container text-white rounded-full font-bold shadow-lg shadow-pink-200 transition-transform active:scale-95"
+          class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-colors relative">
+          <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+          <span class="absolute top-2 right-2 w-2 h-2 bg-pink-500 rounded-full"></span>
+        </button>
+        <button
+          class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-colors">
+          <span class="material-symbols-outlined" data-icon="settings">settings</span>
+        </button>
+        <div class="h-8 w-px bg-slate-200 mx-2"></div>
+        <div class="flex items-center gap-3">
+          <span class="text-sm font-bold text-slate-700">Admin Panel</span>
+          <img alt="Administrator Profile" class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+            data-alt="close up professional portrait of a smiling woman in business casual attire against a soft neutral background"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7ySOLIQ00cYPt-AlQYDbtkluyXGDRWE-9SNoZrUlaKtFRuk24G836imhKM0rpCiTR8EMa7qGoYbJH2K79YlwBsJ-fcDGnvCiinU0wQW3bdL_jlAe8V6-CM2ijmfGq156vOex8F82iFrsp-VCqzQrKx-_d3w0jdVn4mSljcW9Hq7XSBFL2aHBzFGPuY4c-ozA6NEETQu6Qv0v3Cr0_4t2LbXrW-N1svW4-aSkLgZZjZunhnZocS-l0jnRE2Wfhq-m96hMb1L-NLIk" />
+        </div>
+      </div>
+    </header>
+    <!-- Content Area -->
+    <div class="p-8 flex-1">
+      <!-- Title Section -->
+      <div class="flex justify-between items-end mb-10">
+        <div>
+          <h2 class="text-4xl font-bold text-primary font-plus tracking-tight mb-2">
+            Gestión de Voluntariado
+          </h2>
+          <p class="text-on-surface-variant max-w-xl">
+            Organiza, supervisa y conecta a nuestra red de voluntarios con las
+            necesidades de la comunidad.
+          </p>
+        </div>
+        <button
+          onclick="abrirModalRegistro()"
+          class="flex items-center gap-2 px-10 py-4 bg-gradient-to-r from-secondary to-secondary-container text-white rounded-full font-bold shadow-xl shadow-pink-100 transition-all hover:scale-105 active:scale-95"
         >
-          Support Session
+          <span class="material-symbols-outlined" data-icon="add">add</span>
+          Nuevo Registro
         </button>
       </div>
-    </aside>
-    <!-- Main Content Wrapper -->
-    <main class="ml-72 min-h-screen flex flex-col">
-      <!-- TopNavBar -->
-      <header
-        class="sticky top-0 z-40 flex justify-between items-center px-8 h-16 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md rounded-full mt-4 mx-4 shadow-[0_20px_50px_rgba(23,28,31,0.06)] font-plus font-medium"
-      >
-        <div class="flex items-center flex-1">
-          <div class="relative w-full max-w-md">
-            <span
-              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-              data-icon="search"
-              >search</span
-            >
-            <input
-              class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-secondary/20 transition-all text-sm"
-              placeholder="Buscar voluntarios..."
-              type="text"
-            />
-          </div>
+      <!-- BARRA DE FILTROS GLOBAL -->
+      <div class="flex flex-wrap gap-4 mb-8 bg-surface-container-lowest p-4 rounded-2xl shadow-[0_10px_30px_rgba(23,28,31,0.03)] items-center">
+        <span class="text-sm font-bold text-slate-400 px-2 uppercase tracking-widest text-[10px]">Filtrar por:</span>
+        
+        <div class="relative min-w-[160px]">
+          <select id="filtro_rol" onchange="aplicarFiltrosGlobales()" class="w-full appearance-none bg-surface-container-low border-none rounded-full px-5 py-2.5 text-sm font-medium focus:ring-2 focus:ring-secondary/20 cursor-pointer text-slate-600">
+            <option value="Todos">Todos los Roles</option>
+            <option value="4">Voluntarios / Donadores</option>
+            <option value="2">Especialistas Clínicos</option>
+          </select>
         </div>
-        <div class="flex items-center gap-4 ml-8">
-          <button
-            class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-colors relative"
-          >
-            <span class="material-symbols-outlined" data-icon="notifications"
-              >notifications</span
-            >
-            <span
-              class="absolute top-2 right-2 w-2 h-2 bg-pink-500 rounded-full"
-            ></span>
-          </button>
-          <button
-            class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-colors"
-          >
-            <span class="material-symbols-outlined" data-icon="settings"
-              >settings</span
-            >
-          </button>
-          <div class="h-8 w-px bg-slate-200 mx-2"></div>
-          <div class="flex items-center gap-3">
-            <span class="text-sm font-bold text-slate-700">Admin Panel</span>
-            <img
-              alt="Administrator Profile"
-              class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
-              data-alt="close up professional portrait of a smiling woman in business casual attire against a soft neutral background"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7ySOLIQ00cYPt-AlQYDbtkluyXGDRWE-9SNoZrUlaKtFRuk24G836imhKM0rpCiTR8EMa7qGoYbJH2K79YlwBsJ-fcDGnvCiinU0wQW3bdL_jlAe8V6-CM2ijmfGq156vOex8F82iFrsp-VCqzQrKx-_d3w0jdVn4mSljcW9Hq7XSBFL2aHBzFGPuY4c-ozA6NEETQu6Qv0v3Cr0_4t2LbXrW-N1svW4-aSkLgZZjZunhnZocS-l0jnRE2Wfhq-m96hMb1L-NLIk"
-            />
-          </div>
+
+        <div class="relative min-w-[160px]">
+          <select id="filtro_especialidad" onchange="aplicarFiltrosGlobales()" class="w-full appearance-none bg-surface-container-low border-none rounded-full px-5 py-2.5 text-sm font-medium focus:ring-2 focus:ring-secondary/20 cursor-pointer text-slate-600">
+            <option value="Todas">Toda Especialidad</option>
+            <option value="Psicología">Psicología</option>
+            <option value="Muralismo">Muralismo</option>
+            <option value="Donador">Donadores</option>
+            <option value="General">General</option>
+          </select>
         </div>
-      </header>
-      <!-- Content Area -->
-      <div class="p-8 flex-1">
-        <!-- Title Section -->
-        <div class="flex justify-between items-end mb-10">
-          <div>
-            <h2
-              class="text-4xl font-bold text-primary font-plus tracking-tight mb-2"
-            >
-              Gestión de Voluntariado
-            </h2>
-            <p class="text-on-surface-variant max-w-xl">
-              Organiza, supervisa y conecta a nuestra red de voluntarios con las
-              necesidades de la comunidad.
-            </p>
-          </div>
-          <button
-            class="flex items-center gap-2 px-10 py-4 bg-gradient-to-r from-secondary to-secondary-container text-white rounded-full font-bold shadow-xl shadow-pink-100 transition-all hover:scale-105 active:scale-95"
-          >
-            <span class="material-symbols-outlined" data-icon="add">add</span>
-            + Nuevo Registro
-          </button>
+
+        <div class="relative min-w-[160px]">
+          <select id="filtro_fecha" onchange="aplicarFiltrosGlobales()" class="w-full appearance-none bg-surface-container-low border-none rounded-full px-5 py-2.5 text-sm font-medium focus:ring-2 focus:ring-secondary/20 cursor-pointer text-slate-600">
+            <option value="Todas">Fecha de Ingreso</option>
+            <option value="Mes">Último mes</option>
+            <option value="Anio">Este año</option>
+          </select>
         </div>
-        <!-- Kanban Board -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <!-- Column: Nuevas Solicitudes -->
-          <div class="flex flex-col gap-6">
-            <div class="flex items-center justify-between px-2">
-              <div class="flex items-center gap-2">
-                <span class="w-3 h-3 bg-secondary rounded-full"></span>
-                <h3
-                  class="font-bold text-slate-700 font-plus uppercase tracking-wider text-sm"
-                >
-                  Nuevas Solicitudes
-                </h3>
-                <span
-                  class="ml-2 px-2 py-0.5 bg-secondary-fixed text-secondary text-xs font-bold rounded-full"
-                  >3</span
-                >
-              </div>
-              <button class="text-slate-400 hover:text-slate-600">
-                <span class="material-symbols-outlined" data-icon="more_horiz"
-                  >more_horiz</span
-                >
-              </button>
-            </div>
-            <div class="space-y-6">
-              <!-- Card 1 -->
-              <div
-                class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_20px_50px_rgba(23,28,31,0.06)] group hover:scale-[1.02] transition-all duration-300"
-              >
-                <div class="flex justify-between items-start mb-4">
-                  <div
-                    class="w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-xl overflow-hidden"
-                  >
-                    <img
-                      alt="Volunteer Avatar"
-                      class="w-full h-full object-cover"
-                      data-alt="Headshot of a friendly young man with glasses smiling, warm natural lighting"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd2pie_sLsOf6TO6F25hhbYMbeyminKL_DGfGvyK0_OMwg2d-c4fPrqL869JMtN5nxGUX1FrqDNnXTMsDZAzHbHwfeXBCRKI7_IDdRDPsM3e0UGEX-mtCX4ewvZYXF7W1EKp3zvKl515lTHoNklnLCK0bfRxZhCbhIvbJDuiaGZapCNXROsTSwb7tlcXjMTc91LkBMrxiIkPy5RPfUKVFRi2rjfnyo_5ujCB25H6jJqzlLRnmFn6wMDMQpU8hdDLUP7hOGYBsZ_c8"
-                    />
-                  </div>
-                  <div class="flex gap-1">
-                    <button
-                      class="p-2 text-slate-400 hover:text-green-500 hover:bg-green-50 rounded-full transition-colors"
-                    >
-                      <span
-                        class="material-symbols-outlined text-lg"
-                        data-icon="chat"
-                        >chat</span
-                      >
-                    </button>
-                    <button
-                      class="p-2 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors"
-                    >
-                      <span
-                        class="material-symbols-outlined text-lg"
-                        data-icon="mail"
-                        >mail</span
-                      >
-                    </button>
-                  </div>
-                </div>
-                <h4 class="text-xl font-bold text-slate-800 mb-1">
-                  Mateo Rivera
-                </h4>
-                <div class="flex flex-wrap gap-2 mb-6">
-                  <span
-                    class="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase rounded-full tracking-wide"
-                    >Psicología</span
-                  >
-                </div>
-                <button
-                  class="w-full py-3 bg-surface-container-low text-slate-600 font-bold rounded-full text-sm hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center gap-2"
-                >
-                  <span
-                    class="material-symbols-outlined text-sm"
-                    data-icon="assignment_ind"
-                    >assignment_ind</span
-                  >
-                  Asignar a Proyecto
-                </button>
-              </div>
-              <!-- Card 2 -->
-              <div
-                class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_20px_50px_rgba(23,28,31,0.06)] group hover:scale-[1.02] transition-all duration-300"
-              >
-                <div class="flex justify-between items-start mb-4">
-                  <div
-                    class="w-14 h-14 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 font-bold text-xl"
-                  >
-                    LV
-                  </div>
-                  <div class="flex gap-1">
-                    <button
-                      class="p-2 text-slate-400 hover:text-green-500 hover:bg-green-50 rounded-full transition-colors"
-                    >
-                      <span
-                        class="material-symbols-outlined text-lg"
-                        data-icon="chat"
-                        >chat</span
-                      >
-                    </button>
-                    <button
-                      class="p-2 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors"
-                    >
-                      <span
-                        class="material-symbols-outlined text-lg"
-                        data-icon="mail"
-                        >mail</span
-                      >
-                    </button>
-                  </div>
-                </div>
-                <h4 class="text-xl font-bold text-slate-800 mb-1">
-                  Lucía Valente
-                </h4>
-                <div class="flex flex-wrap gap-2 mb-6">
-                  <span
-                    class="px-3 py-1 bg-purple-50 text-purple-600 text-[10px] font-bold uppercase rounded-full tracking-wide"
-                    >Muralismo</span
-                  >
-                </div>
-                <button
-                  class="w-full py-3 bg-surface-container-low text-slate-600 font-bold rounded-full text-sm hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center gap-2"
-                >
-                  <span
-                    class="material-symbols-outlined text-sm"
-                    data-icon="assignment_ind"
-                    >assignment_ind</span
-                  >
-                  Asignar a Proyecto
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- Column: En Proceso de Entrevista -->
-          <div class="flex flex-col gap-6">
-            <div class="flex items-center justify-between px-2">
-              <div class="flex items-center gap-2">
-                <span class="w-3 h-3 bg-primary rounded-full"></span>
-                <h3
-                  class="font-bold text-slate-700 font-plus uppercase tracking-wider text-sm"
-                >
-                  En Proceso de Entrevista
-                </h3>
-                <span
-                  class="ml-2 px-2 py-0.5 bg-primary-fixed text-primary text-xs font-bold rounded-full"
-                  >2</span
-                >
-              </div>
-              <button class="text-slate-400 hover:text-slate-600">
-                <span class="material-symbols-outlined" data-icon="more_horiz"
-                  >more_horiz</span
-                >
-              </button>
-            </div>
-            <div class="space-y-6">
-              <!-- Card 3 -->
-              <div
-                class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_20px_50px_rgba(23,28,31,0.06)] group hover:scale-[1.02] transition-all duration-300 border-l-4 border-primary"
-              >
-                <div class="flex justify-between items-start mb-4">
-                  <div
-                    class="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden"
-                  >
-                    <img
-                      alt="Volunteer Avatar"
-                      class="w-full h-full object-cover"
-                      data-alt="Portrait of a professional woman with a warm expression, soft studio lighting"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuCFbAO5eAYQKIWJg6ITer-ZQCOlba08GxPE7B3JH-q4FFPmfdcfUKb90OTf9QtChul9aDvLc2S-5I5AYLX-htffztViM7_DMYL-gh7Kjcw2VkdQvEOnZKFFYUHEFqvjs0WbPp6w-pqMCQ5CA0avWbMvIvFF3mDfHgIA53q08tjjW_Yvo7TN-Ln0x_2LZ_1sy4op23KYoO0dnU_lzpn_nc8EXF3jvB49yvagRkKSXBIOWWWKz1-eePp9BHT2abAIQ67QamYWvYvZM"
-                    />
-                  </div>
-                  <div class="flex gap-1">
-                    <button
-                      class="p-2 text-slate-400 hover:text-green-500 hover:bg-green-50 rounded-full transition-colors"
-                    >
-                      <span
-                        class="material-symbols-outlined text-lg"
-                        data-icon="chat"
-                        >chat</span
-                      >
-                    </button>
-                    <button
-                      class="p-2 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors"
-                    >
-                      <span
-                        class="material-symbols-outlined text-lg"
-                        data-icon="mail"
-                        >mail</span
-                      >
-                    </button>
-                  </div>
-                </div>
-                <h4 class="text-xl font-bold text-slate-800 mb-1">
-                  Clara Domínguez
-                </h4>
-                <div class="flex flex-wrap gap-2 mb-6">
-                  <span
-                    class="px-3 py-1 bg-amber-50 text-amber-600 text-[10px] font-bold uppercase rounded-full tracking-wide"
-                    >Jurídico</span
-                  >
-                </div>
-                <div
-                  class="mb-4 flex items-center gap-2 text-xs text-slate-500 bg-slate-50 p-2 rounded-lg"
-                >
-                  <span
-                    class="material-symbols-outlined text-sm"
-                    data-icon="calendar_today"
-                    >calendar_today</span
-                  >
-                  <span>Entrevista: Mañana, 10:30 AM</span>
-                </div>
-                <button
-                  class="w-full py-3 bg-surface-container-low text-slate-600 font-bold rounded-full text-sm hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center gap-2"
-                >
-                  <span
-                    class="material-symbols-outlined text-sm"
-                    data-icon="assignment_ind"
-                    >assignment_ind</span
-                  >
-                  Asignar a Proyecto
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- Column: Voluntarios Activos -->
-          <div class="flex flex-col gap-6">
-            <div class="flex items-center justify-between px-2">
-              <div class="flex items-center gap-2">
-                <span class="w-3 h-3 bg-green-500 rounded-full"></span>
-                <h3
-                  class="font-bold text-slate-700 font-plus uppercase tracking-wider text-sm"
-                >
-                  Voluntarios Activos
-                </h3>
-                <span
-                  class="ml-2 px-2 py-0.5 bg-green-100 text-green-700 text-xs font-bold rounded-full"
-                  >12</span
-                >
-              </div>
-              <button class="text-slate-400 hover:text-slate-600">
-                <span class="material-symbols-outlined" data-icon="more_horiz"
-                  >more_horiz</span
-                >
-              </button>
-            </div>
-            <div class="space-y-6">
-              <!-- Card 4 -->
-              <div
-                class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_20px_50px_rgba(23,28,31,0.06)] group hover:scale-[1.02] transition-all duration-300"
-              >
-                <div class="flex justify-between items-start mb-4">
-                  <div
-                    class="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden"
-                  >
-                    <img
-                      alt="Volunteer Avatar"
-                      class="w-full h-full object-cover"
-                      data-alt="Close up of a mature man smiling kindly, outdoor evening light"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuA63FeHtyy5pQtfMhJyVZqYIZQ-_wsk5VmGOxi_On3tmruP4T1WkSo95atQDlF9galNuKeBRDijFJ4GS254qehrkNW5u2ptQz5auNlrItS7DRAu38t8ZM8PeFAvVhWNqOp5cHgWRCKezx9WLxw5UeaMH8hBW0XG3mBky8HjO6hoxfC2P8cS0Yk9RBLmBt1Yh4sHaUm6U-eEvvnFvsgAmFhsAKWfVzKjWj7aijLmKahbb5wD1LrLSeXF2OVjhXFqXiil-hOUyKty9FI"
-                    />
-                  </div>
-                  <div class="flex gap-1">
-                    <button
-                      class="p-2 text-slate-400 hover:text-green-500 hover:bg-green-50 rounded-full transition-colors"
-                    >
-                      <span
-                        class="material-symbols-outlined text-lg"
-                        data-icon="chat"
-                        >chat</span
-                      >
-                    </button>
-                    <button
-                      class="p-2 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors"
-                    >
-                      <span
-                        class="material-symbols-outlined text-lg"
-                        data-icon="mail"
-                        >mail</span
-                      >
-                    </button>
-                  </div>
-                </div>
-                <h4 class="text-xl font-bold text-slate-800 mb-1">
-                  Roberto Gómez
-                </h4>
-                <div class="flex flex-wrap gap-2 mb-6">
-                  <span
-                    class="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase rounded-full tracking-wide"
-                    >Psicología</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-purple-50 text-purple-600 text-[10px] font-bold uppercase rounded-full tracking-wide"
-                    >Tallerista</span
-                  >
-                </div>
-                <div
-                  class="mb-4 flex items-center gap-2 text-xs text-slate-500"
-                >
-                  <span
-                    class="material-symbols-outlined text-sm text-green-500"
-                    data-icon="check_circle"
-                    style="font-variation-settings: &quot;FILL&quot; 1"
-                    >check_circle</span
-                  >
-                  <span>Proyecto: Taller de Autoestima</span>
-                </div>
-                <button
-                  class="w-full py-3 bg-surface-container-low text-slate-600 font-bold rounded-full text-sm hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center gap-2"
-                >
-                  <span
-                    class="material-symbols-outlined text-sm"
-                    data-icon="swap_horiz"
-                    >swap_horiz</span
-                  >
-                  Cambiar Proyecto
-                </button>
-              </div>
-              <!-- Card 5 (Asymmetric / Featured Look) -->
-              <div
-                class="bg-gradient-to-br from-white to-orange-50/30 p-6 rounded-lg shadow-[0_20px_50px_rgba(23,28,31,0.06)] group hover:scale-[1.02] transition-all duration-300 relative overflow-hidden"
-              >
-                <div
-                  class="absolute -right-4 -top-4 w-24 h-24 bg-orange-100/20 rounded-full blur-2xl"
-                ></div>
-                <div
-                  class="flex justify-between items-start mb-4 relative z-10"
-                >
-                  <div
-                    class="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden border-2 border-white shadow-md"
-                  >
-                    <img
-                      alt="Volunteer Avatar"
-                      class="w-full h-full object-cover"
-                      data-alt="Portrait of a young woman with a creative style, soft morning light in a garden"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGCfkw0FU1ubD_Kta_8-sRQV0AUE-NKg-Y54OoWnlWi4P4Gd5cbZaSbtibAbPBcEgkqjGIZFll_8dD70hdsqeid9aC4CUmYsoYf5KmjI1mwz7UgO0IoR-vYq62u4vm0kI1q9JmOy3LVvQGVp3mjGw-NbZHpq9VyvlL9_aIRUROYaDd0nEjBKnhyaH9gt_TqPr9ZXrubVto8caiRzE6DlZvRL2ghX4qaVE__9rFUOh29SBgMfSv4F6xThdYp_Vpvz5H0Z6NIUluHwI"
-                    />
-                  </div>
-                  <div class="flex gap-1">
-                    <button
-                      class="p-2 text-slate-400 hover:text-green-500 hover:bg-white rounded-full transition-colors"
-                    >
-                      <span
-                        class="material-symbols-outlined text-lg"
-                        data-icon="chat"
-                        >chat</span
-                      >
-                    </button>
-                    <button
-                      class="p-2 text-slate-400 hover:text-blue-500 hover:bg-white rounded-full transition-colors"
-                    >
-                      <span
-                        class="material-symbols-outlined text-lg"
-                        data-icon="mail"
-                        >mail</span
-                      >
-                    </button>
-                  </div>
-                </div>
-                <h4 class="text-xl font-bold text-slate-800 mb-1">
-                  Sofía Méndez
-                </h4>
-                <div class="flex flex-wrap gap-2 mb-6">
-                  <span
-                    class="px-3 py-1 bg-purple-50 text-purple-600 text-[10px] font-bold uppercase rounded-full tracking-wide"
-                    >Muralismo</span
-                  >
-                </div>
-                <div
-                  class="mb-4 flex items-center gap-2 text-xs text-slate-500"
-                >
-                  <span
-                    class="material-symbols-outlined text-sm text-green-500"
-                    data-icon="check_circle"
-                    style="font-variation-settings: &quot;FILL&quot; 1"
-                    >check_circle</span
-                  >
-                  <span>Proyecto: Mural Comunitario</span>
-                </div>
-                <button
-                  class="w-full py-3 bg-white text-slate-600 font-bold rounded-full text-sm hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center gap-2 shadow-sm"
-                >
-                  <span
-                    class="material-symbols-outlined text-sm"
-                    data-icon="swap_horiz"
-                    >swap_horiz</span
-                  >
-                  Cambiar Proyecto
-                </button>
-              </div>
-            </div>
-          </div>
+
+        <div class="relative min-w-[160px]">
+          <select id="filtro_proyecto" onchange="aplicarFiltrosGlobales()" class="w-full appearance-none bg-surface-container-low border-none rounded-full px-5 py-2.5 text-sm font-medium focus:ring-2 focus:ring-secondary/20 cursor-pointer text-slate-600">
+            <option value="Todos">Estatus de Proyecto</option>
+            <option value="Asignados">Con Proyecto Asignado</option>
+            <option value="SinAsignar">Sin Asignar</option>
+          </select>
         </div>
+
+        <button onclick="limpiarFiltros()" class="ml-auto p-2.5 bg-surface-container hover:bg-slate-200 rounded-full transition-colors" title="Limpiar Filtros">
+          <span class="material-symbols-outlined text-slate-600">refresh</span>
+        </button>
       </div>
-      <!-- Footer / Credits -->
-      <footer class="p-8 text-center text-slate-400 text-sm font-medium">
-        © 2024 Gentle Guardian • Sistema de Administración de Impacto Social
-      </footer>
-    </main>
-  </body>
+
+      <!-- Kanban Board -->
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        
+        <!-- Column 1: Nuevas Solicitudes -->
+        <div class="flex flex-col gap-6">
+          <div class="flex items-center justify-between px-2">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 bg-secondary rounded-full"></span>
+              <h3 class="font-bold text-slate-700 font-plus uppercase tracking-wider text-sm">Nuevas Solicitudes</h3>
+              <span id="contador_nuevos" class="ml-2 px-2 py-0.5 bg-secondary-fixed text-secondary text-xs font-bold rounded-full">0</span>
+            </div>
+          </div>
+          <div id="columna_nuevas_solicitudes" class="space-y-6"></div>
+        </div>
+
+        <!-- Column 2: En Proceso de Entrevista -->
+        <div class="flex flex-col gap-6">
+          <div class="flex items-center justify-between px-2">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 bg-primary rounded-full"></span>
+              <h3 class="font-bold text-slate-700 font-plus uppercase tracking-wider text-sm">Entrevista</h3>
+              <span id="contador_entrevista" class="ml-2 px-2 py-0.5 bg-primary-fixed text-primary text-xs font-bold rounded-full">0</span>
+            </div>
+          </div>
+          <div id="columna_proceso_entrevista" class="space-y-6"></div>
+        </div>
+
+        <!-- Column 3: Voluntarios Activos -->
+        <div class="flex flex-col gap-6">
+          <div class="flex items-center justify-between px-2">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+              <h3 class="font-bold text-slate-700 font-plus uppercase tracking-wider text-sm">Activos</h3>
+              <span id="contador_activos" class="ml-2 px-2 py-0.5 bg-green-100 text-green-700 text-xs font-bold rounded-full">0</span>
+            </div>
+          </div>
+          <div id="columna_voluntarios_activos" class="space-y-6"></div>
+        </div>
+
+        <!-- Column 4: Archivo Inactivo -->
+        <div class="flex flex-col gap-6 opacity-70 hover:opacity-100 transition-opacity">
+          <div class="flex items-center justify-between px-2">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 bg-slate-400 rounded-full"></span>
+              <h3 class="font-bold text-slate-600 font-plus uppercase tracking-wider text-sm">Inactivos</h3>
+              <span id="contador_inactivos" class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-700 text-xs font-bold rounded-full">0</span>
+            </div>
+          </div>
+          <div id="columna_inactivos" class="space-y-6"></div>
+        </div>
+
+      </div>
+    </div>
+    <footer class="p-8 text-center text-slate-400 text-sm font-medium">© 2026 Gentle Guardian • Sistema de Administración de Impacto Social</footer>
+  </main>
+
+  <!-- ==================== ZONA DE MODALES (VENTANAS EMERGENTES) ==================== -->
+
+  <!-- MODAL: ELIMINAR USUARIO -->
+  <div id="modalEliminar" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-all">
+    <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-all" id="modalEliminarContent">
+      <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+        <span class="material-symbols-outlined text-3xl">delete_forever</span>
+      </div>
+      <h3 class="text-xl font-bold text-slate-800 mb-2">Eliminar Petición</h3>
+      <p class="text-sm text-slate-500 mb-6">¿Estás seguro de que deseas eliminar permanentemente la petición de <b id="elim_nombre"></b>? Esta acción no se puede deshacer.</p>
+      <input type="hidden" id="elim_id">
+      <div class="flex gap-3">
+        <button onclick="cerrarModal('modalEliminar', 'modalEliminarContent')" class="flex-1 py-3 bg-slate-100 text-slate-600 font-bold rounded-full hover:bg-slate-200">Cancelar</button>
+        <button onclick="ejecutarEliminar()" class="flex-1 py-3 bg-red-600 text-white font-bold rounded-full hover:bg-red-700">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: INACTIVAR USUARIO -->
+  <div id="modalInactivar" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-all">
+    <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-all" id="modalInactivarContent">
+      <div class="w-16 h-16 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center mx-auto mb-4">
+        <span class="material-symbols-outlined text-3xl">archive</span>
+      </div>
+      <h3 class="text-xl font-bold text-slate-800 mb-2">Pasar a Inactivo</h3>
+      <p class="text-sm text-slate-500 mb-6">¿Mover a <b id="inac_nombre"></b> al archivo inactivo? Mantendremos su historial, pero dejará de ser considerado para proyectos activos.</p>
+      <input type="hidden" id="inac_id">
+      <div class="flex gap-3">
+        <button onclick="cerrarModal('modalInactivar', 'modalInactivarContent')" class="flex-1 py-3 bg-slate-100 text-slate-600 font-bold rounded-full hover:bg-slate-200">Cancelar</button>
+        <button onclick="ejecutarInactivar()" class="flex-1 py-3 bg-slate-800 text-white font-bold rounded-full hover:bg-slate-900">Inactivar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ASIGNAR PROYECTO (PARA USUARIOS YA ACTIVOS) -->
+  <div id="modalAsignarActivo" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-all">
+    <div class="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden transform scale-95 transition-all" id="modalAsignarActivoContent">
+      <div class="bg-gradient-to-r from-[#f39200] to-amber-500 px-8 py-6 text-white flex justify-between items-center">
+        <div><h3 class="text-xl font-bold">Vincular a Evento</h3></div>
+        <button onclick="cerrarModal('modalAsignarActivo', 'modalAsignarActivoContent')" class="text-white/80 hover:text-white"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <form id="formAsignarActivo" class="p-8 space-y-4">
+        <input type="hidden" id="asig_act_id">
+        <label class="block text-sm font-bold text-slate-700">Selecciona el Proyecto / Evento</label>
+        <select id="asig_act_evento" required class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none"></select>
+        <button type="submit" class="w-full py-3 bg-[#f39200] text-white font-bold rounded-full shadow-lg mt-4">Vincular Voluntario</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ASIGNAR EXPEDIENTE CLÍNICO -->
+  <div id="modalExpediente" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-all">
+    <div class="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden transform scale-95 transition-all" id="modalExpedienteContent">
+      <div class="bg-gradient-to-r from-blue-600 to-indigo-500 px-8 py-6 text-white flex justify-between items-center">
+        <div><h3 class="text-xl font-bold">Asignar Expediente</h3></div>
+        <button onclick="cerrarModal('modalExpediente', 'modalExpedienteContent')" class="text-white/80 hover:text-white"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <form id="formExpediente" class="p-8 space-y-4">
+        <label class="block text-sm font-bold text-slate-700">Vincular a Beneficiario</label>
+        <select id="exp_beneficiario" required class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none"></select>
+        <button type="button" onclick="alert('Expediente vinculado al especialista.'); cerrarModal('modalExpediente', 'modalExpedienteContent');" class="w-full py-3 bg-blue-600 text-white font-bold rounded-full shadow-lg mt-4">Asignar Expediente</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: MODIFICAR ROL -->
+  <div id="modalModificar" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-all">
+    <div class="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden transform scale-95 transition-all" id="modalModificarContent">
+      <div class="bg-slate-800 px-8 py-6 text-white flex justify-between items-center">
+        <div><h3 class="text-xl font-bold">Modificar Perfil</h3></div>
+        <button onclick="cerrarModal('modalModificar', 'modalModificarContent')" class="text-white/80 hover:text-white"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <form id="formModificar" class="p-8 space-y-4">
+        <input type="hidden" id="mod_id">
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-1">Nuevo Rol</label>
+          <select id="mod_rol" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none">
+            <option value="4">Voluntario / Donador</option>
+            <option value="2">Especialista</option>
+            <option value="3">Coordinador</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-bold text-slate-700 mb-1">Nueva Especialidad</label>
+          <select id="mod_esp" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none">
+            <option value="General">General</option>
+            <option value="Psicología">Psicología</option>
+            <option value="Muralismo">Muralismo</option>
+            <option value="Donador">Donador</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full py-3 bg-slate-800 text-white font-bold rounded-full shadow-lg mt-4">Actualizar Perfil</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- APROBACIÓN, ENTREVISTA Y NUEVO REGISTRO SE MANTIENEN IGUAL QUE ANTES (Solo ajustando estilos de modal flotantes para abrir y cerrar) -->
+  <div id="modalProyecto" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
+    <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300" id="modalProyectoContent">
+      <div class="bg-gradient-to-r from-green-600 to-emerald-500 px-8 py-6 text-white flex justify-between items-center">
+        <div><h3 class="text-xl font-bold font-plus">Aprobación Oficial</h3><p id="proyecto_nombre_voluntario" class="text-white/80 text-sm">Cargando...</p></div>
+        <button onclick="cerrarModal('modalProyecto', 'modalProyectoContent')" class="text-white/80 hover:text-white"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <form id="formProyecto" class="p-8 space-y-4">
+        <input type="hidden" id="proy_id_usuario">
+        <div class="grid grid-cols-2 gap-4">
+          <div><label class="block text-sm font-bold text-slate-700 mb-1">Confirmar Rol</label><select id="proy_id_rol" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none"><option value="4" selected>Voluntario / Donador</option><option value="2">Especialista (Clínico)</option><option value="3">Coordinador</option></select></div>
+          <div><label class="block text-sm font-bold text-slate-700 mb-1">Confirmar Especialidad</label><select id="proy_especialidad" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none"><option value="General">General</option><option value="Psicología">Psicología</option><option value="Muralismo">Muralismo</option><option value="Donador">Donador</option></select></div>
+        </div>
+        <div><label class="block text-sm font-bold text-slate-700 mb-1 mt-2">Vincular a Evento/Proyecto</label><select id="proy_id_evento" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none"><option value="0" selected>Ninguno (Solo aprobar credenciales)</option></select></div>
+        <div class="pt-4 flex gap-4"><button type="button" onclick="cerrarModal('modalProyecto', 'modalProyectoContent')" class="flex-1 py-3 bg-slate-100 text-slate-600 font-bold rounded-full hover:bg-slate-200">Cancelar</button><button type="submit" class="flex-1 py-3 bg-green-600 text-white font-bold rounded-full shadow-lg">Aprobar Perfil</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div id="modalEntrevista" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
+    <div class="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300" id="modalEntrevistaContent">
+      <div class="bg-[#f0f4f8] px-8 py-6 flex justify-between items-center">
+        <div><h3 class="text-xl font-bold font-plus text-slate-800">Agendar Entrevista</h3><p id="entrevista_nombre" class="text-slate-500 text-sm">Cargando...</p></div>
+        <button onclick="cerrarModal('modalEntrevista', 'modalEntrevistaContent')" class="text-slate-400 hover:text-red-500"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <form id="formEntrevista" class="p-8 space-y-5">
+        <input type="hidden" id="ent_id_usuario"> <input type="hidden" id="ent_correo">
+        <div class="grid grid-cols-2 gap-4">
+          <div><label class="block text-sm font-bold text-slate-700 mb-2">Fecha</label><input type="date" id="ent_fecha" required class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl"></div>
+          <div><label class="block text-sm font-bold text-slate-700 mb-2">Hora</label><input type="time" id="ent_hora" required class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl"></div>
+        </div>
+        <div><label class="block text-sm font-bold text-slate-700 mb-2">Enlace de videollamada</label><input type="text" id="ent_link" required class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl" placeholder="Ej. meet.google.com/abc..."></div>
+        <div class="pt-4 flex gap-4"><button type="button" onclick="cerrarModal('modalEntrevista', 'modalEntrevistaContent')" class="flex-1 py-3 bg-slate-100 text-slate-600 font-bold rounded-full hover:bg-slate-200">Cancelar</button><button type="submit" class="flex-1 py-3 bg-gradient-to-r from-[#8a5100] to-[#f39200] text-white font-bold rounded-full">Enviar Invitación</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div id="modalRegistro" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
+    <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300" id="modalContent">
+      <div class="bg-gradient-to-r from-[#8a5100] to-[#f39200] px-8 py-6 text-white flex justify-between items-center">
+        <div><h3 class="text-2xl font-bold font-plus">Nuevo Integrante</h3></div>
+        <button onclick="cerrarModal('modalRegistro', 'modalContent')" class="text-white/80 hover:text-white"><span class="material-symbols-outlined text-3xl">close</span></button>
+      </div>
+      <form id="formRegistro" class="p-8 space-y-4">
+        <div><label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Nombre Completo</label><input type="text" id="reg_nombre" required class="w-full px-4 py-2 bg-[#f0f4f8] border-none rounded-full outline-none"></div>
+        <div class="grid grid-cols-2 gap-4">
+          <div><label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Correo</label><input type="email" id="reg_correo" required class="w-full px-4 py-2 bg-[#f0f4f8] border-none rounded-full outline-none"></div>
+          <div><label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Teléfono</label><input type="tel" id="reg_telefono" class="w-full px-4 py-2 bg-[#f0f4f8] border-none rounded-full outline-none"></div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div><label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Rol</label><select id="reg_rol" required class="w-full px-4 py-2 bg-[#f0f4f8] border-none rounded-full outline-none"><option value="4" selected>Voluntario / Donador</option><option value="3">Coordinador</option></select></div>
+          <div><label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Especialidad</label><select id="reg_especialidad" class="w-full px-4 py-2 bg-[#f0f4f8] border-none rounded-full outline-none"><option value="General">General</option><option value="Psicología">Psicología</option><option value="Muralismo">Muralismo</option><option value="Donador">Donador (Insumos)</option></select></div>
+        </div>
+        <div class="pt-4 flex gap-4"><button type="button" onclick="cerrarModal('modalRegistro', 'modalContent')" class="flex-1 py-3 bg-slate-100 text-slate-600 font-bold rounded-full">Cancelar</button><button type="submit" class="flex-1 py-3 bg-[#b50062] text-white font-bold rounded-full shadow-lg">Guardar y Avisar</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- LÓGICA DE JAVASCRIPT -->
+  <script>
+    const API_URL = "http://localhost:3000";
+    let voluntariosGlobales = [];
+
+    // --- VARIABLES DE ESTADO PARA LOS FILTROS INDIVIDUALES ---
+    let filtroCol1 = 'Todos';
+    let filtroCol2 = 'Todos';
+    let filtroCol3 = 'Todos';
+
+    // --- MANEJO CENTRALIZADO DE MODALES ---
+    function abrirModal(modalId, contentId) {
+        document.getElementById(modalId).classList.remove('hidden');
+        setTimeout(() => { document.getElementById(modalId).classList.remove('opacity-0'); document.getElementById(contentId).classList.remove('scale-95'); }, 10);
+    }
+    function cerrarModal(modalId, contentId) {
+        document.getElementById(modalId).classList.add('opacity-0');
+        document.getElementById(contentId).classList.add('scale-95');
+        setTimeout(() => { document.getElementById(modalId).classList.add('hidden'); 
+        const forms = document.getElementById(modalId).getElementsByTagName('form');
+        if(forms.length > 0) forms[0].reset(); }, 300);
+    }
+
+    // --- NUEVO MOTOR DE FILTROS ---
+    function aplicarFiltrosGlobales() {
+      cargarVoluntariosKanban(false);
+  }
+
+  function limpiarFiltros() {
+      document.getElementById('buscador_principal').value = '';
+      document.getElementById('filtro_rol').value = 'Todos';
+      document.getElementById('filtro_especialidad').value = 'Todas';
+      document.getElementById('filtro_fecha').value = 'Todas';
+      document.getElementById('filtro_proyecto').value = 'Todos';
+      aplicarFiltrosGlobales();
+  }
+
+  // --- CARGAR EL KANBAN Y APLICAR FILTROS ---
+  async function cargarVoluntariosKanban(forzarFetch = false) {
+    try {
+      if(voluntariosGlobales.length === 0 || forzarFetch) {
+          const response = await fetch(`${API_URL}/api/voluntarios`);
+          const result = await response.json();
+          if (response.ok && result.success) voluntariosGlobales = result.data;
+      }
+
+      const textoBusqueda = document.getElementById('buscador_principal').value.toLowerCase();
+      const fRol = document.getElementById('filtro_rol').value;
+      const fEsp = document.getElementById('filtro_especialidad').value;
+      const fFecha = document.getElementById('filtro_fecha').value;
+      const fProy = document.getElementById('filtro_proyecto').value;
+
+      const colNuevas = document.getElementById('columna_nuevas_solicitudes');
+      const colEntrevista = document.getElementById('columna_proceso_entrevista');
+      const colActivos = document.getElementById('columna_voluntarios_activos');
+      const colInactivos = document.getElementById('columna_inactivos');
+      
+      colNuevas.innerHTML = ''; colEntrevista.innerHTML = ''; colActivos.innerHTML = ''; colInactivos.innerHTML = '';
+      let cN = 0, cE = 0, cA = 0, cI = 0;
+
+      const datosFiltrados = voluntariosGlobales.filter(vol => {
+          // 1. Buscador de Texto
+          if (textoBusqueda && !vol.nombre_completo.toLowerCase().includes(textoBusqueda) && !vol.correo.toLowerCase().includes(textoBusqueda)) return false;
+          
+          // 2. Filtros Select
+          if (fRol !== 'Todos' && vol.id_rol != parseInt(fRol)) return false;
+          if (fEsp !== 'Todas' && vol.especialidad !== fEsp) return false;
+          if (fProy === 'Asignados' && vol.proyectos === '') return false;
+          if (fProy === 'SinAsignar' && vol.proyectos !== '') return false;
+
+          // 3. Filtro de Fechas
+          if (fFecha !== 'Todas' && vol.fecha_registro) {
+              const fechaReg = new Date(vol.fecha_registro);
+              const hoy = new Date();
+              if (fFecha === 'Mes') {
+                  const unMesAtras = new Date(); unMesAtras.setMonth(hoy.getMonth() - 1);
+                  if (fechaReg < unMesAtras) return false;
+              } else if (fFecha === 'Anio') {
+                  if (fechaReg.getFullYear() !== hoy.getFullYear()) return false;
+              }
+          }
+          return true;
+      });
+
+      datosFiltrados.forEach(vol => {
+        const status = vol.estatus || 'Nuevo';
+        let btnAccion = '';
+        
+        let btnContactoEliminar = `<button onclick="toggleContacto('contacto_${vol.id_usuario}')" class="p-2 text-slate-400 hover:text-[#b50062] rounded-full bg-slate-50 transition-colors"><span class="material-symbols-outlined text-lg">contact_mail</span></button>`;
+        
+        if(status === 'Nuevo' || status === 'Entrevista') {
+          btnContactoEliminar += `<button onclick="prepararEliminar(${vol.id_usuario}, '${vol.nombre_completo}')" class="p-2 text-slate-400 hover:text-red-500 rounded-full bg-slate-50 transition-colors ml-1" title="Eliminar Petición"><span class="material-symbols-outlined text-lg">delete</span></button>`;
+        }
+
+        if(status === 'Nuevo') {
+          cN++;
+          btnAccion = `<button onclick="abrirModalEntrevista(${vol.id_usuario}, '${vol.correo}', '${vol.nombre_completo}')" class="w-full py-3 bg-[#f0f4f8] text-slate-600 font-bold rounded-full text-sm hover:bg-[#f39200] hover:text-white transition-all flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">calendar_month</span> Agendar Entrevista</button>`;
+        } else if (status === 'Entrevista') {
+          cE++;
+          btnAccion = `
+              <div class="flex gap-2 w-full">
+                  <button onclick="abrirModalEntrevista(${vol.id_usuario}, '${vol.correo}', '${vol.nombre_completo}')" class="flex-1 py-2 bg-slate-100 text-slate-600 font-bold rounded-xl text-xs hover:bg-slate-200">Reagendar</button>
+                  <button onclick="abrirModalProyecto(${vol.id_usuario}, '${vol.nombre_completo}', ${vol.id_rol}, '${vol.especialidad}')" class="flex-1 py-2 bg-green-100 text-green-700 font-bold rounded-xl text-xs hover:bg-green-500 hover:text-white">Aprobar</button>
+              </div>`;
+        } else if (status === 'Inactivo') {
+          cI++;
+          btnAccion = `<button onclick="reactivarUsuario(${vol.id_usuario})" class="w-full py-2 bg-slate-200 text-slate-600 font-bold rounded-full text-xs hover:bg-green-500 hover:text-white transition-all flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">settings_backup_restore</span> Reactivar Perfil</button>`;
+        } else {
+          cA++;
+          let botonesActivo = ``;
+          if (vol.especialidad === 'Psicología' || vol.id_rol === 2) {
+              botonesActivo += `<button onclick="abrirModalExpediente()" class="w-full py-2 mb-2 bg-[#f0f4f8] text-slate-600 font-bold rounded-full text-xs hover:bg-blue-500 hover:text-white transition-all flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">folder_shared</span> Asignar Expediente</button>`;
+          }
+          botonesActivo += `<button onclick="abrirModalAsignarActivo(${vol.id_usuario})" class="w-full py-2 mb-3 bg-[#f0f4f8] text-slate-600 font-bold rounded-full text-xs hover:bg-[#f39200] hover:text-white transition-all flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">assignment_ind</span> Asignar a Proyecto</button>`;
+          
+          botonesActivo += `
+              <div class="flex gap-2 w-full border-t border-slate-100 pt-3">
+                  <button onclick="prepararModificar(${vol.id_usuario}, ${vol.id_rol}, '${vol.especialidad}')" class="flex-1 py-2 bg-slate-50 text-slate-500 font-bold rounded-xl text-[10px] hover:bg-slate-200">Modificar Rol</button>
+                  <button onclick="prepararInactivar(${vol.id_usuario}, '${vol.nombre_completo}')" class="flex-1 py-2 bg-red-50 text-red-600 font-bold rounded-xl text-[10px] hover:bg-red-100">Pasar a Inactivo</button>
+              </div>`;
+          btnAccion = botonesActivo;
+        }
+
+        let colorBadge = "bg-slate-100 text-slate-600";
+        if (vol.especialidad === 'Psicología') colorBadge = "bg-blue-100 text-blue-700";
+        if (vol.especialidad === 'Muralismo') colorBadge = "bg-purple-100 text-purple-700";
+        if (vol.especialidad === 'Donador') colorBadge = "bg-amber-100 text-amber-700";
+
+        const extraStyle = status === 'Inactivo' ? 'grayscale opacity-80' : '';
+        
+        // Etiqueta visual si tiene proyectos
+        let badgeProyectos = '';
+        if (vol.proyectos && vol.proyectos !== '') {
+            badgeProyectos = `<div class="mt-2 text-[10px] text-slate-500 font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">work</span> ${vol.proyectos}</div>`;
+        }
+
+        const card = `
+          <div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm mb-6 hover:scale-[1.02] transition-all relative border border-slate-100 ${extraStyle}">
+            <div class="flex justify-between items-start mb-4">
+              <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold text-xl">${vol.nombre_completo.charAt(0)}</div>
+              <div class="flex">${btnContactoEliminar}</div>
+            </div>
+            <h4 class="text-lg font-bold text-slate-800 mb-1">${vol.nombre_completo}</h4>
+            <div class="flex flex-wrap gap-2 mb-2"><span class="px-3 py-1 ${colorBadge} text-[10px] font-bold uppercase rounded-full tracking-wide">${vol.especialidad || 'General'}</span></div>
+            ${badgeProyectos}
+            
+            <div id="contacto_${vol.id_usuario}" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out mt-4">
+                <div class="bg-slate-50 p-3 rounded-lg mb-4 text-xs text-slate-600 space-y-2">
+                    <p class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">mail</span> ${vol.correo}</p>
+                    <p class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">phone</span> ${vol.telefono || 'No registrado'}</p>
+                </div>
+            </div>
+            <div class="mt-4">${btnAccion}</div>
+          </div>`;
+        
+        if(status === 'Nuevo') colNuevas.insertAdjacentHTML('beforeend', card);
+        else if(status === 'Entrevista') colEntrevista.insertAdjacentHTML('beforeend', card);
+        else if(status === 'Inactivo') colInactivos.insertAdjacentHTML('beforeend', card);
+        else colActivos.insertAdjacentHTML('beforeend', card);
+      });
+
+      document.getElementById('contador_nuevos').innerText = cN;
+      document.getElementById('contador_entrevista').innerText = cE;
+      document.getElementById('contador_activos').innerText = cA;
+      document.getElementById('contador_inactivos').innerText = cI;
+    } catch (error) { console.error("Error:", error); }
+  }
+
+  // LISTENER PARA EL BUSCADOR PRINCIPAL EN VIVO
+  const inputBuscador = document.getElementById('buscador_principal');
+  if(inputBuscador) {
+      inputBuscador.addEventListener('input', () => {
+          cargarVoluntariosKanban(false);
+      });
+  }
+    // --- MANEJO DE INTERFAZ VISUAL ---
+    function toggleContacto(id) {
+        const el = document.getElementById(id);
+        if (el.style.maxHeight && el.style.maxHeight !== '0px') el.style.maxHeight = '0px'; else el.style.maxHeight = el.scrollHeight + "px";
+    }
+
+    function toggleMenu(menuId) {
+        ['menu_col1', 'menu_col2', 'menu_col3'].forEach(id => { if(id !== menuId) document.getElementById(id).classList.add('hidden'); });
+        document.getElementById(menuId).classList.toggle('hidden');
+    }
+
+    // AHORA EL FILTRO RECIBE LA COLUMNA ESPECÍFICA
+    function filtrarColumna(categoria, columnaNum) {
+        if(columnaNum === 1) filtroCol1 = categoria;
+        if(columnaNum === 2) filtroCol2 = categoria;
+        if(columnaNum === 3) filtroCol3 = categoria;
+        
+        cargarVoluntariosKanban(); // Refresca aplicando las nuevas reglas
+        ['menu_col1', 'menu_col2', 'menu_col3'].forEach(id => document.getElementById(id).classList.add('hidden'));
+    }
+
+    // --- MODALES ELIMINAR / INACTIVAR ---
+    function prepararEliminar(id, nombre) {
+        document.getElementById('elim_id').value = id; document.getElementById('elim_nombre').innerText = nombre; abrirModal('modalEliminar', 'modalEliminarContent');
+    }
+    async function ejecutarEliminar() {
+        const id = document.getElementById('elim_id').value;
+        await fetch(`${API_URL}/api/usuarios/${id}`, { method: 'DELETE' });
+        cerrarModal('modalEliminar', 'modalEliminarContent'); cargarVoluntariosKanban(true);
+    }
+
+    function prepararInactivar(id, nombre) {
+        document.getElementById('inac_id').value = id; document.getElementById('inac_nombre').innerText = nombre; abrirModal('modalInactivar', 'modalInactivarContent');
+    }
+    async function ejecutarInactivar() {
+        const id = document.getElementById('inac_id').value;
+        await fetch(`${API_URL}/api/usuarios/${id}/inactivo`, { method: 'PUT' });
+        cerrarModal('modalInactivar', 'modalInactivarContent'); cargarVoluntariosKanban(true);
+    }
+
+    async function reactivarUsuario(id) {
+        await fetch(`${API_URL}/api/usuarios/${id}/reactivar`, { method: 'PUT' }); cargarVoluntariosKanban(true);
+    }
+
+    // --- MODALES DE ACTIVOS (EXPEDIENTE, PROYECTO, ROL) ---
+    async function abrirModalExpediente() {
+        const res = await fetch(`${API_URL}/api/beneficiarios`); const json = await res.json();
+        const sel = document.getElementById('exp_beneficiario'); sel.innerHTML = '<option value="" disabled selected>Selecciona Beneficiario...</option>';
+        json.data.forEach(b => sel.innerHTML += `<option value="${b.id_beneficiario}">${b.nombre_completo}</option>`);
+        abrirModal('modalExpediente', 'modalExpedienteContent');
+    }
+
+    async function abrirModalAsignarActivo(id_usuario) {
+        document.getElementById('asig_act_id').value = id_usuario;
+        const res = await fetch(`${API_URL}/api/proyectos`); const json = await res.json();
+        const sel = document.getElementById('asig_act_evento'); sel.innerHTML = '<option value="" disabled selected>Selecciona Proyecto...</option>';
+        json.data.forEach(p => sel.innerHTML += `<option value="${p.id_evento}">${p.titulo_evento}</option>`);
+        abrirModal('modalAsignarActivo', 'modalAsignarActivoContent');
+    }
+    document.getElementById('formAsignarActivo').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await fetch(`${API_URL}/api/usuarios/${document.getElementById('asig_act_id').value}/participacion`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({id_evento: document.getElementById('asig_act_evento').value}) });
+        alert("Voluntario vinculado al nuevo proyecto"); cerrarModal('modalAsignarActivo', 'modalAsignarActivoContent');
+    });
+
+    function prepararModificar(id, rol, esp) {
+        document.getElementById('mod_id').value = id; document.getElementById('mod_rol').value = rol; document.getElementById('mod_esp').value = esp || 'General';
+        abrirModal('modalModificar', 'modalModificarContent');
+    }
+    document.getElementById('formModificar').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = { id_rol: document.getElementById('mod_rol').value, especialidad: document.getElementById('mod_esp').value };
+        await fetch(`${API_URL}/api/usuarios/${document.getElementById('mod_id').value}/modificar`, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
+        cerrarModal('modalModificar', 'modalModificarContent'); cargarVoluntariosKanban(true);
+    });
+
+    // --- FORMULARIOS BASE (Entrevista, Aprobar, Nuevo) ---
+    function abrirModalEntrevista(id, correo, nombre) {
+        document.getElementById('ent_id_usuario').value = id; document.getElementById('ent_correo').value = correo; document.getElementById('entrevista_nombre').innerText = nombre;
+        abrirModal('modalEntrevista', 'modalEntrevistaContent');
+    }
+    document.getElementById('formEntrevista').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button[type="submit"]'); btn.innerText = "Agendando..."; btn.disabled = true;
+        const data = { id_usuario: document.getElementById('ent_id_usuario').value, correo: document.getElementById('ent_correo').value, nombre: document.getElementById('entrevista_nombre').innerText, fecha: document.getElementById('ent_fecha').value, hora: document.getElementById('ent_hora').value, link: document.getElementById('ent_link').value };
+        await fetch(`${API_URL}/api/entrevistas`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
+        btn.innerText = "Enviar Invitación"; btn.disabled = false; cerrarModal('modalEntrevista', 'modalEntrevistaContent'); cargarVoluntariosKanban(true);
+    });
+
+    async function abrirModalProyecto(id_usuario, nombre, rolActual, espActual) {
+        document.getElementById('proy_id_usuario').value = id_usuario; document.getElementById('proyecto_nombre_voluntario').innerText = nombre;
+        document.getElementById('proy_id_rol').value = rolActual || 4; document.getElementById('proy_especialidad').value = espActual || 'General';
+        const res = await fetch(`${API_URL}/api/proyectos`); const json = await res.json();
+        const sel = document.getElementById('proy_id_evento'); sel.innerHTML = '<option value="0" selected>Ninguno (Solo aprobar credenciales)</option>';
+        json.data.forEach(p => sel.innerHTML += `<option value="${p.id_evento}">${p.titulo_evento}</option>`);
+        abrirModal('modalProyecto', 'modalProyectoContent');
+    }
+    document.getElementById('formProyecto').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button[type="submit"]'); btn.innerText = "Aprobando..."; btn.disabled = true;
+        const data = { id_proyecto: document.getElementById('proy_id_evento').value, id_rol: parseInt(document.getElementById('proy_id_rol').value), especialidad: document.getElementById('proy_especialidad').value };
+        await fetch(`${API_URL}/api/voluntarios/${document.getElementById('proy_id_usuario').value}/asignar`, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
+        btn.innerText = "Aprobar Perfil"; btn.disabled = false; cerrarModal('modalProyecto', 'modalProyectoContent'); cargarVoluntariosKanban(true);
+    });
+
+    function abrirModalRegistro() { abrirModal('modalRegistro', 'modalContent'); }
+    document.getElementById('formRegistro').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]'); btn.innerText = "Creando..."; btn.disabled = true;
+      const data = { nombre_completo: document.getElementById('reg_nombre').value, correo: document.getElementById('reg_correo').value, telefono: document.getElementById('reg_telefono').value, especialidad: document.getElementById('reg_especialidad').value, id_rol: parseInt(document.getElementById('reg_rol').value) };
+      await fetch(`${API_URL}/api/usuarios`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      btn.innerText = "Guardar y Avisar"; btn.disabled = false; cerrarModal('modalRegistro', 'modalContent'); cargarVoluntariosKanban(true);
+    });
+
+    // Iniciar
+    document.addEventListener('DOMContentLoaded', () => cargarVoluntariosKanban(true));
+  </script>
+</body>
 </html>
