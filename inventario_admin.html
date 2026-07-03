@@ -3,144 +3,136 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Inventario - Guardian Admin</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
-      rel="stylesheet"
-    />
+    <title>Inventario | Sanctorum A.C.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <style>
-      body {
-        font-family: "Quicksand", sans-serif;
-        background: #f6fafe;
-      }
-      .material-symbols-outlined {
-        font-variation-settings:
-          "FILL" 0,
-          "wght" 400,
-          "GRAD" 0,
-          "opsz" 24;
-      }
-    </style>
+    <script id="tailwind-config">
+      tailwind.config = { theme: { extend: { colors: { primary: "#8a5100", secondary: "#b50062", surface: "#f6fafe", "surface-container-low": "#f0f4f8" }, fontFamily: { sans: ["Quicksand", "sans-serif"], plus: ["Plus Jakarta Sans", "sans-serif"] } } } };
+    </script>
+    <style>.material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; }</style>
   </head>
-  <body class="text-slate-800">
-    <aside
-      class="h-screen w-64 fixed left-0 top-0 bg-white shadow-[0_20px_50px_rgba(23,28,31,0.06)] z-50 flex flex-col py-8 px-4"
-    >
-      <div class="flex justify-center mb-10 px-2">
-        <img alt="NGO Logo" class="w-32 h-auto object-contain" src="Logo.png" />
-      </div>
-      <nav class="flex-grow space-y-2">
-        <a
-          class="flex items-center gap-3 p-3 rounded-xl transition-all text-slate-500 hover:bg-slate-100"
-          href="dashboard_admin.html"
-        >
-          <span class="material-symbols-outlined">dashboard</span>
-          <span class="font-medium">Resumen</span>
-        </a>
-        <a
-          class="flex items-center gap-3 p-3 rounded-xl transition-all text-slate-500 hover:bg-slate-100"
-          href="gestion_expedientes_admin.html"
-        >
-          <span class="material-symbols-outlined">folder_shared</span>
-          <span class="font-medium">Expedientes</span>
-        </a>
-        <a
-          class="flex items-center gap-3 p-3 rounded-xl transition-all text-slate-500 hover:bg-slate-100"
-          href="gestion_voluntariado_admin.html"
-        >
-          <span class="material-symbols-outlined">group</span>
-          <span class="font-medium">Voluntariado</span>
-        </a>
-        <a
-          class="flex items-center gap-3 p-3 rounded-xl transition-all text-orange-600 font-bold border-r-4 border-orange-500 bg-slate-50"
-          href="inventario_admin.html"
-        >
-          <span class="material-symbols-outlined">inventory_2</span>
-          <span class="font-medium">Inventario</span>
-        </a>
-        <a
-          class="flex items-center gap-3 p-3 rounded-xl transition-all text-slate-500 hover:bg-slate-100"
-          href="agenda_admin.html"
-        >
-          <span class="material-symbols-outlined">school</span>
-          <span class="font-medium">Agenda Escolar</span>
-        </a>
-        <a
-          class="flex items-center gap-3 p-3 mt-4 rounded-xl transition-all text-slate-500 border border-slate-200 hover:text-orange-600"
-          href="inicio.html"
-        >
-          <span class="material-symbols-outlined">home</span>
-          <span class="font-medium">Volver al Inicio</span>
-        </a>
+  <body class="bg-surface text-slate-800 min-h-screen">
+    
+    <!-- ================= SIDE NAV BAR UNIVERSAL ================= -->
+    <aside class="fixed left-0 top-0 flex flex-col py-8 bg-white rounded-r-[2rem] h-screen w-72 shadow-[0_20px_50px_rgba(23,28,31,0.06)] z-50">
+      <div class="flex justify-center mb-10 px-8"><img src="Logo.png" alt="Logo" class="w-40 h-auto object-contain" /></div>
+      <nav class="flex-1 px-4 space-y-2">
+        <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="dashboard_admin.html"><span class="material-symbols-outlined">dashboard</span><span class="font-medium">Resumen</span></a>
+        <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="gestion_expedientes_admin.html"><span class="material-symbols-outlined">folder_shared</span><span class="font-medium">Expedientes</span></a>
+        <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="gestion_voluntariado_admin.html"><span class="material-symbols-outlined">group</span><span class="font-medium">Voluntariado</span></a>
+        <!-- PESTAÑA ACTIVA -->
+        <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-orange-600 font-bold border-r-4 border-orange-500 bg-orange-50 transition-all" href="inventario_admin.html"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">inventory_2</span><span class="font-medium">Inventario</span></a>
+        <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="agenda_admin.html"><span class="material-symbols-outlined">school</span><span class="font-medium">Agenda Escolar</span></a>
       </nav>
+      <div class="px-6 mt-auto space-y-4">
+        <a class="flex items-center justify-center gap-2 w-full py-3 text-slate-500 hover:text-orange-600 hover:bg-orange-50 rounded-full font-bold transition-all border border-slate-200" href="inicio.html"><span class="material-symbols-outlined">home</span>Volver al Inicio</a>
+        <button onclick="cerrarSesion()" class="flex items-center justify-center gap-2 w-full py-3 text-red-500 hover:text-red-600 hover:bg-red-50 rounded-full font-bold transition-all"><span class="material-symbols-outlined">logout</span>Cerrar Sesión</button>
+      </div>
     </aside>
+  
+    <main class="ml-72 min-h-screen flex flex-col">
+      <!-- ================= TOP NAV BAR UNIVERSAL ================= -->
+      <header class="sticky top-0 z-40 flex justify-between items-center px-8 h-16 bg-white/70 backdrop-blur-md rounded-full mt-4 mx-4 shadow-sm font-plus">
+        <div class="flex items-center flex-1">
+          <div class="relative w-full max-w-md">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+            <input class="w-full pl-10 pr-4 py-2 bg-[#f0f4f8] border-none rounded-full focus:ring-2 focus:ring-[#e2007c]/20 transition-all text-sm" placeholder="Buscar insumos o activos..." type="text" />
+          </div>
+        </div>
+        <div class="flex items-center gap-4 ml-8 relative">
+          <button onclick="document.getElementById('modalNotificaciones').classList.toggle('hidden')" class="p-2 text-slate-600 hover:bg-slate-50 rounded-full transition-colors relative"><span class="material-symbols-outlined">notifications</span><span class="absolute top-2 right-2 w-2 h-2 bg-pink-500 rounded-full"></span></button>
+          <button class="p-2 text-slate-600 hover:bg-slate-50 rounded-full transition-colors"><span class="material-symbols-outlined">settings</span></button>
+          <div class="h-8 w-px bg-slate-200 mx-2"></div>
+          <a href="perfil_admin.html" class="flex items-center gap-3 cursor-pointer hover:bg-slate-50 p-2 rounded-full transition-all">
+            <span id="nav_user_name" class="text-sm font-bold text-slate-700">Cargando...</span>
+            <div class="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-slate-100 flex items-center justify-center text-slate-500 font-bold"><span class="material-symbols-outlined">person</span></div>
+          </a>
+  
+          <!-- PANEL FLOTANTE DE NOTIFICACIONES -->
+          <div id="modalNotificaciones" class="hidden absolute top-14 right-0 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden z-50">
+              <div class="bg-slate-800 px-4 py-3 text-white flex justify-between items-center"><h3 class="font-bold text-sm">Notificaciones</h3><span class="text-xs bg-slate-700 px-2 py-1 rounded-full">3 Nuevas</span></div>
+              <div class="max-h-80 overflow-y-auto divide-y divide-slate-100">
+                  <div class="p-4 hover:bg-slate-50 transition-colors cursor-pointer"><div class="flex gap-3"><div class="w-8 h-8 rounded-full bg-pink-100 text-[#b50062] flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-sm">mail</span></div><div><p class="text-sm font-bold text-slate-800">Correo Enviado</p><p class="text-xs text-slate-500 mt-0.5">Se enviaron credenciales al nuevo voluntario.</p></div></div></div>
+                  <div class="p-4 hover:bg-slate-50 transition-colors cursor-pointer"><div class="flex gap-3"><div class="w-8 h-8 rounded-full bg-orange-100 text-[#8a5100] flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-sm">event</span></div><div><p class="text-sm font-bold text-slate-800">Próxima Entrevista</p><p class="text-xs text-slate-500 mt-0.5">Entrevista programada para mañana a las 10:00 hrs.</p></div></div></div>
+              </div>
+              <div class="p-2 text-center border-t border-slate-100 bg-slate-50"><button onclick="document.getElementById('modalNotificaciones').classList.add('hidden')" class="text-xs font-bold text-slate-500 hover:text-slate-800">Cerrar panel</button></div>
+          </div>
+        </div>
+      </header>
+  
+      <!-- ================= ÁREA DE CONTENIDO (ESTRUCTURA CORREGIDA) ================= -->
+      <div class="p-8 flex-1">
+        
+        <!-- TÍTULO Y BOTÓN SUPERIOR (Esto arregla el espacio) -->
+        <div class="flex justify-between items-end mb-10">
+            <div>
+              <h2 class="text-4xl font-bold text-primary font-plus tracking-tight mb-2">Gestión de Inventario</h2>
+              <p class="text-slate-500 max-w-xl">Control de insumos, materiales y activos fijos de la organización.</p>
+            </div>
+            <button class="flex items-center gap-2 px-10 py-4 bg-gradient-to-r from-secondary to-[#e2007c] text-white rounded-full font-bold shadow-xl hover:scale-105 active:scale-95 transition-all">
+              <span class="material-symbols-outlined">add</span> Nuevo Artículo
+            </button>
+        </div>
 
-    <header
-      class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/70 backdrop-blur-xl flex justify-between items-center px-8 z-40 shadow-sm"
-    >
-      <h2 class="text-xl font-bold">Gestión de Inventario</h2>
-    </header>
+        <!-- TABLA DE INVENTARIO -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <table class="w-full text-left border-collapse">
+            <thead class="bg-slate-50 border-b border-slate-200">
+              <tr>
+                <th class="px-8 py-5 text-sm font-bold text-slate-400 uppercase tracking-widest">Artículo</th>
+                <th class="px-6 py-5 text-sm font-bold text-slate-400 uppercase tracking-widest">Categoría</th>
+                <th class="px-6 py-5 text-sm font-bold text-slate-400 uppercase tracking-widest">Stock Actual</th>
+                <th class="px-6 py-5 text-sm font-bold text-slate-400 uppercase tracking-widest">Estado</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-8 py-5 font-bold text-slate-700">Pintura Amarilla (Cubeta 19L)</td>
+                <td class="px-6 py-5 text-slate-500 font-medium">Muralismo</td>
+                <td class="px-6 py-5 font-bold text-slate-700">2 Unidades</td>
+                <td class="px-6 py-5"><span class="px-4 py-1.5 bg-red-100 text-red-600 text-xs font-bold rounded-full uppercase tracking-wide">Bajo Stock</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-8 py-5 font-bold text-slate-700">Cuadernos Profesionales</td>
+                <td class="px-6 py-5 text-slate-500 font-medium">Educación</td>
+                <td class="px-6 py-5 font-bold text-slate-700">120 Unidades</td>
+                <td class="px-6 py-5"><span class="px-4 py-1.5 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase tracking-wide">Óptimo</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-    <main class="ml-64 pt-24 pb-12 px-8 min-h-screen">
-      <div
-        class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden"
-      >
-        <table class="w-full text-left border-collapse">
-          <thead class="bg-slate-50 border-b border-slate-200">
-            <tr>
-              <th
-                class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest"
-              >
-                Artículo
-              </th>
-              <th
-                class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest"
-              >
-                Categoría
-              </th>
-              <th
-                class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest"
-              >
-                Stock Actual
-              </th>
-              <th
-                class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest"
-              >
-                Estado
-              </th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-100">
-            <tr class="hover:bg-slate-50">
-              <td class="px-6 py-4 font-bold">Pintura Amarilla (Cubeta 19L)</td>
-              <td class="px-6 py-4">Muralismo</td>
-              <td class="px-6 py-4">2 Unidades</td>
-              <td class="px-6 py-4">
-                <span
-                  class="px-3 py-1 bg-red-100 text-red-600 text-xs font-bold rounded-full"
-                  >Bajo Stock</span
-                >
-              </td>
-            </tr>
-            <tr class="hover:bg-slate-50">
-              <td class="px-6 py-4 font-bold">Cuadernos Profesionales</td>
-              <td class="px-6 py-4">Educación</td>
-              <td class="px-6 py-4">120 Unidades</td>
-              <td class="px-6 py-4">
-                <span
-                  class="px-3 py-1 bg-green-100 text-green-600 text-xs font-bold rounded-full"
-                  >Óptimo</span
-                >
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </main>
+
+    <!-- ================= SCRIPT DE SEGURIDAD UNIVERSAL ================= -->
+    <script>
+      // 1. Proteger la ruta y cargar nombre del usuario
+      document.addEventListener('DOMContentLoaded', () => {
+          const token = localStorage.getItem('token_sanctorum');
+          
+          // Si no hay token (no ha iniciado sesión), lo pateamos al login
+          if(!token) {
+              window.location.href = "login.html";
+              return;
+          }
+  
+          try {
+              // Si sí hay token, lo desencriptamos y sacamos su nombre
+              const payload = JSON.parse(atob(token.split('.')[1]));
+              document.getElementById('nav_user_name').innerText = payload.nombre.split(' ')[0]; // Muestra "Enrique" en vez de nombre completo
+          } catch (e) { 
+              console.error("Error leyendo el token de seguridad"); 
+              window.location.href = "login.html";
+          }
+      });
+  
+      // 2. Función del botón rojo del menú
+      function cerrarSesion() {
+          localStorage.removeItem('token_sanctorum');
+          window.location.href = "login.html";
+      }
+    </script>
   </body>
 </html>
