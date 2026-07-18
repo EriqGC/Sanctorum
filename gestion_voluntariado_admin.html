@@ -122,7 +122,7 @@
       <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="gestion_expedientes_admin.html"><span class="material-symbols-outlined">folder_shared</span><span class="font-medium">Expedientes</span></a>
       <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="gestion_voluntariado_admin.html"><span class="material-symbols-outlined">group</span><span class="font-medium">Voluntariado</span></a>
       <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="inventario_admin.html"><span class="material-symbols-outlined">inventory_2</span><span class="font-medium">Inventario</span></a>
-      <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="agenda_admin.html"><span class="material-symbols-outlined">school</span><span class="font-medium">Agenda Escolar</span></a>
+      <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="agenda_admin.html"><span class="material-symbols-outlined">school</span><span class="font-medium">Agenda</span></a>
     </nav>
     <div class="px-6 mt-auto space-y-4">
       <a class="flex items-center justify-center gap-2 w-full py-3 text-slate-500 hover:text-orange-600 hover:bg-orange-50 rounded-full font-bold transition-all border border-slate-200" href="inicio.html">
@@ -236,7 +236,9 @@
         <div class="relative min-w-[160px]">
           <select id="filtro_rol" onchange="aplicarFiltrosGlobales()" class="w-full appearance-none bg-surface-container-low border-none rounded-full px-5 py-2.5 text-sm font-medium focus:ring-2 focus:ring-secondary/20 cursor-pointer text-slate-600">
             <option value="Todos">Todos los Roles</option>
-            <option value="4">Voluntarios / Donadores</option>
+            <option value="5">Donadores</option>
+            <option value="4">Voluntarios</option>
+            <option value="3">Coordinador</option>
             <option value="2">Especialistas Clínicos</option>
           </select>
         </div>
@@ -516,6 +518,7 @@
               <option value="4" selected>Voluntario (Campo)</option>
               <option value="5">Donador (Material)</option>
               <option value="3">Coordinador</option>
+              <option value="2">Especialista</option>
             </select>
           </div>
           <div>

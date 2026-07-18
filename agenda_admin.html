@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Agenda Escolar | Sanctorum A.C.</title>
+  <title>Agenda Operativa | Sanctorum A.C.</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script id="tailwind-config">
-    tailwind.config = { theme: { extend: { colors: { primary: "#8a5100", secondary: "#b50062", surface: "#f6fafe", "surface-container-low": "#f0f4f8" }, fontFamily: { sans: ["Quicksand", "sans-serif"], plus: ["Plus Jakarta Sans", "sans-serif"] } } } };
+    tailwind.config = { theme: { extend: { colors: { primary: "#8a5100", secondary: "#b50062", surface: "#f6fafe" }, fontFamily: { sans: ["Quicksand", "sans-serif"], plus: ["Plus Jakarta Sans", "sans-serif"] } } } };
   </script>
   <style>.material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; }</style>
 </head>
 <body class="bg-surface text-slate-800 min-h-screen">
   
+  <!-- ================= SIDE NAV BAR ================= -->
   <aside class="fixed left-0 top-0 flex flex-col py-8 bg-white rounded-r-[2rem] h-screen w-72 shadow-[0_20px_50px_rgba(23,28,31,0.06)] z-50">
     <div class="flex justify-center mb-10 px-8"><img src="Logo.png" alt="Logo" class="w-40 h-auto object-contain" /></div>
     <nav class="flex-1 px-4 space-y-2">
@@ -21,7 +22,7 @@
       <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="gestion_expedientes_admin.html"><span class="material-symbols-outlined">folder_shared</span><span class="font-medium">Expedientes</span></a>
       <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="gestion_voluntariado_admin.html"><span class="material-symbols-outlined">group</span><span class="font-medium">Voluntariado</span></a>
       <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="inventario_admin.html"><span class="material-symbols-outlined">inventory_2</span><span class="font-medium">Inventario</span></a>
-      <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-orange-600 font-bold border-r-4 border-orange-500 bg-orange-50 transition-all" href="agenda_admin.html"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">school</span><span class="font-medium">Agenda Escolar</span></a>
+      <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-orange-600 font-bold border-r-4 border-orange-500 bg-orange-50 transition-all" href="agenda_admin.html"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">school</span><span class="font-medium">Agenda</span></a>
     </nav>
     <div class="px-6 mt-auto space-y-4">
       <a class="flex items-center justify-center gap-2 w-full py-3 text-slate-500 hover:text-orange-600 hover:bg-orange-50 rounded-full font-bold transition-all border border-slate-200" href="inicio.html"><span class="material-symbols-outlined">home</span>Volver al Inicio</a>
@@ -30,75 +31,546 @@
   </aside>
 
   <main class="ml-72 min-h-screen flex flex-col">
+    <!-- ================= TOP NAV BAR ================= -->
     <header class="sticky top-0 z-40 flex justify-between items-center px-8 h-16 bg-white/70 backdrop-blur-md rounded-full mt-4 mx-4 shadow-sm font-plus">
       <div class="flex items-center flex-1">
         <div class="relative w-full max-w-md">
           <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-          <input id="buscador_principal" class="w-full pl-10 pr-4 py-2 bg-[#f0f4f8] border-none rounded-full focus:ring-2 focus:ring-[#e2007c]/20 transition-all text-sm" placeholder="Buscar evento..." type="text" />
+          <input id="buscador_principal" oninput="aplicarFiltros()" class="w-full pl-10 pr-4 py-2 bg-[#f0f4f8] border-none rounded-full focus:ring-2 focus:ring-[#e2007c]/20 transition-all text-sm" placeholder="Buscar título o sede..." type="text" />
         </div>
       </div>
-      <div class="flex items-center gap-4 ml-8 relative">
-        <button onclick="document.getElementById('modalNotificaciones').classList.toggle('hidden')" class="p-2 text-slate-600 hover:bg-slate-50 rounded-full transition-colors relative"><span class="material-symbols-outlined">notifications</span><span class="absolute top-2 right-2 w-2 h-2 bg-pink-500 rounded-full"></span></button>
-        <button class="p-2 text-slate-600 hover:bg-slate-50 rounded-full transition-colors"><span class="material-symbols-outlined">settings</span></button>
-        <div class="h-8 w-px bg-slate-200 mx-2"></div>
+      <div class="flex items-center gap-4 ml-8">
         <a href="perfil_admin.html" class="flex items-center gap-3 cursor-pointer hover:bg-slate-50 p-2 rounded-full transition-all">
           <span id="nav_user_name" class="text-sm font-bold text-slate-700">Cargando...</span>
           <div class="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-slate-100 flex items-center justify-center text-slate-500 font-bold"><span class="material-symbols-outlined">person</span></div>
         </a>
-
-        <!-- Panel de Notificaciones -->
-        <div id="modalNotificaciones" class="hidden absolute top-14 right-32 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden z-50">
-            <div class="bg-slate-800 px-4 py-3 text-white flex justify-between items-center"><h3 class="font-bold text-sm">Notificaciones</h3></div>
-            <div class="max-h-80 overflow-y-auto divide-y divide-slate-100">
-                <div class="p-4 hover:bg-slate-50 transition-colors cursor-pointer"><div class="flex gap-3"><div class="w-8 h-8 rounded-full bg-orange-100 text-[#8a5100] flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-sm">event</span></div><div><p class="text-sm font-bold text-slate-800">Próxima Entrevista</p><p class="text-xs text-slate-500 mt-0.5">Entrevista programada para mañana a las 10:00 hrs.</p></div></div></div>
-            </div>
-            <div class="p-2 text-center border-t border-slate-100 bg-slate-50"><button onclick="document.getElementById('modalNotificaciones').classList.add('hidden')" class="text-xs font-bold text-slate-500 hover:text-slate-800">Cerrar panel</button></div>
-        </div>
       </div>
     </header>
 
-    <div class="p-8 flex-1">
+    <div class="p-8 flex-1 w-full overflow-hidden">
       <div class="flex justify-between items-end mb-10">
         <div>
-          <h2 class="text-4xl font-bold text-primary font-plus tracking-tight mb-2">Agenda Escolar</h2>
-          <p class="text-slate-500 max-w-xl">Cronograma de visitas y actividades institucionales.</p>
+          <h2 class="text-4xl font-bold text-primary font-plus tracking-tight mb-2">Agenda Operativa</h2>
+          <p class="text-slate-500 max-w-xl">Cronograma de visitas a escuelas, citas y eventos.</p>
         </div>
-        <button class="flex items-center gap-2 px-10 py-4 bg-gradient-to-r from-secondary to-[#e2007c] text-white rounded-full font-bold shadow-xl hover:scale-105 active:scale-95 transition-all">
-          <span class="material-symbols-outlined">add</span> Nuevo Evento
+        <button onclick="abrirModalAgenda()" class="flex items-center gap-2 px-10 py-4 bg-gradient-to-r from-[#b50062] to-[#e2007c] text-white rounded-full font-bold shadow-xl hover:scale-105 active:scale-95 transition-all">
+          <span class="material-symbols-outlined">add</span> Agendar Actividad
         </button>
       </div>
 
-      <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 max-w-4xl">
-        <h3 class="text-lg font-bold mb-6 text-slate-800">Próximas Visitas Institucionales</h3>
-        <div class="space-y-4">
-          <div class="p-6 border border-slate-100 rounded-xl flex items-center justify-between hover:bg-slate-50 transition-colors cursor-pointer">
-            <div class="flex items-center gap-4">
-              <div class="p-3 bg-blue-100 text-blue-600 rounded-xl"><span class="material-symbols-outlined">event</span></div>
-              <div><h4 class="font-bold text-slate-800">Primaria Benito Juárez</h4><p class="text-sm text-slate-500">Taller de Convivencia Pacífica</p></div>
-            </div>
-            <div class="text-right"><p class="font-bold text-orange-600">12 de Octubre</p><p class="text-sm text-slate-500">09:00 AM</p></div>
-          </div>
+      <!-- BARRA DE FILTROS SUPERIOR -->
+      <div class="flex flex-wrap gap-4 mb-8 bg-white p-4 rounded-2xl shadow-sm border border-slate-100 items-center w-full">
+        <span class="text-sm font-bold text-slate-400 px-2 uppercase tracking-widest text-[10px]">Filtros:</span>
+        
+        <select id="filtro_categoria" onchange="aplicarFiltros()" class="appearance-none bg-[#f0f4f8] border-none rounded-full px-5 py-2 text-sm font-medium text-slate-600 focus:ring-2 focus:ring-pink-500 cursor-pointer">
+            <option value="Todos">Tipo de Actividad</option>
+            <option value="visita">Prospección Escolar</option>
+            <option value="evento">Evento Comunitario</option>
+        </select>
+
+        <select id="filtro_escuela" onchange="aplicarFiltros()" class="appearance-none bg-[#f0f4f8] border-none rounded-full px-5 py-2 text-sm font-medium text-slate-600 focus:ring-2 focus:ring-pink-500 cursor-pointer">
+            <option value="Todas">Cualquier Sede</option>
+            <!-- Llenado con JS -->
+        </select>
+
+        <input type="date" id="filtro_fecha" onchange="aplicarFiltros()" class="appearance-none bg-[#f0f4f8] border-none rounded-full px-5 py-2 text-sm font-medium text-slate-600 focus:ring-2 focus:ring-pink-500 cursor-pointer">
+
+        <button onclick="limpiarFiltros()" class="ml-auto p-2.5 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors"><span class="material-symbols-outlined text-slate-600">refresh</span></button>
+      </div>
+
+      <!-- TABLERO DE EVENTOS -->
+      <!-- AQUÍ ESTÁ LA MAGIA: Cambiamos max-w-5xl por w-full -->
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 w-full">
+        <h3 class="text-lg font-bold mb-6 text-slate-800">Próximas Actividades</h3>
+        <div id="lista_eventos" class="space-y-4">
+          <!-- Inyectado por JS -->
         </div>
       </div>
     </div>
   </main>
 
+  <!-- ================= EL GRAN MODAL MULTI-PROPÓSITO ================= -->
+  <div id="modalAgenda" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0 py-10">
+    <div class="bg-white rounded-3xl w-full max-w-3xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 max-h-full flex flex-col" id="modalAgendaContent">
+      
+      <div class="bg-gradient-to-r from-blue-700 to-indigo-600 px-8 py-6 text-white flex justify-between items-center shrink-0">
+        <div><h3 id="titulo_modal" class="text-2xl font-bold font-plus">Agendar Nueva Actividad</h3></div>
+        <button onclick="cerrarModalAgenda()" class="text-white/80 hover:text-white"><span class="material-symbols-outlined text-3xl">close</span></button>
+      </div>
+      
+      <div class="overflow-y-auto p-8 bg-white">
+          <form id="formAgenda" class="space-y-6">
+            <input type="hidden" id="edit_id">
+            <input type="hidden" id="edit_categoria">
+
+            <!-- 1. DECISIÓN DEL TIPO DE FLUJO -->
+            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <label class="block text-sm font-bold text-slate-800 mb-2">Selecciona el tipo de registro:</label>
+                <select id="tipo_agendamiento" onchange="cambiarVistaFormulario()" class="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl outline-none font-bold text-blue-700 focus:ring-2 focus:ring-blue-500 cursor-pointer">
+                    <option value="visita">1. Visita de Prospección (Reunión con Escuela Nueva)</option>
+                    <option value="evento" selected>2. Evento Operativo (Taller, Plática, Jornada Muralista)</option>
+                    <option value="clinica">3. Cita Clínica (Atención Psicológica a Beneficiario)</option>
+                </select>
+            </div>
+
+            <hr class="border-slate-100">
+
+            <!-- ================= VISTA A: VISITA PROSPECCIÓN ================= -->
+            <div id="vista_visita" class="hidden space-y-5">
+                <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-4">
+                    <p class="text-xs text-blue-700 font-bold"><span class="material-symbols-outlined text-sm align-middle">info</span> Este formulario registrará una nueva escuela en la base de datos y programará la visita.</p>
+                </div>
+                <div><label class="block text-sm font-bold text-slate-700 mb-1">Nombre de la Escuela / Institución</label><input type="text" id="vis_escuela" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none"></div>
+
+                <h4 class="font-bold text-slate-800 border-b pb-2 mt-4">Datos del Contacto</h4>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="block text-sm font-bold text-slate-700 mb-1">Nombre</label><input type="text" id="vis_contacto" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none"></div>
+                    <div><label class="block text-sm font-bold text-slate-700 mb-1">Puesto (Ej. Director)</label><input type="text" id="vis_puesto" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="block text-sm font-bold text-slate-700 mb-1">Teléfono</label><input type="tel" id="vis_telefono" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none"></div>
+                    <div>
+                      <label class="block text-sm font-bold text-slate-700 mb-1">Ubicación (Link de Google Maps o Dirección física)</label>
+                      <input type="text" id="vis_ubicacion" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none" placeholder="Ej. Calle 5 Sur #1204 o https://maps.app.goo.gl/...">
+                  </div>
+                  </div>
+            </div>
+
+            <!-- ================= VISTA B: EVENTO OPERATIVO (MATERIAL Y EQUIPO) ================= -->
+            <div id="vista_evento" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1">Título del Evento</label>
+                    <input type="text" id="ev_titulo" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">Sede / Escuela</label>
+                        <select id="ev_escuela" class="cat_escuelas w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none cursor-pointer">
+                            <option value="0">Evento Interno / Oficina S.A.C.</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">Tipo de Actividad</label>
+                        <select id="ev_tipo" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none cursor-pointer">
+                            <option value="Taller">Taller</option>
+                            <option value="Jornada Muralista">Jornada Muralista</option>
+                            <option value="Conferencia">Conferencia</option>
+                            <option value="Plática">Plática</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                    <!-- SECCIÓN MATERIALES (BARRA DESPLAZADORA) -->
+                    <div class="bg-amber-50 p-5 rounded-2xl border border-amber-100">
+                        <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-amber-600">inventory_2</span> Material a utilizar</h4>
+                        
+                        <!-- Barra desplazadora activada aquí -->
+                        <div id="contenedor_insumos" class="space-y-3 max-h-40 overflow-y-auto pr-2 pb-2">
+                            <!-- Fila inyectada por JS -->
+                        </div>
+                        <button type="button" onclick="agregarFilaInsumo()" class="text-xs font-bold text-amber-700 bg-amber-100 px-3 py-1.5 rounded-full mt-3 hover:bg-amber-200 transition-colors">+ Añadir material</button>
+                    </div>
+
+                    <!-- SECCIÓN RESPONSABLE Y VOLUNTARIOS -->
+                    <div class="bg-blue-50 p-5 rounded-2xl border border-blue-100">
+                        <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-blue-600">group</span> Equipo de Campo</h4>
+                        
+                        <div class="mb-4">
+                            <label class="block text-xs font-bold text-blue-800 mb-1">Responsable del Evento (Y material)</label>
+                            <select id="ev_responsable" class="w-full px-3 py-2 bg-white border border-blue-200 rounded-xl text-sm font-bold text-blue-700 outline-none shadow-sm cursor-pointer"></select>
+                        </div>
+                        
+                        <label class="block text-xs font-bold text-slate-500 mb-1">Resto del equipo que asistirá:</label>
+                        <div id="ev_voluntarios_list" class="max-h-32 overflow-y-auto bg-white border border-slate-200 rounded-xl p-2 space-y-1 text-sm shadow-inner">
+                            <!-- Checkboxes inyectados -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= VISTA C: AGENDA CLÍNICA ================= -->
+            <div id="vista_clinica" class="hidden space-y-6">
+                <div class="bg-rose-50 border border-rose-100 rounded-xl p-4 mb-4 flex gap-3">
+                    <span class="material-symbols-outlined text-rose-500">lock</span>
+                    <p class="text-xs text-rose-800 font-bold">Datos clínicos confidenciales. Se asignará la sesión al expediente del beneficiario seleccionado.</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Título de la Sesión</label>
+                    <input type="text" id="cli_titulo" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none" placeholder="Ej. Sesión Diagnóstica - 1ra vez">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Beneficiario (Paciente)</label>
+                        <select id="cli_beneficiario" class="w-full px-4 py-3 bg-[#f0f4f8] border-none rounded-xl outline-none cursor-pointer">
+                            <option value="">Selecciona al beneficiario...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Especialista (Psicólogo) a cargo</label>
+                        <select id="cli_especialista" class="w-full px-4 py-3 bg-rose-50 border border-rose-200 text-rose-700 font-bold rounded-xl outline-none cursor-pointer"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FECHA Y HORA UNIVERSAL -->
+            <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-100">
+                <div><label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Fecha de Actividad</label><input type="date" id="gral_fecha" required class="w-full px-4 py-3 bg-white border border-slate-200 shadow-sm rounded-xl outline-none focus:ring-2 focus:ring-blue-500"></div>
+                <div><label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Hora</label><input type="time" id="gral_hora" required class="w-full px-4 py-3 bg-white border border-slate-200 shadow-sm rounded-xl outline-none focus:ring-2 focus:ring-blue-500"></div>
+            </div>
+            
+            <div class="pt-6 flex gap-4">
+                <button type="button" onclick="cerrarModalAgenda()" class="flex-1 py-4 bg-slate-100 text-slate-600 font-bold rounded-full hover:bg-slate-200 transition-colors">Cancelar</button>
+                <button type="submit" id="btn_submit_agenda" class="flex-1 py-4 bg-blue-600 text-white font-bold rounded-full shadow-xl shadow-blue-200 hover:bg-blue-700 hover:scale-[1.02] active:scale-95 transition-all">Guardar Actividad</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSUMOS TEMPLATE (OCULTO, SOLO PARA COPIAR JS) -->
+  <select id="insumos_template" class="hidden"><option value="0">No requiere material...</option></select>
+
   <script>
+    const API_URL = "http://localhost:3000";
+    let agendaGlobal = [];
+    let userIdActual = null;
+
     document.addEventListener('DOMContentLoaded', () => {
         const token = localStorage.getItem('token_sanctorum');
         if(!token) { window.location.replace("login.html"); return; }
         try {
             const payload = JSON.parse(atob(token.split('.')[1]));
             document.getElementById('nav_user_name').innerText = payload.nombre.split(' ')[0];
-        } catch (e) { 
-            localStorage.removeItem('token_sanctorum');
-            window.location.replace("login.html");
-        }
+            userIdActual = payload.id;
+        } catch (e) { window.location.replace("login.html"); }
+
+        cargarAgenda(true);
+        cargarCatalogosModal();
+        cambiarVistaFormulario();
     });
 
-    function cerrarSesion() {
-        localStorage.removeItem('token_sanctorum');
-        window.location.replace("login.html");
+    function cerrarSesion() { localStorage.removeItem('token_sanctorum'); window.location.replace("login.html"); }
+
+    // ================= MODAL LÓGICA =================
+    function abrirModalAgenda() { 
+        document.getElementById('edit_id').value = '';
+        document.getElementById('formAgenda').reset();
+        document.getElementById('titulo_modal').innerText = "Agendar Nueva Actividad";
+        document.getElementById('btn_submit_agenda').innerText = "Guardar Actividad";
+        document.getElementById('tipo_agendamiento').disabled = false;
+        
+        document.getElementById('contenedor_insumos').innerHTML = '';
+        agregarFilaInsumo(); 
+        
+        document.getElementById('modalAgenda').classList.remove('hidden'); 
+        setTimeout(() => { document.getElementById('modalAgenda').classList.remove('opacity-0'); document.getElementById('modalAgendaContent').classList.remove('scale-95'); }, 10); 
+    }
+
+    function cerrarModalAgenda() { document.getElementById('modalAgenda').classList.add('opacity-0'); document.getElementById('modalAgendaContent').classList.add('scale-95'); setTimeout(() => { document.getElementById('modalAgenda').classList.add('hidden'); document.getElementById('formAgenda').reset(); cambiarVistaFormulario(); }, 300); }
+
+    function cambiarVistaFormulario() {
+        const tipo = document.getElementById('tipo_agendamiento').value;
+        document.getElementById('vista_visita').classList.toggle('hidden', tipo !== 'visita');
+        document.getElementById('vista_evento').classList.toggle('hidden', tipo !== 'evento');
+        document.getElementById('vista_clinica').classList.toggle('hidden', tipo !== 'clinica');
+
+        document.getElementById('vis_escuela').required = (tipo === 'visita');
+        document.getElementById('ev_titulo').required = (tipo === 'evento');
+        document.getElementById('cli_titulo').required = (tipo === 'clinica');
+        document.getElementById('cli_beneficiario').required = (tipo === 'clinica');
+    }
+
+    // ================= LÓGICA DE INVENTARIO =================
+    function agregarFilaInsumo() {
+        const div = document.createElement('div');
+        div.className = 'flex gap-2 items-center bg-white p-2 rounded-xl shadow-sm mt-2';
+        const opciones = document.getElementById('insumos_template').innerHTML;
+        div.innerHTML = `
+            <select class="insumo_select w-full p-2 bg-transparent text-sm font-medium border-none outline-none cursor-pointer">${opciones}</select>
+            <input type="number" min="0.01" step="0.01" onchange="validarStock(this)" class="insumo_cant w-24 p-2 bg-slate-50 border border-slate-200 rounded-lg text-sm outline-none" placeholder="Cant.">
+            <button type="button" onclick="this.parentElement.remove()" class="text-red-500 font-bold px-2 hover:scale-110">X</button>
+        `;
+        document.getElementById('contenedor_insumos').appendChild(div);
+    }
+
+    function validarStock(inputField) {
+        const select = inputField.previousElementSibling;
+        const opcionSeleccionada = select.options[select.selectedIndex];
+        if (opcionSeleccionada.value !== "0") {
+            const stockMax = parseFloat(opcionSeleccionada.dataset.stock);
+            const pedido = parseFloat(inputField.value);
+            if (pedido > stockMax) {
+                alert(`¡Alerta! Solo existen ${stockMax} unidades en inventario. Se ajustará la cantidad al máximo disponible.`);
+                inputField.value = stockMax;
+            }
+        }
+    }
+
+    // ================= CARGA DE DATOS (CATÁLOGOS) =================
+    async function cargarCatalogosModal() {
+        try {
+            const res = await fetch(`${API_URL}/api/catalogos_agenda`);
+            const json = await res.json();
+            if(json.success) {
+                // Escuelas
+                const selEscuelas = document.querySelectorAll('.cat_escuelas, #filtro_escuela');
+                json.escuelas.forEach(e => {
+                    selEscuelas.forEach(select => select.innerHTML += `<option value="${e.id_escuela}">${e.nombre_escuela}</option>`);
+                });
+                
+                // Insumos
+                const template = document.getElementById('insumos_template');
+                json.insumos.forEach(i => {
+                    template.innerHTML += `<option value="${i.id_insumo}" data-stock="${i.stock_actual}">${i.nombre_insumo} (Disp: ${i.stock_actual} ${i.unidad_medida})</option>`;
+                });
+                agregarFilaInsumo(); // Pre-llena la primera fila
+                
+                // Voluntarios
+                const divVols = document.getElementById('ev_voluntarios_list');
+                const selResp = document.getElementById('ev_responsable');
+                const selPsi = document.getElementById('cli_especialista');
+
+                json.voluntarios.forEach(v => {
+                    const selectedStr = (v.id_usuario === userIdActual) ? "selected" : "";
+                    selResp.innerHTML += `<option value="${v.id_usuario}" ${selectedStr}>${v.nombre_completo} (${v.especialidad})</option>`;
+                    if (v.id_rol === 2 || v.id_rol === 1 || v.especialidad === 'Psicología') {
+                        selPsi.innerHTML += `<option value="${v.id_usuario}" ${selectedStr}>${v.nombre_completo}</option>`;
+                    }
+                    divVols.innerHTML += `
+                        <label class="flex items-center gap-2 cursor-pointer hover:bg-slate-50 p-2 rounded-lg border border-transparent hover:border-slate-100 transition-colors">
+                            <input type="checkbox" name="asistentes" value="${v.id_usuario}" class="rounded text-blue-600 focus:ring-blue-500 w-4 h-4">
+                            <span class="font-medium text-slate-700">${v.nombre_completo} <span class="text-[10px] text-slate-400 font-bold ml-1">${v.especialidad}</span></span>
+                        </label>`;
+                });
+
+                // Beneficiarios
+                const selBen = document.getElementById('cli_beneficiario');
+                json.beneficiarios.forEach(b => { selBen.innerHTML += `<option value="${b.id_beneficiario}">${b.nombre_completo}</option>`; });
+            }
+        } catch (e) { console.error("Error catálogos", e); }
+    }
+
+    // ================= MODIFICAR: PRELLENAR DATOS =================
+    async function editarActividad(id, categoria) {
+        try {
+            const res = await fetch(`${API_URL}/api/agenda/${categoria}/${id}`);
+            const json = await res.json();
+            if(json.success) {
+                const data = json.data;
+                document.getElementById('edit_id').value = id;
+                document.getElementById('edit_categoria').value = categoria;
+                document.getElementById('titulo_modal').innerText = "Modificar Actividad";
+                document.getElementById('btn_submit_agenda').innerText = "Actualizar Cambios";
+                
+                document.getElementById('tipo_agendamiento').value = data.tipo_registro;
+                document.getElementById('tipo_agendamiento').disabled = true; // Bloqueado al editar
+                cambiarVistaFormulario();
+
+                // Formatear Fecha y Hora para los inputs
+                const fechaCita = new Date(data.fecha_cita || data.fecha_realizacion);
+                document.getElementById('gral_fecha').value = fechaCita.toISOString().split('T')[0];
+                document.getElementById('gral_hora').value = fechaCita.toTimeString().slice(0,5);
+
+                if(data.tipo_registro === 'visita') {
+                    document.getElementById('vis_escuela').value = data.nombre_escuela || '';
+                    document.getElementById('vis_ubicacion').value = data.ubicacion || '';
+                    document.getElementById('vis_contacto').value = data.contacto_nombre || '';
+                    document.getElementById('vis_puesto').value = data.puesto_contacto || '';
+                    document.getElementById('vis_telefono').value = data.telefono_escuela || '';
+                } 
+                else if(data.tipo_registro === 'clinica') {
+                    document.getElementById('cli_titulo').value = data.titulo_evento || '';
+                    document.getElementById('cli_beneficiario').value = data.id_beneficiario || '';
+                    document.getElementById('cli_especialista').value = data.id_especialista || '';
+                }
+                else { // Evento Operativo
+                    document.getElementById('ev_titulo').value = data.titulo_evento || '';
+                    document.getElementById('ev_tipo').value = data.tipo_evento || '';
+                    document.getElementById('ev_escuela').value = data.id_escuela || 0;
+                    
+                    // Limpiar y Llenar Voluntarios
+                    document.querySelectorAll('input[name="asistentes"]').forEach(cb => cb.checked = false);
+                    if(data.voluntarios && data.voluntarios.length > 0) {
+                        document.getElementById('ev_responsable').value = data.voluntarios[0]; // El 1ro es el responsable
+                        data.voluntarios.forEach(vid => {
+                            const cb = document.querySelector(`input[name="asistentes"][value="${vid}"]`);
+                            if(cb && vid !== data.voluntarios[0]) cb.checked = true;
+                        });
+                    }
+
+                    // Limpiar y Llenar Insumos
+                    document.getElementById('contenedor_insumos').innerHTML = '';
+                    if(!data.insumos || data.insumos.length === 0) {
+                        agregarFilaInsumo();
+                    } else {
+                        data.insumos.forEach(ins => {
+                            agregarFilaInsumo();
+                            const div = document.getElementById('contenedor_insumos').lastElementChild;
+                            div.querySelector('.insumo_select').value = ins.id_insumo;
+                            div.querySelector('.insumo_cant').value = ins.cantidad_usada;
+                        });
+                    }
+                }
+
+                // Abrir modal suavemente
+                document.getElementById('modalAgenda').classList.remove('hidden'); 
+                setTimeout(() => { document.getElementById('modalAgenda').classList.remove('opacity-0'); document.getElementById('modalAgendaContent').classList.remove('scale-95'); }, 10); 
+            } else {
+                alert("Error al obtener los datos de la base de datos.");
+            }
+        } catch (e) { alert("Error al conectar con el servidor."); }
+    }
+
+    // ================= GUARDAR AGENDA (POST / PUT) =================
+    document.getElementById('formAgenda').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button[type="submit"]'); btn.innerText = "Procesando..."; btn.disabled = true;
+
+        const editId = document.getElementById('edit_id').value;
+        const editCategoria = document.getElementById('edit_categoria').value;
+        const tipoRegistro = document.getElementById('tipo_agendamiento').value;
+        
+        let payload = { 
+            tipo_registro: tipoRegistro,
+            datos: { fecha: document.getElementById('gral_fecha').value, hora: document.getElementById('gral_hora').value }
+        };
+
+        if (tipoRegistro === 'visita') {
+            payload.datos.escuela = document.getElementById('vis_escuela').value;
+            payload.datos.ubicacion = document.getElementById('vis_ubicacion').value;
+            payload.datos.contacto = document.getElementById('vis_contacto').value;
+            payload.datos.puesto = document.getElementById('vis_puesto').value;
+            payload.datos.telefono = document.getElementById('vis_telefono').value;
+        } 
+        else if (tipoRegistro === 'clinica') {
+            payload.datos.titulo = document.getElementById('cli_titulo').value;
+            payload.datos.id_beneficiario = document.getElementById('cli_beneficiario').value;
+            payload.datos.id_especialista = document.getElementById('cli_especialista').value;
+        }
+        else { // Evento Operativo
+            const checkboxes = document.querySelectorAll('input[name="asistentes"]:checked');
+            const insumosRecoleccion = [];
+            document.querySelectorAll('#contenedor_insumos .flex').forEach(fila => {
+                const id = fila.querySelector('.insumo_select').value;
+                const cant = parseFloat(fila.querySelector('.insumo_cant').value);
+                if(id != "0" && cant > 0) insumosRecoleccion.push({ id: parseInt(id), cant });
+            });
+
+            payload.datos.titulo = document.getElementById('ev_titulo').value;
+            payload.datos.tipo = document.getElementById('ev_tipo').value;
+            payload.datos.id_escuela = document.getElementById('ev_escuela').value;
+            payload.datos.responsable = parseInt(document.getElementById('ev_responsable').value);
+            payload.datos.voluntarios = Array.from(checkboxes).map(cb => parseInt(cb.value));
+            payload.datos.insumos = insumosRecoleccion;
+        }
+
+        try {
+            let url = `${API_URL}/api/agenda`;
+            let method = 'POST';
+            
+            if(editId) {
+                url = `${API_URL}/api/agenda/${editCategoria}/${editId}`;
+                method = 'PUT';
+            }
+
+            const response = await fetch(url, { method: method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+            if (response.ok) {
+                cerrarModalAgenda();
+                cargarAgenda(true);
+            } else { alert("Hubo un error al guardar los datos."); }
+        } catch (error) { alert("Error de conexión"); }
+        finally { btn.innerText = "Guardar Actividad"; btn.disabled = false; }
+    });
+
+    // ================= LISTADO, FILTROS Y ELIMINAR =================
+    async function eliminarActividad(id, categoria) {
+        if(!confirm("¿Estás súper seguro de eliminar este registro? Esta acción no se puede deshacer y regresará el material al inventario.")) return;
+        try {
+            await fetch(`${API_URL}/api/agenda/${categoria}/${id}`, { method: 'DELETE' });
+            cargarAgenda(true);
+        } catch(e) { alert("Error al eliminar"); }
+    }
+
+    async function cargarAgenda(forzar = false) {
+        try {
+            if (agendaGlobal.length === 0 || forzar) {
+                const res = await fetch(`${API_URL}/api/agenda`);
+                const json = await res.json();
+                if (json.success) agendaGlobal = json.data;
+            }
+            aplicarFiltros();
+        } catch (error) { console.error(error); }
+    }
+
+    function aplicarFiltros() {
+        const texto = document.getElementById('buscador_principal').value.toLowerCase();
+        const fCat = document.getElementById('filtro_categoria').value;
+        const fEscuela = document.getElementById('filtro_escuela').options[document.getElementById('filtro_escuela').selectedIndex].text;
+        const fFecha = document.getElementById('filtro_fecha').value;
+        
+        const divLista = document.getElementById('lista_eventos');
+        divLista.innerHTML = '';
+
+        const filtrados = agendaGlobal.filter(ev => {
+            if (texto && !ev.titulo.toLowerCase().includes(texto) && !ev.lugar.toLowerCase().includes(texto)) return false;
+            if (fCat !== 'Todos' && ev.categoria !== fCat) return false;
+            if (document.getElementById('filtro_escuela').value !== 'Todas' && ev.lugar !== fEscuela) return false;
+            if (fFecha && ev.fecha.split('T')[0] !== fFecha) return false;
+            return true;
+        });
+
+        if(filtrados.length === 0) {
+            divLista.innerHTML = `<div class="p-10 text-center text-slate-400 font-medium">No se encontraron actividades.</div>`;
+            return;
+        }
+
+        filtrados.forEach(ev => {
+            const f = new Date(ev.fecha);
+            const fechaTxt = f.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+            const horaTxt = f.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+
+            let iconColor = "bg-blue-100 text-blue-600"; let icon = "event";
+            if (ev.tipo === 'Jornada Muralista') { iconColor = "bg-purple-100 text-purple-600"; icon = "format_paint"; }
+            else if (ev.tipo === 'Reunión Escolar') { iconColor = "bg-teal-100 text-teal-600"; icon = "handshake"; }
+            else if (ev.tipo === 'Cita Clínica') { iconColor = "bg-rose-100 text-rose-600"; icon = "medical_services"; }
+
+            divLista.innerHTML += `
+              <div class="p-6 border border-slate-100 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between hover:bg-slate-50 transition-all hover:shadow-md bg-white">
+                <div class="flex items-start gap-5 w-full md:w-2/3">
+                  <div class="p-4 ${iconColor} rounded-2xl shadow-sm"><span class="material-symbols-outlined text-2xl">${icon}</span></div>
+                  <div>
+                    <h4 class="font-bold text-slate-800 text-lg">${ev.titulo}</h4>
+                    <p class="text-sm text-slate-500 font-medium flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[16px]">location_on</span> ${ev.lugar}</p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        ${ev.categoria === 'evento' ? `<span class="text-xs font-bold bg-slate-100 text-slate-600 px-3 py-1 rounded-md"><span class="material-symbols-outlined text-[12px] align-middle mr-1">group</span>${ev.num_asistentes} Asistentes</span>` : `<span class="text-xs font-bold bg-teal-50 text-teal-700 px-3 py-1 rounded-md border border-teal-100">Prospección</span>`}
+                        ${ev.num_insumos > 0 ? `<span class="text-xs font-bold bg-amber-50 text-amber-700 px-3 py-1 rounded-md border border-amber-200"><span class="material-symbols-outlined text-[12px] align-middle mr-1">inventory_2</span>Requiere Material</span>` : ''}
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="mt-4 md:mt-0 md:text-right w-full md:w-1/3 flex flex-col items-start md:items-end">
+                  <div class="bg-[#f0f4f8] px-4 py-2 rounded-xl mb-3 inline-block">
+                      <p class="font-bold text-slate-800 capitalize">${fechaTxt}</p>
+                      <p class="text-sm text-slate-500 font-bold">${horaTxt} hrs</p>
+                  </div>
+                  
+                  <div class="flex gap-2 w-full md:w-auto mt-auto">
+                      <button onclick="editarActividad(${ev.id}, '${ev.categoria}')" class="flex-1 md:flex-none text-xs font-bold text-blue-600 hover:text-white bg-blue-50 hover:bg-blue-600 px-4 py-2.5 rounded-lg transition-colors shadow-sm">Modificar</button>
+                      <button onclick="eliminarActividad(${ev.id}, '${ev.categoria}')" class="flex-1 md:flex-none text-xs font-bold text-red-600 hover:text-white bg-red-50 hover:bg-red-600 px-4 py-2.5 rounded-lg transition-colors shadow-sm flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+                  </div>
+                </div>
+              </div>
+            `;
+        });
+    }
+
+    function limpiarFiltros() { 
+        document.getElementById('buscador_principal').value = ''; 
+        document.getElementById('filtro_categoria').value = 'Todos'; 
+        document.getElementById('filtro_escuela').value = 'Todas'; 
+        document.getElementById('filtro_fecha').value = ''; 
+        aplicarFiltros(); 
     }
   </script>
 </body>

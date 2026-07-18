@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
-      tailwind.config = { theme: { extend: { colors: { primary: "#8a5100", secondary: "#b50062", surface: "#f6fafe", "surface-container-low": "#f0f4f8" }, fontFamily: { sans: ["Quicksand", "sans-serif"], plus: ["Plus Jakarta Sans", "sans-serif"] } } } };
+      tailwind.config = { darkMode: "class", theme: { extend: { colors: { primary: "#8a5100", "primary-container": "#f39200", secondary: "#b50062", "secondary-container": "#e2007c", surface: "#f6fafe", "surface-container-low": "#f0f4f8", "surface-container-lowest": "#ffffff", "on-surface": "#171c1f", "on-surface-variant": "#544434" }, fontFamily: { sans: ["Quicksand", "sans-serif"], plus: ["Plus Jakarta Sans", "sans-serif"] } } } };
     </script>
     <style>.material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; }</style>
   </head>
@@ -23,7 +23,7 @@
         <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="gestion_voluntariado_admin.html"><span class="material-symbols-outlined">group</span><span class="font-medium">Voluntariado</span></a>
         <!-- PESTAÑA ACTIVA -->
         <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-orange-600 font-bold border-r-4 border-orange-500 bg-orange-50 transition-all" href="inventario_admin.html"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">inventory_2</span><span class="font-medium">Inventario</span></a>
-        <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="agenda_admin.html"><span class="material-symbols-outlined">school</span><span class="font-medium">Agenda Escolar</span></a>
+        <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-all" href="agenda_admin.html"><span class="material-symbols-outlined">school</span><span class="font-medium">Agenda</span></a>
       </nav>
       <div class="px-6 mt-auto space-y-4">
         <a class="flex items-center justify-center gap-2 w-full py-3 text-slate-500 hover:text-orange-600 hover:bg-orange-50 rounded-full font-bold transition-all border border-slate-200" href="inicio.html"><span class="material-symbols-outlined">home</span>Volver al Inicio</a>
@@ -37,7 +37,7 @@
         <div class="flex items-center flex-1">
           <div class="relative w-full max-w-md">
             <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-            <input class="w-full pl-10 pr-4 py-2 bg-[#f0f4f8] border-none rounded-full focus:ring-2 focus:ring-[#e2007c]/20 transition-all text-sm" placeholder="Buscar insumos o activos..." type="text" />
+            <input id="buscador_principal" class="w-full pl-10 pr-4 py-2 bg-[#f0f4f8] border-none rounded-full focus:ring-2 focus:ring-[#e2007c]/20 transition-all text-sm" placeholder="Buscar insumos..." type="text" />
           </div>
         </div>
         <div class="flex items-center gap-4 ml-8 relative">
@@ -49,29 +49,54 @@
             <div class="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-slate-100 flex items-center justify-center text-slate-500 font-bold"><span class="material-symbols-outlined">person</span></div>
           </a>
   
-          <!-- PANEL FLOTANTE DE NOTIFICACIONES -->
-          <div id="modalNotificaciones" class="hidden absolute top-14 right-0 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden z-50">
-              <div class="bg-slate-800 px-4 py-3 text-white flex justify-between items-center"><h3 class="font-bold text-sm">Notificaciones</h3><span class="text-xs bg-slate-700 px-2 py-1 rounded-full">3 Nuevas</span></div>
+          <!-- PANEL DE NOTIFICACIONES -->
+          <div id="modalNotificaciones" class="hidden absolute top-14 right-32 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden z-50">
+              <div class="bg-slate-800 px-4 py-3 text-white flex justify-between items-center"><h3 class="font-bold text-sm">Notificaciones</h3><span class="text-xs bg-slate-700 px-2 py-1 rounded-full">1 Nueva</span></div>
               <div class="max-h-80 overflow-y-auto divide-y divide-slate-100">
-                  <div class="p-4 hover:bg-slate-50 transition-colors cursor-pointer"><div class="flex gap-3"><div class="w-8 h-8 rounded-full bg-pink-100 text-[#b50062] flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-sm">mail</span></div><div><p class="text-sm font-bold text-slate-800">Correo Enviado</p><p class="text-xs text-slate-500 mt-0.5">Se enviaron credenciales al nuevo voluntario.</p></div></div></div>
-                  <div class="p-4 hover:bg-slate-50 transition-colors cursor-pointer"><div class="flex gap-3"><div class="w-8 h-8 rounded-full bg-orange-100 text-[#8a5100] flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-sm">event</span></div><div><p class="text-sm font-bold text-slate-800">Próxima Entrevista</p><p class="text-xs text-slate-500 mt-0.5">Entrevista programada para mañana a las 10:00 hrs.</p></div></div></div>
+                  <div class="p-4 hover:bg-slate-50 transition-colors cursor-pointer"><div class="flex gap-3"><div class="w-8 h-8 rounded-full bg-orange-100 text-[#8a5100] flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-sm">inventory_2</span></div><div><p class="text-sm font-bold text-slate-800">Alerta de Stock</p><p class="text-xs text-slate-500 mt-0.5">El material para muralismo está bajo.</p></div></div></div>
               </div>
               <div class="p-2 text-center border-t border-slate-100 bg-slate-50"><button onclick="document.getElementById('modalNotificaciones').classList.add('hidden')" class="text-xs font-bold text-slate-500 hover:text-slate-800">Cerrar panel</button></div>
           </div>
         </div>
       </header>
   
-      <!-- ================= ÁREA DE CONTENIDO (ESTRUCTURA CORREGIDA) ================= -->
       <div class="p-8 flex-1">
         
-        <!-- TÍTULO Y BOTÓN SUPERIOR (Esto arregla el espacio) -->
+        <!-- TÍTULO Y BOTÓN SUPERIOR -->
         <div class="flex justify-between items-end mb-10">
             <div>
               <h2 class="text-4xl font-bold text-primary font-plus tracking-tight mb-2">Gestión de Inventario</h2>
-              <p class="text-slate-500 max-w-xl">Control de insumos, materiales y activos fijos de la organización.</p>
+              <p class="text-slate-500 max-w-xl">Control de insumos y materiales para operación de la AC.</p>
             </div>
-            <button class="flex items-center gap-2 px-10 py-4 bg-gradient-to-r from-secondary to-[#e2007c] text-white rounded-full font-bold shadow-xl hover:scale-105 active:scale-95 transition-all">
+            <button onclick="abrirModalInsumo()" class="flex items-center gap-2 px-10 py-4 bg-gradient-to-r from-secondary to-[#e2007c] text-white rounded-full font-bold shadow-xl hover:scale-105 active:scale-95 transition-all">
               <span class="material-symbols-outlined">add</span> Nuevo Artículo
+            </button>
+        </div>
+
+        <!-- BARRA DE FILTROS -->
+        <div class="flex flex-wrap gap-4 mb-8 bg-white p-4 rounded-2xl shadow-sm border border-slate-100 items-center">
+            <span class="text-sm font-bold text-slate-400 px-2 uppercase tracking-widest text-[10px]">Filtrar por:</span>
+            
+            <div class="relative min-w-[160px]">
+              <select id="filtro_area" onchange="aplicarFiltrosInventario()" class="w-full appearance-none bg-[#f0f4f8] border-none rounded-full px-5 py-2.5 text-sm font-medium focus:ring-2 focus:ring-[#e2007c]/20 cursor-pointer text-slate-600">
+                <option value="Todas">Todas las Áreas</option>
+                <option value="Muralismo">Muralismo</option>
+                <option value="Alimentario">Alimentario</option>
+                <option value="Trabajo de campo">Trabajo de campo</option>
+              </select>
+            </div>
+    
+            <div class="relative min-w-[160px]">
+              <select id="filtro_estado" onchange="aplicarFiltrosInventario()" class="w-full appearance-none bg-[#f0f4f8] border-none rounded-full px-5 py-2.5 text-sm font-medium focus:ring-2 focus:ring-[#e2007c]/20 cursor-pointer text-slate-600">
+                <option value="Todos">Cualquier Estado</option>
+                <option value="Optimo">Stock Óptimo</option>
+                <option value="Medio">Stock Insuficiente</option>
+                <option value="Bajo">Bajo Stock</option>
+              </select>
+            </div>
+    
+            <button onclick="limpiarFiltrosInventario()" class="ml-auto p-2.5 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors" title="Limpiar Filtros">
+              <span class="material-symbols-outlined text-slate-600">refresh</span>
             </button>
         </div>
 
@@ -81,24 +106,13 @@
             <thead class="bg-slate-50 border-b border-slate-200">
               <tr>
                 <th class="px-8 py-5 text-sm font-bold text-slate-400 uppercase tracking-widest">Artículo</th>
-                <th class="px-6 py-5 text-sm font-bold text-slate-400 uppercase tracking-widest">Categoría</th>
+                <th class="px-6 py-5 text-sm font-bold text-slate-400 uppercase tracking-widest">Categoría / Área</th>
                 <th class="px-6 py-5 text-sm font-bold text-slate-400 uppercase tracking-widest">Stock Actual</th>
                 <th class="px-6 py-5 text-sm font-bold text-slate-400 uppercase tracking-widest">Estado</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-slate-100">
-              <tr class="hover:bg-slate-50 transition-colors">
-                <td class="px-8 py-5 font-bold text-slate-700">Pintura Amarilla (Cubeta 19L)</td>
-                <td class="px-6 py-5 text-slate-500 font-medium">Muralismo</td>
-                <td class="px-6 py-5 font-bold text-slate-700">2 Unidades</td>
-                <td class="px-6 py-5"><span class="px-4 py-1.5 bg-red-100 text-red-600 text-xs font-bold rounded-full uppercase tracking-wide">Bajo Stock</span></td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                <td class="px-8 py-5 font-bold text-slate-700">Cuadernos Profesionales</td>
-                <td class="px-6 py-5 text-slate-500 font-medium">Educación</td>
-                <td class="px-6 py-5 font-bold text-slate-700">120 Unidades</td>
-                <td class="px-6 py-5"><span class="px-4 py-1.5 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase tracking-wide">Óptimo</span></td>
-              </tr>
+            <tbody id="tabla_inventario" class="divide-y divide-slate-100">
+              <!-- Los datos se inyectarán aquí con Javascript -->
             </tbody>
           </table>
         </div>
@@ -106,33 +120,187 @@
       </div>
     </main>
 
-    <!-- ================= SCRIPT DE SEGURIDAD UNIVERSAL ================= -->
+    <!-- ================= MODAL: NUEVO INSUMO ================= -->
+    <div id="modalInsumo" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-all duration-300 opacity-0">
+        <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300" id="modalInsumoContent">
+          <div class="bg-gradient-to-r from-[#8a5100] to-[#f39200] px-8 py-6 text-white flex justify-between items-center">
+            <div><h3 class="text-2xl font-bold font-plus">Nuevo Artículo</h3></div>
+            <button onclick="cerrarModalInsumo()" class="text-white/80 hover:text-white"><span class="material-symbols-outlined text-3xl">close</span></button>
+          </div>
+          <form id="formInsumo" class="p-8 space-y-4">
+            <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Nombre del Insumo</label>
+                <input type="text" id="ins_nombre" required class="w-full px-4 py-2 bg-[#f0f4f8] border-none rounded-full outline-none" placeholder="Ej. Pintura Vinílica">
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                  <label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Unidad de Medida</label>
+                  <select id="ins_unidad" required class="w-full px-4 py-2 bg-[#f0f4f8] border-none rounded-full outline-none">
+                      <option value="Litros">Litros (Lt)</option>
+                      <option value="Kilos">Kilos (Kg)</option>
+                      <option value="Piezas">Piezas (Pz)</option>
+                      <option value="Paquetes">Paquetes</option>
+                  </select>
+              </div>
+              <div>
+                  <label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Área Destino</label>
+                  <select id="ins_area" required class="w-full px-4 py-2 bg-[#f0f4f8] border-none rounded-full outline-none">
+                      <option value="Muralismo">Muralismo</option>
+                      <option value="Alimentario">Alimentario</option>
+                      <option value="Outreach">Outreach</option>
+                  </select>
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+              <div>
+                  <label class="block text-xs font-bold text-slate-500 mb-1 ml-1 uppercase">Stock Inicial</label>
+                  <input type="number" step="0.01" id="ins_stock" required class="w-full px-4 py-2 bg-white border border-slate-200 rounded-xl outline-none" value="0">
+              </div>
+              <div>
+                  <label class="block text-xs font-bold text-slate-500 mb-1 ml-1 uppercase">Pto. Reorden</label>
+                  <input type="number" step="0.01" id="ins_reorden" required class="w-full px-4 py-2 bg-white border border-slate-200 rounded-xl outline-none" value="0" title="Te avisaremos si el stock baja de este número">
+              </div>
+              <div>
+                  <label class="block text-xs font-bold text-slate-500 mb-1 ml-1 uppercase">Costo Un. ($)</label>
+                  <input type="number" step="0.01" id="ins_costo" required class="w-full px-4 py-2 bg-white border border-slate-200 rounded-xl outline-none" value="0">
+              </div>
+            </div>
+            
+            <div class="pt-4 flex gap-4">
+                <button type="button" onclick="cerrarModalInsumo()" class="flex-1 py-3 bg-slate-100 text-slate-600 font-bold rounded-full hover:bg-slate-200 transition-colors">Cancelar</button>
+                <button type="submit" class="flex-1 py-3 bg-[#b50062] text-white font-bold rounded-full shadow-lg hover:bg-[#e2007c] transition-colors">Guardar Insumo</button>
+            </div>
+          </form>
+        </div>
+    </div>
+
+    <!-- ================= SCRIPT DE SEGURIDAD Y LÓGICA ================= -->
     <script>
-      // 1. Proteger la ruta y cargar nombre del usuario
+      const API_URL = "http://localhost:3000";
+      let inventarioGlobal = [];
+
+      // 1. Proteger la ruta y cargar nombre
       document.addEventListener('DOMContentLoaded', () => {
           const token = localStorage.getItem('token_sanctorum');
-          
-          // Si no hay token (no ha iniciado sesión), lo pateamos al login
-          if(!token) {
-              window.location.href = "login.html";
-              return;
-          }
-  
+          if(!token) { window.location.replace("login.html"); return; }
           try {
-              // Si sí hay token, lo desencriptamos y sacamos su nombre
               const payload = JSON.parse(atob(token.split('.')[1]));
-              document.getElementById('nav_user_name').innerText = payload.nombre.split(' ')[0]; // Muestra "Enrique" en vez de nombre completo
-          } catch (e) { 
-              console.error("Error leyendo el token de seguridad"); 
-              window.location.href = "login.html";
-          }
+              document.getElementById('nav_user_name').innerText = payload.nombre.split(' ')[0];
+          } catch (e) { window.location.replace("login.html"); }
+
+          // Cargar datos al iniciar
+          cargarInventario(true);
       });
   
-      // 2. Función del botón rojo del menú
-      function cerrarSesion() {
-          localStorage.removeItem('token_sanctorum');
-          window.location.href = "login.html";
+      function cerrarSesion() { localStorage.removeItem('token_sanctorum'); window.location.replace("login.html"); }
+
+      // 2. Lógica del Modal
+      function abrirModalInsumo() {
+          document.getElementById('modalInsumo').classList.remove('hidden');
+          setTimeout(() => { document.getElementById('modalInsumo').classList.remove('opacity-0'); document.getElementById('modalInsumoContent').classList.remove('scale-95'); }, 10);
       }
+
+      function cerrarModalInsumo() {
+          document.getElementById('modalInsumo').classList.add('opacity-0');
+          document.getElementById('modalInsumoContent').classList.add('scale-95');
+          setTimeout(() => { document.getElementById('modalInsumo').classList.add('hidden'); document.getElementById('formInsumo').reset(); }, 300);
+      }
+
+      // 3. Insertar a la Base de Datos
+      document.getElementById('formInsumo').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const btn = e.target.querySelector('button[type="submit"]'); btn.innerText = "Guardando..."; btn.disabled = true;
+          
+          const data = {
+              nombre_insumo: document.getElementById('ins_nombre').value,
+              unidad_medida: document.getElementById('ins_unidad').value,
+              stock_actual: parseFloat(document.getElementById('ins_stock').value),
+              punto_reorden: parseFloat(document.getElementById('ins_reorden').value),
+              costo_unitario: parseFloat(document.getElementById('ins_costo').value),
+              area_proyecto: document.getElementById('ins_area').value
+          };
+
+          try {
+              const response = await fetch(`${API_URL}/api/insumos`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(data)
+              });
+              if (response.ok) {
+                  cerrarModalInsumo();
+                  cargarInventario(true); // Recargar la tabla
+              } else { alert("Error al guardar el insumo."); }
+          } catch (error) { alert("Error de conexión"); }
+          finally { btn.innerText = "Guardar Insumo"; btn.disabled = false; }
+      });
+
+      // 4. Lógica de Tabla y Filtros
+      async function cargarInventario(forzar = false) {
+          try {
+              if (inventarioGlobal.length === 0 || forzar) {
+                  const res = await fetch(`${API_URL}/api/insumos`);
+                  const json = await res.json();
+                  if (json.success) inventarioGlobal = json.data;
+              }
+              aplicarFiltrosInventario();
+          } catch (error) { console.error("Error cargando inventario:", error); }
+      }
+
+      function aplicarFiltrosInventario() {
+          const texto = document.getElementById('buscador_principal').value.toLowerCase();
+          const fArea = document.getElementById('filtro_area').value;
+          const fEstado = document.getElementById('filtro_estado').value;
+          const tbody = document.getElementById('tabla_inventario');
+          tbody.innerHTML = '';
+
+          const filtrados = inventarioGlobal.filter(item => {
+              if (texto && !item.nombre_insumo.toLowerCase().includes(texto)) return false;
+              if (fArea !== 'Todas' && item.area_proyecto !== fArea) return false;
+              
+              // Matemáticas de inventario: si el stock es igual o menor al punto de reorden = BAJO
+              const bajoStock = parseFloat(item.stock_actual) <= parseFloat(item.punto_reorden);
+              if (fEstado === 'Optimo' && bajoStock) return false;
+              if (fEstado === 'Bajo' && !bajoStock) return false;
+
+              return true;
+          });
+
+          if(filtrados.length === 0) {
+              tbody.innerHTML = `<tr><td colspan="4" class="px-8 py-10 text-center text-slate-400">No se encontraron artículos con estos filtros.</td></tr>`;
+              return;
+          }
+
+          filtrados.forEach(item => {
+              const bajoStock = parseFloat(item.stock_actual) <= parseFloat(item.punto_reorden);
+              
+              // Badge Dinámico
+              const badge = bajoStock 
+                ? `<span class="px-4 py-1.5 bg-red-100 text-red-600 text-[10px] font-bold rounded-full uppercase tracking-wide">Bajo Stock</span>`
+                : `<span class="px-4 py-1.5 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase tracking-wide">Óptimo</span>`;
+
+              tbody.innerHTML += `
+                <tr class="hover:bg-slate-50 transition-colors">
+                  <td class="px-8 py-5 font-bold text-slate-700">${item.nombre_insumo}</td>
+                  <td class="px-6 py-5 text-slate-500 font-medium">${item.area_proyecto}</td>
+                  <td class="px-6 py-5 font-bold text-slate-700">${item.stock_actual} <span class="text-xs text-slate-400 ml-1">${item.unidad_medida}</span></td>
+                  <td class="px-6 py-5">${badge}</td>
+                </tr>
+              `;
+          });
+      }
+
+      function limpiarFiltrosInventario() {
+          document.getElementById('buscador_principal').value = '';
+          document.getElementById('filtro_area').value = 'Todas';
+          document.getElementById('filtro_estado').value = 'Todos';
+          aplicarFiltrosInventario();
+      }
+
+      // Conectar buscador de texto en vivo
+      const inputBuscador = document.getElementById('buscador_principal'); 
+      if(inputBuscador) { inputBuscador.addEventListener('input', () => { aplicarFiltrosInventario(); }); }
     </script>
   </body>
 </html>
